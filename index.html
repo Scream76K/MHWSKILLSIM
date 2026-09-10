@@ -21,7 +21,39 @@
 const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v30';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
-function normalizeDB(d){const keys=['weapons','armor','charms','decorations','skills','sets','monsters','motionValues'];const out={};for(const k of keys)out[k]=Array.isArray(d?.[k])?d[k]:[];return out;}let build={weapon:null,armor:{head:null,chest:null,arms:null,waist:null,legs:null},charm:null,charmCustom:{skills:[{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'}],slots:[3,2], weaponSlot:true},artia:{production:'attack',element:'fire',restores:['atk:EX','atk:EX','aff:EX','sharp:EX','elem:EX']},decos:{}};let calcState={total:{},stats:{}};
+function normalizeDB(d){
+  const out={
+    weapons:Array.isArray(d?.weapons)?d.weapons:[],
+    armor:Array.isArray(d?.armor)?d.armor:[],
+    charms:Array.isArray(d?.charms)?d.charms:[],
+    decorations:Array.isArray(d?.decorations)?d.decorations:[],
+    skills:Array.isArray(d?.skills)?d.skills:[],
+    sets:Array.isArray(d?.sets)?d.sets:[],
+    monsters:Array.isArray(d?.monsters)?d.monsters:[],
+    motionValues:Array.isArray(d?.motionValues)?d.motionValues:(Array.isArray(d?.['motion-values'])?d['motion-values']:[])
+  };
+  return out;
+}
+function normalizeCharm(){
+  if(!build.charmCustom||typeof build.charmCustom!=='object') build.charmCustom={};
+  if(!Array.isArray(build.charmCustom.skills)) build.charmCustom.skills=[];
+  build.charmCustom.skills=build.charmCustom.skills.slice(0,3).map(x=>({
+    name:String(x?.name||''),
+    level:Math.max(1,Number(x?.level)||1),
+    type:x?.type==='weapon'?'weapon':'armor'
+  }));
+  while(build.charmCustom.skills.length<3) build.charmCustom.skills.push({name:'',level:1,type:'armor'});
+  if(!Array.isArray(build.charmCustom.slots)) build.charmCustom.slots=[3,2];
+  build.charmCustom.slots=[0,1,2,3].slice(0,2).map((_,i)=>Math.max(0,Math.min(3,Number(build.charmCustom.slots[i])||0)));
+  while(build.charmCustom.slots.length<2) build.charmCustom.slots.push(0);
+  build.charmCustom.weaponSlot=build.charmCustom.weaponSlot!==false;
+  if(!build.artia||typeof build.artia!=='object') build.artia={production:'attack',element:'fire',restores:[]};
+  if(!['attack','affinity','element'].includes(build.artia.production)) build.artia.production='attack';
+  if(!['fire','water','ice','thunder','dragon'].includes(build.artia.element)) build.artia.element='fire';
+  if(!Array.isArray(build.artia.restores)) build.artia.restores=[];
+  build.artia.restores=build.artia.restores.slice(0,5);
+  while(build.artia.restores.length<5) build.artia.restores.push('atk:EX');
+}let build={weapon:null,armor:{head:null,chest:null,arms:null,waist:null,legs:null},charm:null,charmCustom:{skills:[{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'}],slots:[3,2], weaponSlot:true},artia:{production:'attack',element:'fire',restores:['atk:EX','atk:EX','aff:EX','sharp:EX','elem:EX']},decos:{}};let calcState={total:{},stats:{}};
 const KINDS=[['great-sword','大剣'],['long-sword','太刀'],['sword-and-shield','片手剣'],['dual-blades','双剣'],['hammer','ハンマー'],['hunting-horn','狩猟笛'],['lance','ランス'],['gunlance','ガンランス'],['switch-axe','スラッシュアックス'],['charge-blade','チャージアックス'],['insect-glaive','操虫棍'],['light-bowgun','ライトボウガン'],['heavy-bowgun','ヘビィボウガン'],['bow','弓']];
 const JP_KIND=Object.fromEntries(KINDS);
 async function get(url,timeout=30000){let c=new AbortController(),t=setTimeout(()=>c.abort(),timeout);try{let r=await fetch(url,{cache:'no-store',mode:'cors',signal:c.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}catch(e){throw Error(e.name==='AbortError'?'タイムアウト':e.message)}finally{clearTimeout(t)}}

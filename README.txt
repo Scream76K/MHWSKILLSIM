@@ -1,16 +1,10 @@
-MH Wilds ビルド＆火力シミュレーター v3.0
+MH Wilds ビルド＆火力シミュレーター v3.1
 
-今回の修正:
-- 護石API取得失敗が他のデータ取得を停止させないよう変更。
-- 護石データが空/nullでも画面がJavaScriptエラーで停止しないよう修正。
-- 護石の武器スロットを「なし / あり[1]」から選択可能に変更。
-- 「あり」の場合のみ武器用[1]スロットを装飾品欄へ追加。
-- モンスター/部位データを護石取得失敗とは独立して読み込み、選択可能に変更。
-- 巨戟アーティアの攻撃/会心/属性激化を表示し、ステータスへ反映。
-- 巨戟アーティアの復元ボーナスをステータスへ反映。
-- 巨戟アーティアの会心激化/属性激化の武器種別属性補正を反映。
-- Service Worker/キャッシュをv3.0へ更新。
+v3.0で発生していた Safari の「Can't find variable: normalizeCharm」を修正。
+normalizeCharm を実装し、護石設定・Artia設定の初期データも安全に正規化。
+また motion-values / motionValues のデータ名差も吸収。
 
-GitHub Pages: index.html, manifest.webmanifest, sw.js, README.txt をリポジトリ直下へ上書きしてください。
-Safariで一度「最新データを取得 / 更新」を押してください。
-画面タイトルが v3.0 になっていることを確認してください。
+GitHub Pages にはこのフォルダ内の4ファイルをリポジトリ直下へ置いてください。
+index.html / manifest.webmanifest / sw.js / README.txt
+
+ページ上部のタイトルが v3.1 になっていることを確認してください。
