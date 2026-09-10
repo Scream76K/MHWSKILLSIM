@@ -1,11 +1,16 @@
-MH Wilds ビルド＆火力シミュレーター v2.2
+MH Wilds ビルド＆火力シミュレーター v3.0
 
-v2.2 changes:
-- Step 1〜3 unified into one build construction UI.
-- Charm: up to 3 skills; max one weapon skill, weapon skill fixed to Lv1; armor skills can set levels freely.
-- Monster and body-part selection added; hitzone values are applied to damage calculation.
-- MHDB monster and motion-value data are downloaded and cached locally.
-- Artia settings and equipment/decorations remain editable.
+今回の修正:
+- 護石API取得失敗が他のデータ取得を停止させないよう変更。
+- 護石データが空/nullでも画面がJavaScriptエラーで停止しないよう修正。
+- 護石の武器スロットを「なし / あり[1]」から選択可能に変更。
+- 「あり」の場合のみ武器用[1]スロットを装飾品欄へ追加。
+- モンスター/部位データを護石取得失敗とは独立して読み込み、選択可能に変更。
+- 巨戟アーティアの攻撃/会心/属性激化を表示し、ステータスへ反映。
+- 巨戟アーティアの復元ボーナスをステータスへ反映。
+- 巨戟アーティアの会心激化/属性激化の武器種別属性補正を反映。
+- Service Worker/キャッシュをv3.0へ更新。
 
-GitHub Pages: upload index.html, manifest.webmanifest, sw.js, README.txt to repository root.
-After replacing files, use Safari and press "最新データを取得 / 更新" once.
+GitHub Pages: index.html, manifest.webmanifest, sw.js, README.txt をリポジトリ直下へ上書きしてください。
+Safariで一度「最新データを取得 / 更新」を押してください。
+画面タイトルが v3.0 になっていることを確認してください。
