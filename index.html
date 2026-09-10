@@ -2,11 +2,11 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest">
-<title>MH Wilds ビルド＆火力シミュレーター v3.0</title>
+<title>MH Wilds ビルド＆火力シミュレーター v3.2</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0f1e;color:#eef2ff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}header{padding:18px;background:#111827;border-bottom:1px solid #334155}.wrap{max-width:1100px;margin:auto;padding:12px}h1{font-size:22px;margin:0 0 5px}.muted{color:#94a3b8;font-size:12px}.grid{display:grid;grid-template-columns:300px 1fr;gap:12px}.card{background:#151d33;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}h2{font-size:17px;margin:0 0 10px}h3{font-size:14px;margin:12px 0 7px}label{font-size:12px;color:#cbd5e1;display:block;margin:7px 0 4px}select,input,button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit}button{cursor:pointer}button.primary{background:#2563eb;border-color:#2563eb}button.good{background:#166534;border-color:#166534}button.danger{background:#7f1d1d;border-color:#7f1d1d}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.slot{border:1px solid #475569;border-radius:8px;padding:6px;background:#0b1020}.equip{border:1px solid #334155;border-radius:10px;padding:9px;margin:8px 0;background:#0b1020}.equip b{font-size:13px}.tag{display:inline-block;padding:3px 7px;border:1px solid #475569;border-radius:999px;margin:2px;font-size:11px}.notice{padding:9px;border:1px solid #475569;border-radius:9px;background:#0f172a;margin-top:8px}.ok{color:#86efac}.warn{color:#fbbf24}.bad{color:#fca5a5}.info{color:#93c5fd}.sticky{position:sticky;bottom:10px;z-index:5}.summarygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.metric{border:1px solid #334155;border-radius:9px;padding:10px;background:#0b1020}.metric b{display:block;font-size:19px;margin-top:3px}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}.hidden{display:none}progress{width:100%;height:10px}.small{font-size:11px}.dangerText{color:#fca5a5}.searchbox{margin-bottom:6px}.buildslot{margin-top:6px}.skilllist{display:grid;gap:4px;max-height:520px;overflow:auto}.skillrow{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #334155;border-radius:8px;background:#0b1020}.skillrow .lv{font-weight:700}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}.checkline input{width:auto;min-height:0}.tabs{display:flex;gap:5px;overflow:auto;margin-bottom:10px}.tab{white-space:nowrap;padding:9px 12px;border:1px solid #475569;border-radius:999px;background:#0b1020}.tab.active{background:#2563eb;border-color:#2563eb}@media(max-width:760px){.grid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.slotgrid{grid-template-columns:1fr 1fr}}
 </style></head><body>
-<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v3.0</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
+<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v3.2</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
 <main class="wrap"><div class="grid"><aside>
 <section class="card"><h2>データ</h2><button id="load" class="primary">最新データを取得 / 更新</button><progress id="prog" value="0" max="100" style="display:none;margin-top:8px"></progress><div id="status" class="muted" style="margin-top:7px">未取得</div><div id="diag" class="notice small hidden"></div></section>
 <section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div id="artiaBox" class="notice hidden"></div><h3>防具</h3><div id="armorSelectors"></div><h3>護石</h3><div id="charmEditor"></div><h3>装飾品</h3><div id="decorEditor"></div></section>
@@ -18,7 +18,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v30';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v32';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -62,6 +62,69 @@ function stat(m,c=''){ $( 'status').innerHTML=`<span class="${c}">${m}</span>` }
 function save(){try{localStorage.setItem(CACHE,JSON.stringify(normalizeDB(DB)))}catch(e){}}
 function loadCache(){try{let d=JSON.parse(localStorage.getItem(CACHE));if(d?.armor?.length&&d?.skills?.length){DB=normalizeDB(d);normalizeCharm();stat(`保存済みデータ：防具${d.armor.length} / 武器${d.weapons.length} / 装飾品${d.decorations.length}`,'warn');renderAll();return true}}catch(e){}return false}
 async function loadData(){ $('load').disabled=true;$('prog').style.display='block';$('prog').value=1;let names=['skills','armor','decorations','charms','sets','weapons','monsters','motion-values'],d={},failed=[];try{for(let i=0;i<names.length;i++){let name=names[i];stat(`${i+1}/${names.length} ${name} を取得中…`);$('prog').value=Math.round(i/names.length*100);try{d[name]=await all(name==='sets'?'/armor/sets':'/'+name)}catch(e){d[name]=[];failed.push(name+': '+e.message)}}DB=normalizeDB(d);normalizeCharm();save();renderAll();$('prog').value=100;let msg=`取得完了：防具${DB.armor.length} / 武器${DB.weapons.length} / 装飾品${DB.decorations.length} / 護石${DB.charms.length} / モンスター${DB.monsters.length}`;if(failed.length){stat(msg+'（一部取得失敗）','warn');$('diag').classList.remove('hidden');$('diag').innerHTML='取得できなかったデータ：<br>'+failed.map(esc).join('<br>')+'<br><br>護石が取得できなくても、自由設定は利用できます。モンスターが取得できればモンスター選択は利用できます。'}else{stat(msg,'ok');$('diag').classList.add('hidden')}}catch(e){stat('取得処理失敗：'+e.message,'bad');$('diag').classList.remove('hidden');$('diag').textContent='データ取得処理で予期しないエラーが発生しました。保存済みデータがあれば再読み込みできます。'}finally{$('load').disabled=false}}
+
+// ---- v3.2 safety helpers ----
+function skillMax(s){
+  const ranks=Array.isArray(s?.ranks)?s.ranks:[];
+  const n=Number(s?.maxLevel ?? s?.max ?? ranks.length ?? 0);
+  return Math.max(1, Number.isFinite(n)&&n>0?n:10);
+}
+function skillEntries(obj){
+  if(!obj) return [];
+  const a=Array.isArray(obj)?obj:[];
+  const out=[];
+  for(const x of a){
+    const name=x?.skill?.name ?? x?.name ?? x?.skillName ?? x?.skill?.id ?? '';
+    const level=Number(x?.level ?? x?.rank ?? x?.value ?? 0);
+    if(name && level) out.push([String(name),level]);
+  }
+  return out;
+}
+function addSkillEntries(out, obj){
+  for(const [n,l] of skillEntries(obj)) out[n]=(out[n]||0)+l;
+  return out;
+}
+function armorSkills(a){
+  const out={};
+  addSkillEntries(out,a?.skills);
+  // Some cached/API shapes put skills under skillList or skill.
+  if(!Object.keys(out).length) addSkillEntries(out,a?.skillList);
+  if(!Object.keys(out).length && Array.isArray(a?.skill)) addSkillEntries(out,a.skill);
+  return out;
+}
+function weaponSkills(w){
+  const out={};
+  addSkillEntries(out,w?.skills);
+  if(!Object.keys(out).length) addSkillEntries(out,w?.skillList);
+  return out;
+}
+function slotLevels(v){
+  if(Array.isArray(v)) return v.map(x=>Math.max(0,Number(x)||0));
+  if(typeof v==='number') return [Math.max(0,v)];
+  if(v && Array.isArray(v.levels)) return v.levels.map(x=>Math.max(0,Number(x)||0));
+  return [];
+}
+function maxBreakSlots(a){
+  // Prefer an explicit max/augmented slot definition; otherwise use the armor's slots.
+  const candidates=[a?.slotsMax,a?.maxSlots,a?.slots?.max,a?.slots?.augmented,a?.slots?.limitBreak,a?.slots];
+  for(const c of candidates){const r=slotLevels(c);if(r.length)return r;}
+  return [];
+}
+function slotText(v){
+  const a=slotLevels(v);
+  return a.length?a.map(x=>x?`[${x}]`:'[-]').join(' '):'なし';
+}
+function renderAll(){
+  normalizeCharm();
+  renderKinds();
+  renderWeapon();
+  renderArmor();
+  renderCharmEditor();
+  renderMonsters();
+  renderArtia();
+  renderDecorEditor();
+  try{calcBuild();}catch(e){stat('表示準備中：'+e.message,'warn');}
+}
 function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
 function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
 function renderWeapon(){let sel=$('weapon'),arr=weaponsOfKind(),old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;renderArtia();renderDecorEditor()}

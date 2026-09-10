@@ -1,10 +1,10 @@
-MH Wilds ビルド＆火力シミュレーター v3.1
+MH Wilds ビルド＆火力シミュレーター v3.2
 
-v3.0で発生していた Safari の「Can't find variable: normalizeCharm」を修正。
-normalizeCharm を実装し、護石設定・Artia設定の初期データも安全に正規化。
-また motion-values / motionValues のデータ名差も吸収。
+v3.1で発生していた Safari の「Can’t find variable: renderAll」を修正。
+renderAll と、関連するスキル/スロット処理の不足関数を追加しました。
+キャッシュキーとService Workerもv3.2へ更新しています。
 
-GitHub Pages にはこのフォルダ内の4ファイルをリポジトリ直下へ置いてください。
+GitHub Pagesにはこのフォルダ内の4ファイルをリポジトリ直下へ置いてください。
 index.html / manifest.webmanifest / sw.js / README.txt
 
-ページ上部のタイトルが v3.1 になっていることを確認してください。
+ページ上部のタイトルが v3.2 になっていることを確認してください。
