@@ -18,7 +18,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v36';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v37';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -66,7 +66,7 @@ function save(){try{localStorage.setItem(CACHE,JSON.stringify(normalizeDB(DB)))}
 function loadCache(){try{let d=JSON.parse(localStorage.getItem(CACHE));if(d?.armor?.length&&d?.skills?.length){DB=normalizeDB(d);normalizeCharm();stat(`保存済みデータ：防具${d.armor.length} / 武器${d.weapons.length} / 装飾品${d.decorations.length}`,'warn');renderAll();return true}}catch(e){}return false}
 async function loadData(){ $('load').disabled=true;$('prog').style.display='block';$('prog').value=1;let names=['skills','armor','decorations','charms','sets','weapons','monsters','motion-values'],d={},failed=[];try{for(let i=0;i<names.length;i++){let name=names[i];stat(`${i+1}/${names.length} ${name} を取得中…`);$('prog').value=Math.round(i/names.length*100);try{d[name]=await all(name==='sets'?'/armor/sets':'/'+name)}catch(e){d[name]=[];failed.push(name+': '+e.message)}}DB=normalizeDB(d);normalizeCharm();save();renderAll();$('prog').value=100;let msg=`取得完了：防具${DB.armor.length} / 武器${DB.weapons.length} / 装飾品${DB.decorations.length} / 護石${DB.charms.length} / モンスター${DB.monsters.length}`;if(failed.length){stat(msg+'（一部取得失敗）','warn');$('diag').classList.remove('hidden');$('diag').innerHTML='取得できなかったデータ：<br>'+failed.map(esc).join('<br>')+'<br><br>護石が取得できなくても、自由設定は利用できます。モンスターが取得できればモンスター選択は利用できます。'}else{stat(msg,'ok');$('diag').classList.add('hidden')}}catch(e){stat('取得処理失敗：'+e.message,'bad');$('diag').classList.remove('hidden');$('diag').textContent='データ取得処理で予期しないエラーが発生しました。保存済みデータがあれば再読み込みできます。'}finally{$('load').disabled=false}}
 
-// ---- v3.6 safety helpers ----
+// ---- v3.7 safety helpers ----
 function skillMax(s){
   const ranks=Array.isArray(s?.ranks)?s.ranks:[];
   const n=Number(s?.maxLevel ?? s?.max ?? ranks.length ?? 0);
@@ -111,7 +111,7 @@ function slotText(v){
   const a=slotLevels(v);
   return a.length?a.map(x=>x?`[${x}]`:'[-]').join(' '):'なし';
 }
-// ---- v3.6 data/calc helpers ----
+// ---- v3.7 data/calc helpers ----
 function isArtia(w){return !!w && (ARTIA_NAMES.has(String(w.name||'')) || /巨戟アーティア|巨戟変異/.test(String(w.name||'')+' '+String(w.description||'')));}
 const ARTIA_NAMES=new Set(['忘却のオストランツァ','斬罪のエルガンシオ','破滅のキリエヴェルド','永訣のクラウクライス','禁戒のデスヴァンケル','暗黒のテルプリティカ','天涯のゲガルンロウ','前兆のプロフェネシス','邪執のコンキエレガン','代償のネイディ・ギア','堕在のラクリエリカ','荊冠のデストレーター','戦慄のヘルシャフェン','亡国のクピドバイン']);
 const WEAPON_COEFF={ 'great-sword':4.8,'long-sword':3.3,'sword-and-shield':1.4,'dual-blades':1.4,hammer:5.2,'hunting-horn':4.2,lance:2.3,gunlance:2.3,'switch-axe':3.5,'charge-blade':3.6,'insect-glaive':3.1,'light-bowgun':1.3,'heavy-bowgun':1.5,bow:1.2 };
@@ -180,7 +180,7 @@ function renderAll(){
 }
 function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
 function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
-function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind()),seen=new Set(),arr=[];for(const w of raw){const key=isArtia(w)?'ARTIA:'+String(w.name||''):'NORMAL:'+String(w.id);if(seen.has(key))continue;seen.add(key);arr.push(w)}let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;else if(old&&selectedWeapon()){}renderArtia();renderDecorEditor()}
+function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia);const normals=raw.filter(w=>!isArtia(w));const arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;renderArtia();renderDecorEditor()}
 function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip"><label>${name}</label><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)} [${slotText(maxBreakSlots(a))}]</option>`).join('')}</select><div class="muted small armorSkillPreview"></div></div>`);let sel=box.querySelector(`select[data-armor="${kind}"]`);let preview=sel.parentElement.querySelector('.armorSkillPreview');if(old)sel.value=old;let update=()=>{let a=arr.find(x=>String(x.id)===sel.value);preview.innerHTML=a?('限界突破済み：'+slotText(maxBreakSlots(a))+'<br>スキル：'+(sortedSkills(armorSkills(a)).map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')||'なし')):''};update();sel.onchange=()=>{build.armor[kind]=arr.find(a=>String(a.id)===sel.value)||null;update();renderDecorEditor();calcBuild()}}}
 function renderCharmPresets(){let s=$('charmPreset');if(!s)return;const charms=Array.isArray(DB.charms)?DB.charms:[];s.innerHTML='<option value="">自由設定</option>'+charms.flatMap(c=>Array.isArray(c?.ranks)?c.ranks.map(r=>({id:c.id+'|'+r.id,name:r.name,skills:r.skills})):[]).map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');}
 function renderCharmEditor(){
