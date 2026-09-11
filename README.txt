@@ -1,21 +1,28 @@
-MH Wilds ビルド＆火力シミュレーター v4.19
+MH Wilds ビルド＆火力シミュレーター v4.20
 
 珠選択UIの並び順を修正。
 
-防具：防具を選択→各スロットの珠選択欄
-護石：護石防具スロット／護石武器スロットの珠選択欄
+対象：
+- 防具を選択した後の各スロットの珠選択欄
+- 護石の防具スロット／武器スロットの珠選択欄
 
 並び順：
-1. 珠が実際に付与する最大スキルLvの降順
-2. 同じLvなら珠の名称の50音順
+1. 珠そのもののレベル（装飾品の slot）を降順：Lv3 → Lv2 → Lv1
+2. 同じ珠Lvなら珠の名称を50音順
 
-スロットLvは装着可能判定だけに使用し、並び順には使用しない。
-MHDBのDecoration.skills[].levelを使用し、スキル本体のmaxLevel等は使用しない。
+注意：
+- 珠名末尾の【1】【2】【3】は装着可能スロットLvを表す。
+- これは珠が付与するスキルLvとは別物。
+- スロットLvは「そのスロットに装着可能か」の判定にも使用する。
+- 並び順ではスキルLv・レア度・IDを使用しない。
+
+実装：
+- 防具／護石／武器の珠選択は共通の decorationCandidates() → sortDecorationCandidates() を使用。
+- 同Lvの名称比較は Intl.Collator('ja-JP', {numeric:true, sensitivity:'base'}) で統一。
+- duplicate な候補生成処理を作らない。
 
 検証：
-- 防具UIと護石UIの生成コードを確認。
-- 共通候補生成関数を最終的な<option>生成直前まで使用することを確認。
-- 同Lvの名称比較をIntl.Collator('ja-JP')で固定。
-- duplicateなdecosFor定義を除去。
-- Node.js --checkでJavaScript構文を確認。
-- 実データ形状（Decoration.skills[].level）はMHDB公式API仕様で照合。
+- JavaScript全scriptブロックを Node.js --check で構文確認。
+- Lv3→Lv2→Lv1、その各Lv内50音順になることをサンプルデータで確認。
+- 防具用と武器用の kind フィルタを確認。
+- スロットLv以下のみ候補になることを確認。
