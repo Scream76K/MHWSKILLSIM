@@ -2,7 +2,7 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest">
-<title>MH Wilds ビルド＆火力シミュレーター v4.30</title>
+<title>MH Wilds ビルド＆火力シミュレーター v4.33</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0f1e;color:#eef2ff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}header{padding:18px;background:#111827;border-bottom:1px solid #334155}.wrap{max-width:1100px;margin:auto;padding:12px}h1{font-size:22px;margin:0 0 5px}.muted{color:#94a3b8;font-size:12px}.grid{display:grid;grid-template-columns:300px 1fr;gap:12px}.card{background:#151d33;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}h2{font-size:17px;margin:0 0 10px}h3{font-size:14px;margin:12px 0 7px}label{font-size:12px;color:#cbd5e1;display:block;margin:7px 0 4px}select,input,button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit}button{cursor:pointer}button.primary{background:#2563eb;border-color:#2563eb}button.good{background:#166534;border-color:#166534}button.danger{background:#7f1d1d;border-color:#7f1d1d}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.slot{border:1px solid #475569;border-radius:8px;padding:6px;background:#0b1020}.equip{border:1px solid #334155;border-radius:10px;padding:9px;margin:8px 0;background:#0b1020}.equip b{font-size:13px}.tag{display:inline-block;padding:3px 7px;border:1px solid #475569;border-radius:999px;margin:2px;font-size:11px}.notice{padding:9px;border:1px solid #475569;border-radius:9px;background:#0f172a;margin-top:8px}.ok{color:#86efac}.warn{color:#fbbf24}.bad{color:#fca5a5}.info{color:#93c5fd}.sticky{position:sticky;bottom:10px;z-index:5}.summarygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.metric{border:1px solid #334155;border-radius:9px;padding:10px;background:#0b1020}.metric b{display:block;font-size:19px;margin-top:3px}.affline{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px}.affline span{font-size:12px;color:#cbd5e1}.affline b{font-size:19px;margin-top:0}.game-status{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #475569;border-radius:10px;overflow:hidden;background:#0b1020}.game-status .gs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #334155}.game-status .gs-row:nth-child(odd){border-right:1px solid #334155}.game-status .gs-label{font-size:13px;color:#cbd5e1}.game-status .gs-value{font-size:20px;font-weight:700}.game-status .gs-sub{font-size:11px;color:#94a3b8;margin-left:5px;font-weight:400}.skill-order-note{font-size:11px;color:#94a3b8;margin-top:5px}.skill-game-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.skill-bucket{margin-top:9px}.skill-bucket-title{font-size:13px;font-weight:800;border-left:4px solid #64748b;padding:5px 8px;background:#0f172a;border-radius:4px}.skill-game{border:1px solid #475569;border-radius:8px;padding:8px 9px;background:#0b1020}.skill-game-name{font-size:13px;font-weight:700;margin-bottom:6px}.skill-game-binary .skill-game-name{margin-bottom:0}.skill-blocks{display:flex;gap:3px;flex-wrap:wrap}.skill-block{width:13px;height:13px;border:1px solid #64748b;border-radius:2px;background:#111827}.skill-block.on{background:#facc15;border-color:#fde047;box-shadow:0 0 5px rgba(250,204,21,.35)} .equip-title{font-size:16px;font-weight:800;letter-spacing:.02em;margin-bottom:7px}.equip-inline{border:1px solid #334155;border-radius:10px;padding:9px;margin:7px 0;background:#0b1020}.equip-inline .equip-title{margin-bottom:6px}.inline-slot-list{display:grid;gap:4px;margin-top:6px}.inline-slot{display:grid;grid-template-columns:42px minmax(0,1fr);gap:5px;align-items:center}.inline-slot .slot-num{font-weight:800;text-align:center}.inline-slot .slot-size{font-weight:800;text-align:center;border:1px solid #475569;border-radius:6px;padding:5px 2px;background:#111827}.inline-slot select{min-height:36px;padding:6px 8px}.inline-skill{font-size:12px;color:#cbd5e1;margin:4px 0 6px}.armor-equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.armor-equip-grid .equip-inline{margin:0}.section-title{font-size:16px;font-weight:800;margin:12px 0 6px}@media(max-width:760px){.armor-equip-grid{grid-template-columns:1fr 1fr}.inline-slot{grid-template-columns:22px 38px minmax(0,1fr)}}.slot-lines{display:grid;gap:4px;margin:4px 0 8px}.slot-line{font-size:14px;font-weight:700;padding:5px 8px;border:1px solid #334155;border-radius:7px;background:#0b1020}.slot-line{display:grid;grid-template-columns:48px minmax(0,1fr);gap:7px;align-items:center}.slot-line .slot-num{font-size:20px;font-weight:800;text-align:center}.slot-line select{min-height:36px;padding:6px 8px}.equip-skill-preview{font-size:12px;color:#cbd5e1;margin-top:6px}@media(max-width:760px){.slot-line{grid-template-columns:44px minmax(0,1fr)}.game-status{grid-template-columns:1fr}.game-status .gs-row:nth-child(odd){border-right:0}}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}.hidden{display:none}progress{width:100%;height:10px}.small{font-size:11px}.dangerText{color:#fca5a5}.searchbox{margin-bottom:6px}.save-build-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:end}.save-build-row button{min-width:78px}.saved-build-list{display:grid;gap:5px;margin-top:7px}.compare-list{display:grid;gap:6px;margin-top:8px}.compare-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:7px;align-items:center;border:1px solid #334155;border-radius:8px;padding:7px 9px;background:#0b1020}.compare-item input{width:18px;min-height:18px}.compare-item .compare-meta{font-size:11px;color:#94a3b8;margin-top:2px}.compare-table{overflow:auto;margin-top:9px}.compare-table table{min-width:680px}.compare-table th{background:#0f172a;white-space:nowrap}.compare-best{font-weight:800}.compare-note{font-size:11px;color:#94a3b8;margin-top:6px}
 .saved-build-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:center}.buildslot{margin-top:6px}.skilllist{display:grid;gap:4px;max-height:520px;overflow:auto}.skillrow{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #334155;border-radius:8px;background:#0b1020}.skillrow .lv{font-weight:700}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}.checkline input{width:auto;min-height:0}.tabs{display:flex;gap:5px;overflow:auto;margin-bottom:10px}.tab{white-space:nowrap;padding:9px 12px;border:1px solid #475569;border-radius:999px;background:#0b1020}.tab.active{background:#2563eb;border-color:#2563eb}@media(max-width:760px){.grid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.slotgrid{grid-template-columns:1fr 1fr}}
@@ -278,9 +278,9 @@ function renderAll(){
 }
 function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
 function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
-function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const opts=decorationCandidates(lv,(prefix==='w' || prefix==='cw')?'weapon':'armor');return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}"><option value="">空き</option>${opts.map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`}).join('')}</div>`}
+function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const kind=(prefix==='w' || prefix==='cw')?'weapon':'armor'; const opts=decorationCandidates(lv,kind);return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}"><option value="">空き</option>${opts.map(d=>{const score=decorationRecommendationScore(d,(prefix==='w'||prefix==='cw')?(selectedWeapon()?.kind||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`}).join('')}</div>`}
 function bindInlineDecos(root){(root||document).querySelectorAll('.decoSel').forEach(s=>{s.value=build.decos[s.dataset.slot]||'';s.onchange=()=>{build.decos[s.dataset.slot]=s.value;calcBuild()}})}
-function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=[];build.charmCustom.slots.forEach((lv,i)=>{if(lv)slots.push({key:'c'+i,level:lv,owner:'防具スロット'+(i+1),kind:'armor'})});if(build.charmCustom.weaponSlot)slots.push({key:'cw0',level:1,owner:'武器スロット1',kind:'weapon'});if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
+function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=[];build.charmCustom.slots.forEach((lv,i)=>{if(lv)slots.push({key:'c'+i,level:lv,owner:'防具スロット'+(i+1),kind:'armor'})});if(build.charmCustom.weaponSlot)slots.push({key:'cw0',level:1,owner:'武器スロット1',kind:'weapon'});if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>{const score=decorationRecommendationScore(d,x.kind==='weapon'?(selectedWeapon()?.kind||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
 function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia),normals=raw.filter(w=>!isArtia(w)),arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;updateWeaponInfo();renderArtia();}
 function updateWeaponInfo(){const w=selectedWeapon(),sk=$('weaponSkillPreview'),sl=$('weaponSlotPreview');if(!sk||!sl)return;const skills=w?sortedSkills(weaponSkills(w)):[];sk.innerHTML=skills.length?`<div class="equip-inline"><div class="equip-title">武器スキル</div><div class="inline-skill">${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}</div></div>`:'';sk.classList.toggle('hidden',!skills.length);if(!w){sl.innerHTML='';sl.classList.add('hidden');return;}const slots=slotLevels(w.slots);sl.innerHTML=`<div class="equip-inline"><div class="equip-title">武器スロット</div>${inlineDecoRows(slots,'w')}</div>`;sl.classList.remove('hidden');bindInlineDecos(sl);}
 function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip-inline"><div class="equip-title">${name}</div><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><div class="armorSkillPreview inline-skill"></div><div class="armorSlotLines"></div></div>`);let card=box.querySelectorAll('.equip-inline')[box.querySelectorAll('.equip-inline').length-1],sel=card.querySelector(`select[data-armor="${kind}"]`),preview=card.querySelector('.armorSkillPreview'),slotBox=card.querySelector('.armorSlotLines');if(old)sel.value=old;const update=()=>{let a=arr.find(x=>String(x.id)===sel.value);const skills=a?sortedSkills(armorSkills(a)):[];preview.innerHTML=skills.length?`スキル：${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}`:'';preview.style.display=skills.length?'block':'none';slotBox.innerHTML=a?`<div class="equip-title">${name}スロット</div>${inlineDecoRows(maxBreakSlots(a),kind)}`:'';if(a)bindInlineDecos(slotBox)};update();sel.onchange=()=>{build.armor[kind]=arr.find(a=>String(a.id)===sel.value)||null;update();calcBuild()}}}
@@ -340,10 +340,61 @@ function compareDecorationName(a,b){
 // 1. 装飾品Lv（slot）の降順：Lv3 → Lv2 → Lv1
 // 2. 同Lvなら珠の名称の50音順
 // 付与スキルLv・レア度・IDなどはソート条件にしない。
-function sortDecorationCandidates(arr){
+// 装飾品おすすめ順位：武器種との相性を最優先し、同じスロットLv内でおすすめを上位表示。
+// 既存の「Lv3 → Lv2 → Lv1」の並びは維持する。
+const WEAPON_DECO_RELEVANCE={
+  '*':[['弱点特効',34],['超会心',32],['見切り',30],['攻撃',28],['挑戦者',22],['連撃',20],['力の解放',18],['渾身',16]],
+  'great-sword':[['集中',34],['抜刀術',30],['破壊王',18],['納刀術',16]],
+  'long-sword':[['納刀術',30],['渾身',24],['集中',18]],
+  'sword-and-shield':[['攻めの守勢',28],['連撃',24],['属性攻撃強化',22],['早食い',10]],
+  'dual-blades':[['ランナー',30],['スタミナ急速回復',28],['連撃',26],['属性攻撃強化',24],['渾身',18]],
+  'hammer':[['KO術',28],['集中',24],['破壊王',18],['渾身',16]],
+  'hunting-horn':[['笛吹き名人',34],['KO術',24],['破壊王',16]],
+  'lance':[['ガード性能',34],['攻めの守勢',30],['ガード強化',24],['渾身',12]],
+  'gunlance':[['砲術',38],['砲弾装填',32],['ガード性能',28],['ガード強化',24],['攻めの守勢',16]],
+  'switch-axe':[['高速変形',38],['強化持続',28],['集中',18],['渾身',14]],
+  'charge-blade':[['砲術',36],['高速変形',30],['ガード性能',24],['集中',20],['強化持続',18]],
+  'insect-glaive':[['強化持続',32],['飛燕',28],['集中',22],['スタミナ急速回復',18]],
+  'light-bowgun':[['速射強化',38],['装填速度',32],['反動軽減',30],['弾丸節約',28],['通常弾・連射矢強化',24],['貫通弾・竜の一矢強化',24],['散弾・拡散矢強化',24]],
+  'heavy-bowgun':[['弾丸節約',34],['装填速度',30],['反動軽減',28],['通常弾・連射矢強化',24],['貫通弾・竜の一矢強化',24],['散弾・拡散矢強化',24]],
+  'bow':[['弓溜め段階解放',40],['体術',34],['スタミナ急速回復',30],['通常弾・連射矢強化',26],['貫通弾・竜の一矢強化',26],['散弾・拡散矢強化',26],['属性攻撃強化',22]]
+};
+function decoSkillPairs(d){return skillEntries(d?.skills||[]);}
+function relevanceForSkill(name,kind){
+  const n=String(name||'');
+  const rules=[...(WEAPON_DECO_RELEVANCE['*']||[]),...(WEAPON_DECO_RELEVANCE[kind]||[])];
+  let score=0;
+  for(const [key,val] of rules){
+    if(n.includes(key)) score=Math.max(score,val);
+    // 属性強化は「火/水/雷/氷/龍属性攻撃強化」などにも対応
+    if(key==='属性攻撃強化' && /属性攻撃強化/.test(n)) score=Math.max(score,val);
+  }
+  return score;
+}
+function decorationRecommendationScore(d,kind){
+  let score=0;
+  for(const [name,level] of decoSkillPairs(d)){
+    const base=relevanceForSkill(name,kind);
+    if(!base)continue;
+    const current=Number(calcState.total?.[name])||0;
+    const max=skillMax(skillByIdByName(name));
+    // すでに最大Lvならおすすめ度を下げる。未発動/未完成スキルを優先。
+    const need=max>0?Math.max(0,max-current):1;
+    const completion=need<=0?0.35:need===1?1.12:need===2?1.06:1;
+    score=Math.max(score,base*completion+Math.min(6,Number(level)||0));
+  }
+  return score;
+}
+function sortDecorationCandidates(arr,kind){
   return [...arr].sort((a,b)=>{
+    // 1. 装着可能スロットLvの降順：Lv3 → Lv2 → Lv1
     const lv=decorationSortLevel(b)-decorationSortLevel(a);
-    return lv!==0?lv:compareDecorationName(a,b);
+    if(lv!==0)return lv;
+    // 2. 同Lvなら武器種との関係性が高い珠を上位へ
+    const rb=decorationRecommendationScore(b,kind),ra=decorationRecommendationScore(a,kind);
+    if(rb!==ra)return rb-ra;
+    // 3. 同順位なら50音順
+    return compareDecorationName(a,b);
   });
 }
 function decorationCandidates(slotLevel,kind){
@@ -351,7 +402,27 @@ function decorationCandidates(slotLevel,kind){
   const wantedKind=kind==='weapon'?'weapon':'armor';
   const eligible=(Array.isArray(DB.decorations)?DB.decorations:[])
     .filter(d=>d?.kind===wantedKind && Number(d?.slot)<=level);
-  return sortDecorationCandidates(eligible);
+  return sortDecorationCandidates(eligible,wantedKind==='weapon'?(selectedWeapon()?.kind||''):'');
+}
+function refreshDecorationSelects(){
+  document.querySelectorAll('.decoSel').forEach(sel=>{
+    const current=sel.value||build.decos[sel.dataset.slot]||'';
+    const slotOwner=sel.closest('.slot-line,.charm-deco-row');
+    let level=0,kind='armor';
+    if(slotOwner){
+      const label=slotOwner.querySelector('.slot-size');
+      if(label){const m=label.textContent.match(/\[([0-9]+)\]/);if(m)level=Number(m[1])||0;}
+      if(sel.dataset.slot?.startsWith('w')||sel.dataset.slot?.startsWith('cw'))kind='weapon';
+    }
+    if(!level){
+      const parent=sel.parentElement;
+      const text=parent?.querySelector('.slot-size')?.textContent||'';
+      const m=text.match(/\[([0-9]+)\]/);if(m)level=Number(m[1])||0;
+    }
+    const opts=decorationCandidates(level,kind);
+    sel.innerHTML='<option value="">空き</option>'+opts.map(d=>{const score=decorationRecommendationScore(d,kind==='weapon'?(selectedWeapon()?.kind||''):'');const mark=score>0?'★ ':'';return `<option value="${esc(d.id)}">${mark}${esc(d.name)}</option>`}).join('');
+    sel.value=current;
+  });
 }
 function armorDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'armor');}
 function weaponDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'weapon');}
@@ -363,7 +434,7 @@ function decosFor(slot){
     : decorationCandidates(slot?.level,kind);
 }
 function sortedSkillChoices(arr){return [...arr].sort((a,b)=>skillMax(b)-skillMax(a)||jpSort(a?.name,b?.name));}
-function renderDecorEditor(){const box=$('decorEditor');if(box)box.innerHTML='';renderCharmDecos();updateWeaponInfo();}
+function renderDecorEditor(){const box=$('decorEditor');if(box)box.innerHTML='<div class="notice small">⭐ 武器種との相性が高い装飾品を同じスロットLv内で上位表示します。現在の発動スキルが最大Lvの珠はおすすめ度を下げます。【Lv3→Lv2→Lv1の並びは維持】</div>';renderCharmDecos();updateWeaponInfo();}
 function add(o,src){for(let [k,v] of Object.entries(src||{}))o[k]=(o[k]||0)+v}
 function artiaBaseElement(kind,type){
   const base={
@@ -524,7 +595,7 @@ function calcBuild(){
   const elem=calcElementSkill(total,stats.elementType); stats.element=stats.element*elem.mult+elem.add;
   // Defense skill contribution (common levels)
   const dl=skillLevel(total,['防御','Defense']); const dFlat=[0,5,10,10,20,20,35,35][Math.min(7,dl)]||0; const dMult=dl>=7?1.10:dl>=6?1.08:dl>=4?1.05:1; stats.defense=(stats.defense+dFlat)*dMult;
-  calcState={total,stats,bonusDisplay:calcState.bonusDisplay||{series:[],group:[]}};renderSummary();renderDetail();syncDamage();renderMonsterInfo();
+  calcState={total,stats,bonusDisplay:calcState.bonusDisplay||{series:[],group:[]}};renderSummary();renderDetail();syncDamage();renderMonsterInfo();refreshDecorationSelects();
 }
 function sortedSkills(o){return Object.entries(o).sort((a,b)=>Number(b[1])-Number(a[1])||jpSort(a[0],b[0]));}
 function skillOptionSort(arr){return [...arr].sort((a,b)=>{const la=skillMax(a),lb=skillMax(b);return lb-la||jpSort(a?.name,b?.name);});}
