@@ -19,7 +19,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v417';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v418';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -267,9 +267,9 @@ function renderAll(){
 }
 function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
 function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
-function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const opts=decosFor({kind:(prefix==='w' || prefix==='cw')?'weapon':'armor',level:lv});return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}"><option value="">空き</option>${opts.map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`}).join('')}</div>`}
+function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const opts=decorationCandidates(lv,(prefix==='w' || prefix==='cw')?'weapon':'armor');return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}"><option value="">空き</option>${opts.map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`}).join('')}</div>`}
 function bindInlineDecos(root){(root||document).querySelectorAll('.decoSel').forEach(s=>{s.value=build.decos[s.dataset.slot]||'';s.onchange=()=>{build.decos[s.dataset.slot]=s.value;calcBuild()}})}
-function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=[];build.charmCustom.slots.forEach((lv,i)=>{if(lv)slots.push({key:'c'+i,level:lv,owner:'防具スロット'+(i+1),kind:'armor'})});if(build.charmCustom.weaponSlot)slots.push({key:'cw0',level:1,owner:'武器スロット1',kind:'weapon'});if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}"><option value="">空き</option>${charmDecorationCandidates(x.level,x.kind).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
+function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=[];build.charmCustom.slots.forEach((lv,i)=>{if(lv)slots.push({key:'c'+i,level:lv,owner:'防具スロット'+(i+1),kind:'armor'})});if(build.charmCustom.weaponSlot)slots.push({key:'cw0',level:1,owner:'武器スロット1',kind:'weapon'});if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
 function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia),normals=raw.filter(w=>!isArtia(w)),arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;updateWeaponInfo();renderArtia();}
 function updateWeaponInfo(){const w=selectedWeapon(),sk=$('weaponSkillPreview'),sl=$('weaponSlotPreview');if(!sk||!sl)return;const skills=w?sortedSkills(weaponSkills(w)):[];sk.innerHTML=skills.length?`<div class="equip-inline"><div class="equip-title">武器スキル</div><div class="inline-skill">${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}</div></div>`:'';sk.classList.toggle('hidden',!skills.length);if(!w){sl.innerHTML='';sl.classList.add('hidden');return;}const slots=slotLevels(w.slots);sl.innerHTML=`<div class="equip-inline"><div class="equip-title">武器スロット</div>${inlineDecoRows(slots,'w')}</div>`;sl.classList.remove('hidden');bindInlineDecos(sl);}
 function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip-inline"><div class="equip-title">${name}</div><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><div class="armorSkillPreview inline-skill"></div><div class="armorSlotLines"></div></div>`);let card=box.querySelectorAll('.equip-inline')[box.querySelectorAll('.equip-inline').length-1],sel=card.querySelector(`select[data-armor="${kind}"]`),preview=card.querySelector('.armorSkillPreview'),slotBox=card.querySelector('.armorSlotLines');if(old)sel.value=old;const update=()=>{let a=arr.find(x=>String(x.id)===sel.value);const skills=a?sortedSkills(armorSkills(a)):[];preview.innerHTML=skills.length?`スキル：${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}`:'';preview.style.display=skills.length?'block':'none';slotBox.innerHTML=a?`<div class="equip-title">${name}スロット</div>${inlineDecoRows(maxBreakSlots(a),kind)}`:'';if(a)bindInlineDecos(slotBox)};update();sel.onchange=()=>{build.armor[kind]=arr.find(a=>String(a.id)===sel.value)||null;update();calcBuild()}}}
@@ -318,58 +318,46 @@ function currentCharmSkills(){let o={};for(let x of build.charmCustom.skills||[]
 function allEquipSlots(){let arr=[];let w=selectedWeapon();if(w)(w.slots||[]).forEach((lv,i)=>arr.push({key:'w'+i,owner:'武器',level:lv,kind:'weapon'}));for(let [k,n] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let a=build.armor[k];if(a)maxBreakSlots(a).forEach((lv,i)=>arr.push({key:k+i,owner:n,level:lv,kind:'armor'}))}build.charmCustom.slots.forEach((lv,i)=>{if(lv)arr.push({key:'c'+i,owner:'護石・防具',level:lv,kind:'armor'})});if(build.charmCustom.weaponSlot)arr.push({key:'cw0',owner:'護石・武器',level:1,kind:'weapon'});return arr}
 // 装飾品そのものが「付与するLv」だけを抽出する。
 // スキル定義側の maxLevel は絶対に参照しない。
-function decorationGrantedLevels(d){
-  const levels=[];
-  const pushEntry=x=>{
-    if(x==null)return;
-    if(typeof x==='number'){if(Number.isFinite(x))levels.push(x);return;}
-    if(typeof x==='string'){const n=Number(x);if(Number.isFinite(n))levels.push(n);return;}
-    if(Array.isArray(x)){x.forEach(pushEntry);return;}
-    if(typeof x==='object'){
-      // APIの通常形: {skill:{...}, level:n}
-      const n=Number(x.level);
-      if(Number.isFinite(n)&&n>0){levels.push(n);return;}
-      // キャッシュ/旧形式: {skillName:n} または {skill:n}
-      for(const [k,v] of Object.entries(x)){
-        if(k==='maxLevel'||k==='max'||k==='ranks'||k==='id'||k==='name'||k==='skillName')continue;
-        if(typeof v==='number'&&Number.isFinite(v))levels.push(v);
-        else if(Array.isArray(v)||typeof v==='object')pushEntry(v);
-      }
-    }
-  };
-  pushEntry(d?.skills);
-  if(!levels.length)pushEntry(d?.skill);
-  if(!levels.length)pushEntry(d?.skillList);
-  return levels;
+// 装飾品の並び順は「装飾品が実際に付与するスキルLv」を基準にする。
+// API仕様: decoration.skills[] は SkillRank で、各要素の level が付与Lv。
+// スキル本体の maxLevel や装飾品の必要スロット(slot)は並び順に使わない。
+function decorationGrantedSkillLevels(d){
+  return (Array.isArray(d?.skills)?d.skills:[])
+    .map(x=>Number(x?.level))
+    .filter(Number.isFinite);
 }
-function decoMaxLevel(d){return Math.max(0,...decorationGrantedLevels(d));}
-
-// 防具・護石の装飾品候補は、この関数を唯一の入口にする。
-// 仕様: ①付与最大Lvの高い順 → ②装飾品名の50音順。
-// スロットサイズは「装着可能か」の判定にのみ使い、ソートキーには一切使わない。
+function decorationSortLevel(d){
+  const levels=decorationGrantedSkillLevels(d);
+  return levels.length?Math.max(...levels):0;
+}
+function compareDecorationName(a,b){
+  // 「50音順」: 装飾品名そのものを日本語ロケールで比較する。
+  return String(a?.name??'').localeCompare(String(b?.name??''),'ja',{numeric:true,sensitivity:'base'});
+}
 function sortDecorationCandidates(arr){
   return [...arr].sort((a,b)=>{
-    const levelDiff=decoMaxLevel(b)-decoMaxLevel(a);
-    if(levelDiff)return levelDiff;
-    return jpSort(a?.name,b?.name);
+    const levelDiff=decorationSortLevel(b)-decorationSortLevel(a);
+    return levelDiff!==0 ? levelDiff : compareDecorationName(a,b);
   });
 }
-function armorDecorationCandidates(slotLevel){
+function decorationCandidates(slotLevel,kind){
   const level=Number(slotLevel)||0;
-  return sortDecorationCandidates((Array.isArray(DB.decorations)?DB.decorations:[])
-    .filter(d=>d?.kind==='armor'&&Number(d?.slot)<=level));
+  const wantedKind=kind==='weapon'?'weapon':'armor';
+  return sortDecorationCandidates(
+    (Array.isArray(DB.decorations)?DB.decorations:[])
+      .filter(d=>d?.kind===wantedKind && Number(d?.slot)<=level)
+  );
 }
-function weaponDecorationCandidates(slotLevel){
-  const level=Number(slotLevel)||0;
-  return sortDecorationCandidates((Array.isArray(DB.decorations)?DB.decorations:[])
-    .filter(d=>d?.kind==='weapon'&&Number(d?.slot)<=level));
+function armorDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'armor');}
+function weaponDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'weapon');}
+function charmDecorationCandidates(slotLevel,kind){return decorationCandidates(slotLevel,kind);}
+function decosFor(slot){
+  const kind=slot?.kind;
+  return kind==='charm'
+    ? charmDecorationCandidates(slot?.level,slot?.decoKind||'armor')
+    : decorationCandidates(slot?.level,kind);
 }
-// 護石の装飾品選択も、防具と同じ並び順を必ず使用する。
-// 護石防具スロット: 付与最大Lv降順 → 装飾品名50音順
-// 護石武器スロット: 同じ規則（武器珠の候補内でソート）
-function charmDecorationCandidates(slotLevel,kind){
-  return kind==='weapon' ? weaponDecorationCandidates(slotLevel) : armorDecorationCandidates(slotLevel);
-}
+
 function sortedSkillChoices(arr){return [...arr].sort((a,b)=>skillMax(b)-skillMax(a)||jpSort(a?.name,b?.name));}
 function decosFor(slot){
   const kind=slot?.kind;
