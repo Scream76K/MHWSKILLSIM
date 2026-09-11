@@ -2,11 +2,11 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest">
-<title>MH Wilds ビルド＆火力シミュレーター v4.5</title>
+<title>MH Wilds ビルド＆火力シミュレーター v4.6</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0f1e;color:#eef2ff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}header{padding:18px;background:#111827;border-bottom:1px solid #334155}.wrap{max-width:1100px;margin:auto;padding:12px}h1{font-size:22px;margin:0 0 5px}.muted{color:#94a3b8;font-size:12px}.grid{display:grid;grid-template-columns:300px 1fr;gap:12px}.card{background:#151d33;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}h2{font-size:17px;margin:0 0 10px}h3{font-size:14px;margin:12px 0 7px}label{font-size:12px;color:#cbd5e1;display:block;margin:7px 0 4px}select,input,button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit}button{cursor:pointer}button.primary{background:#2563eb;border-color:#2563eb}button.good{background:#166534;border-color:#166534}button.danger{background:#7f1d1d;border-color:#7f1d1d}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.slot{border:1px solid #475569;border-radius:8px;padding:6px;background:#0b1020}.equip{border:1px solid #334155;border-radius:10px;padding:9px;margin:8px 0;background:#0b1020}.equip b{font-size:13px}.tag{display:inline-block;padding:3px 7px;border:1px solid #475569;border-radius:999px;margin:2px;font-size:11px}.notice{padding:9px;border:1px solid #475569;border-radius:9px;background:#0f172a;margin-top:8px}.ok{color:#86efac}.warn{color:#fbbf24}.bad{color:#fca5a5}.info{color:#93c5fd}.sticky{position:sticky;bottom:10px;z-index:5}.summarygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.metric{border:1px solid #334155;border-radius:9px;padding:10px;background:#0b1020}.metric b{display:block;font-size:19px;margin-top:3px}.affline{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px}.affline span{font-size:12px;color:#cbd5e1}.affline b{font-size:19px;margin-top:0}.game-status{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #475569;border-radius:10px;overflow:hidden;background:#0b1020}.game-status .gs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #334155}.game-status .gs-row:nth-child(odd){border-right:1px solid #334155}.game-status .gs-label{font-size:13px;color:#cbd5e1}.game-status .gs-value{font-size:20px;font-weight:700}.game-status .gs-sub{font-size:11px;color:#94a3b8;margin-left:5px;font-weight:400}.skill-order-note{font-size:11px;color:#94a3b8;margin-top:5px}.skill-game-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.skill-bucket{margin-top:9px}.skill-bucket-title{font-size:13px;font-weight:800;border-left:4px solid #64748b;padding:5px 8px;background:#0f172a;border-radius:4px}.skill-game{border:1px solid #475569;border-radius:8px;padding:8px 9px;background:#0b1020}.skill-game-name{font-size:13px;font-weight:700;margin-bottom:6px}.skill-game-binary .skill-game-name{margin-bottom:0}.skill-blocks{display:flex;gap:3px;flex-wrap:wrap}.skill-block{width:13px;height:13px;border:1px solid #64748b;border-radius:2px;background:#111827}.skill-block.on{background:#facc15;border-color:#fde047;box-shadow:0 0 5px rgba(250,204,21,.35)} .equip-title{font-size:16px;font-weight:800;letter-spacing:.02em;margin-bottom:7px}.equip-inline{border:1px solid #334155;border-radius:10px;padding:9px;margin:7px 0;background:#0b1020}.equip-inline .equip-title{margin-bottom:6px}.inline-slot-list{display:grid;gap:4px;margin-top:6px}.inline-slot{display:grid;grid-template-columns:24px 42px minmax(0,1fr);gap:5px;align-items:center}.inline-slot .slot-num{font-weight:800;text-align:center}.inline-slot .slot-size{font-weight:800;text-align:center;border:1px solid #475569;border-radius:6px;padding:5px 2px;background:#111827}.inline-slot select{min-height:36px;padding:6px 8px}.inline-skill{font-size:12px;color:#cbd5e1;margin:4px 0 6px}.armor-equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.armor-equip-grid .equip-inline{margin:0}.section-title{font-size:16px;font-weight:800;margin:12px 0 6px}@media(max-width:760px){.armor-equip-grid{grid-template-columns:1fr 1fr}.inline-slot{grid-template-columns:22px 38px minmax(0,1fr)}}.slot-lines{display:grid;gap:4px;margin:4px 0 8px}.slot-line{font-size:14px;font-weight:700;padding:5px 8px;border:1px solid #334155;border-radius:7px;background:#0b1020}.slot-line .slot-num{font-size:16px;font-weight:800;margin-right:6px}.equip-skill-preview{font-size:12px;color:#cbd5e1;margin-top:6px}@media(max-width:760px){.game-status{grid-template-columns:1fr}.game-status .gs-row:nth-child(odd){border-right:0}}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}.hidden{display:none}progress{width:100%;height:10px}.small{font-size:11px}.dangerText{color:#fca5a5}.searchbox{margin-bottom:6px}.save-build-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:end}.save-build-row button{min-width:78px}.saved-build-list{display:grid;gap:5px;margin-top:7px}.saved-build-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:center}.buildslot{margin-top:6px}.skilllist{display:grid;gap:4px;max-height:520px;overflow:auto}.skillrow{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #334155;border-radius:8px;background:#0b1020}.skillrow .lv{font-weight:700}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}.checkline input{width:auto;min-height:0}.tabs{display:flex;gap:5px;overflow:auto;margin-bottom:10px}.tab{white-space:nowrap;padding:9px 12px;border:1px solid #475569;border-radius:999px;background:#0b1020}.tab.active{background:#2563eb;border-color:#2563eb}@media(max-width:760px){.grid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.slotgrid{grid-template-columns:1fr 1fr}}
 </style></head><body>
-<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v4.5</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
+<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v4.6</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
 <main class="wrap"><div class="grid"><aside>
 <section class="card"><h2>データ</h2><button id="load" class="primary">最新データを取得 / 更新</button><progress id="prog" value="0" max="100" style="display:none;margin-top:8px"></progress><div id="status" class="muted" style="margin-top:7px">未取得</div><div id="diag" class="notice small hidden"></div></section>
 <section class="card"><h2>ビルド保存</h2><div class="muted">現在の武器・防具・護石・装飾品・巨戟アーティア設定を名前付きで保存できます。</div><div class="save-build-row"><div><label>ビルド名</label><input id="buildName" type="text" maxlength="40" placeholder="例：クピドバイン 弓装備"></div><button id="saveBuild" class="good">保存</button><button id="clearBuildName">消去</button></div><div id="savedBuilds" class="saved-build-list"></div></section><section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div id="weaponSkillPreview" class="equip-skill-preview hidden"></div><div id="weaponSlotPreview" class="equip-skill-preview hidden"></div><div id="artiaBox" class="notice hidden"></div><div class="section-title">防具</div><div id="armorSelectors" class="armor-equip-grid"></div><div class="section-title">護石</div><div id="charmEditor"></div><div id="decorEditor" class="muted small" style="display:none"></div></section>
@@ -18,7 +18,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v45';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v46';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -162,22 +162,68 @@ function groupSetData(a){
 function calcSetSkills(total){
   const selected=Object.values(build.armor).filter(Boolean);
   const setCounts={},groupCounts={};
-  for(const a of selected){const set=groupSetData(a);if(!set)continue;setCounts[String(set.id)]=(setCounts[String(set.id)]||0)+1;const g=set.groupBonusSkill;if(g?.id!=null)groupCounts[String(g.id)]=(groupCounts[String(g.id)]||0)+1;}
+  for(const a of selected){
+    const set=groupSetData(a); if(!set)continue;
+    setCounts[String(set.id)]=(setCounts[String(set.id)]||0)+1;
+    const g=set.groupBonusSkill;
+    if(g?.id!=null)groupCounts[String(g.id)]=(groupCounts[String(g.id)]||0)+1;
+  }
   for(const set of DB.sets||[]){
     const c=setCounts[String(set.id)]||0;
     const sb=set.setBonusSkill;
-    if(c&&sb?.ranks){const r=activeBonusRank(sb,c);if(r){const n=sb.name||r.name||r.skill?.name;if(n)total[n]=1;}}
+    if(c&&sb){const r=activeBonusRank(sb,c,'series');if(r){const n=sb.name||r.name||r.skill?.name;if(n)total[n]=Math.max(Number(total[n]||0),1);}}
     const g=set.groupBonusSkill;
     const gc=g?.id!=null?(groupCounts[String(g.id)]||0):0;
-    if(gc&&g?.ranks){const r=activeBonusRank(g,gc);if(r){const n=g.name||r.name||r.skill?.name;if(n)total[n]=1;}}
+    if(gc&&g){const r=activeBonusRank(g,gc,'group');if(r){const n=g.name||r.name||r.skill?.name;if(n)total[n]=Math.max(Number(total[n]||0),1);}}
   }
   addArtiaConditionalSkills(total);
   return total;
 }
 const PART_JP={'head':'頭','head-neck':'頭/首','body':'胴','torso':'胴','chest':'胸','abdomen':'腹','stomach':'腹','back':'背中','left-wing':'左翼','right-wing':'右翼','wing':'翼','left-foreleg':'左前脚','right-foreleg':'右前脚','foreleg':'前脚','left-hindleg':'左後脚','right-hindleg':'右後脚','hindleg':'後脚','leg':'脚','legs':'脚','tail':'尻尾','tail-tip':'尻尾先端','neck':'首','horn':'角','horns':'角','beak':'嘴','snout':'鼻先','face':'顔','eye':'目','mouth':'口','throat':'喉','shoulder':'肩','arm':'腕','claw':'爪','carapace':'甲羅','shell':'甲殻','tentacle':'触手','tentacles':'触手','fin':'ヒレ','left-fin':'左ヒレ','right-fin':'右ヒレ','wing-arm':'翼腕','core':'核','body-core':'胴体・核','left-leg':'左脚','right-leg':'右脚','left-arm':'左腕','right-arm':'右腕','left-chain-blade-wing':'左鎖翼刃','right-chain-blade-wing':'右鎖翼刃','chain-blade-wing':'鎖翼刃','left-chain-wing':'左鎖翼','right-chain-wing':'右鎖翼','chain-wing':'鎖翼','left-chain':'左鎖','right-chain':'右鎖','chain':'鎖'};
-function partNameJP(p){const k=String(p?.name||p?.kind||'').trim();if(PART_JP[k])return PART_JP[k];let x=k.toLowerCase();if(x.includes('chain')&&x.includes('blade')&&x.includes('wing'))return x.includes('left')?'左鎖翼刃':x.includes('right')?'右鎖翼刃':'鎖翼刃';if(x.includes('wing'))return x.includes('left')?'左翼':x.includes('right')?'右翼':'翼';if(x.includes('head'))return '頭';if(x.includes('body')||x.includes('torso'))return '胴';if(x.includes('foreleg'))return x.includes('left')?'左前脚':x.includes('right')?'右前脚':'前脚';if(x.includes('hindleg')||x.includes('leg'))return x.includes('left')?'左脚':x.includes('right')?'右脚':'脚';if(x.includes('tail'))return x.includes('tip')?'尻尾先端':'尻尾';if(x.includes('horn'))return '角';if(x.includes('claw'))return '爪';if(x.includes('fin'))return x.includes('left')?'左ヒレ':x.includes('right')?'右ヒレ':'ヒレ';return 'その他部位';}
-function expandMonsterVariants(){const out=[];for(const m of DB.monsters||[]){out.push(m);for(const v of (m.variants||[])){if(Array.isArray(v.parts)&&v.parts.length){out.push({...m,id:`${m.id}:v${v.id}`,name:v.name||`${m.name}（${v.kind||'特殊個体'}）`,parts:v.parts});}}}return out;}
-function selectableMonsters(){let arr=expandMonsterVariants().filter(m=>m.kind==='large'||m.kind===undefined||m.kind===null||m.kind==='');if(!arr.some(m=>String(m.name).includes('歴戦王アルシュベルド'))){const base=arr.find(m=>String(m.name)==='アルシュベルド');if(base){const parts=[['頭',45,5],['胴',20,1],['左翼',38,2],['右翼',38,2],['左鎖翼刃',48,0],['右鎖翼刃',48,0],['左脚',20,2],['右脚',20,2],['尻尾',42,5]].map((x,i)=>({id:`king-alsh:${i}`,name:x[0],kind:x[0],multipliers:{slash:x[1]/100,blunt:x[1]/100,pierce:x[1]/100,fire:x[2]/100,water:x[2]/100,thunder:x[2]/100,ice:x[2]/100,dragon:x[2]/100}}));arr.push({...base,id:`${base.id}:king`,name:'歴戦王アルシュベルド（★10）',parts});}}return arr;}
+function partNameJP(p){
+  const raw=String(p?.name??p?.part??p?.kind??'').trim();
+  if(!raw)return 'その他部位';
+  // Synthetic/explicit Japanese names must remain Japanese.
+  if(/[\u3040-\u30ff\u3400-\u9fff]/.test(raw))return raw;
+  if(PART_JP[raw])return PART_JP[raw];
+  const x=raw.toLowerCase();
+  if(x.includes('chain')&&x.includes('blade')&&x.includes('wing'))return x.includes('left')?'左鎖翼刃':x.includes('right')?'右鎖翼刃':'鎖翼刃';
+  if(x.includes('wing'))return x.includes('left')?'左翼':x.includes('right')?'右翼':'翼';
+  if(x.includes('head'))return '頭';
+  if(x.includes('body')||x.includes('torso'))return '胴';
+  if(x.includes('foreleg'))return x.includes('left')?'左前脚':x.includes('right')?'右前脚':'前脚';
+  if(x.includes('hindleg'))return x.includes('left')?'左後脚':x.includes('right')?'右後脚':'後脚';
+  if(x.includes('leg'))return x.includes('left')?'左脚':x.includes('right')?'右脚':'脚';
+  if(x.includes('tail'))return x.includes('tip')?'尻尾先端':'尻尾';
+  if(x.includes('horn'))return '角'; if(x.includes('claw'))return '爪';
+  if(x.includes('fin'))return x.includes('left')?'左ヒレ':x.includes('right')?'右ヒレ':'ヒレ';
+  return 'その他部位';
+}
+function expandMonsterVariants(){
+  const out=[];
+  for(const m of DB.monsters||[]){
+    out.push(m);
+    for(const v of (m.variants||[])){
+      // MHDB variants generally contain only variant metadata, not a second hitzone table.
+      // Do not discard them: retain the base parts until a variant-specific part table exists.
+      const vp=Array.isArray(v.parts)&&v.parts.length?v.parts:m.parts;
+      if(vp?.length)out.push({...m,id:`${m.id}:v${v.id}`,name:v.name||`${m.name}（${v.kind||'特殊個体'}）`,parts:vp,variant:v});
+    }
+  }
+  return out;
+}
+function kingAlshubeldParts(){
+  const rows=[['頭',45,5],['胴',28,1],['左翼',42,2],['右翼',42,2],['左鎖翼刃',50,0],['右鎖翼刃',50,0],['左脚',26,2],['右脚',26,2],['尻尾',45,5]];
+  return rows.map((x,i)=>({id:`king-alsh:${i}`,name:x[0],part:x[0],kind:x[0],multipliers:{slash:x[1]/100,blunt:x[1]/100,pierce:x[1]/100,fire:x[2]/100,water:x[2]/100,thunder:x[2]/100,ice:x[2]/100,dragon:x[2]/100}}));
+}
+function selectableMonsters(){
+  let arr=expandMonsterVariants().filter(m=>m.kind==='large'||m.kind===undefined||m.kind===null||m.kind==='');
+  const base=arr.find(m=>String(m.name)==='アルシュベルド');
+  if(base&&!arr.some(m=>String(m.name).includes('歴戦王アルシュベルド'))){
+    arr.push({...base,id:`${base.id}:king`,name:'歴戦王アルシュベルド（★10）',parts:kingAlshubeldParts(),variant:{kind:'arch-tempered'}});
+  }
+  return arr;
+}
 
 function renderAll(){
   normalizeCharm();
@@ -261,7 +307,7 @@ function renderArtia(){
   <label>復元ボーナス（5枠）</label><div id="aRestore"></div>
   <div class="muted small">初期状態は「復元ボーナスなし」。実際の武器に付いている復元ボーナスを選択してください。</div>`;
   $('aProd').value=build.artia.production; $('aElem').value=build.artia.element; $('aSeries').value=build.artia.seriesSkill||''; $('aGroup').value=build.artia.groupSkill||'';
-  const updateSkillStatus=()=>{const ss=skillById($('aSeries').value),gg=skillById($('aGroup').value);let lines=[];for(const [label,skill,type] of [['シリーズ',ss,'series'],['グループ',gg,'group']]){if(!skill)continue;const a=artiaSkillActivation(skill,type);const req=a.required?`必要${a.required}部位`:'発動条件あり';lines.push(`${label}：${esc(skill.name)} → ${a.active?`発動 Lv${a.rank.level}（${a.count}/${req}）`:`未発動（${a.count}/${req}）`}`);} $('aSkillStatus').innerHTML=lines.length?lines.join('<br>'):'シリーズ/グループスキル未選択';};
+  const updateSkillStatus=()=>{const ss=skillById($('aSeries').value),gg=skillById($('aGroup').value);let lines=[];for(const [label,skill,type] of [['シリーズ',ss,'series'],['グループ',gg,'group']]){if(!skill)continue;const a=artiaSkillActivation(skill,type);const req=a.required?`必要${a.required}部位`:'発動条件あり';lines.push(`${label}：${esc(skill.name)} → ${a.active?`発動（${a.count}/${req}）`:`未発動（${a.count}/${req}）`}`);} $('aSkillStatus').innerHTML=lines.length?lines.join('<br>'):'シリーズ/グループスキル未選択';};
   const parts=$('aParts'); parts.innerHTML=build.artia.parts.map((v,i)=>`<select class="aPart" data-i="${i}">${partOpts.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}</select>`).join('');
   document.querySelectorAll('.aPart').forEach((el,i)=>{el.value=build.artia.parts[i];el.onchange=()=>{build.artia.parts[i]=el.value;calcBuild()}});
   let r=$('aRestore');
@@ -413,9 +459,19 @@ function skillByIdByName(name){return (DB.skills||[]).find(x=>String(x.name)===S
 function selectedArtiaSkillObjects(){return {series:skillById(build.artia?.seriesSkill),group:skillById(build.artia?.groupSkill)};}
 function seriesSetsForSkill(skill){if(!skill)return [];return (DB.sets||[]).filter(set=>String(set?.setBonusSkill?.id)===String(skill.id));}
 function groupSetsForSkill(skill){if(!skill)return [];return (DB.sets||[]).filter(set=>String(set?.groupBonusSkill?.id)===String(skill.id));}
-function activeBonusRank(skill, count){if(!skill||!Array.isArray(skill.ranks))return null;let active=skill.ranks.filter(r=>count>=Number(r.setPiecesRequired||0));return active.length?active.reduce((a,b)=>Number(a.level||0)>=Number(b.level||0)?a:b):null;}
+function rankWithRequirement(skill, count, type){
+  if(!skill)return null;
+  const direct=Array.isArray(skill.ranks)?skill.ranks:[];
+  const setList=type==='series'?seriesSetsForSkill(skill):groupSetsForSkill(skill);
+  const ranks=[];
+  for(const set of setList){const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;for(const r of (bs?.ranks||[]))ranks.push(r);}
+  const source=ranks.length?ranks:direct;
+  const usable=source.filter(r=>Number(r?.setPiecesRequired)>0 && count>=Number(r.setPiecesRequired));
+  return usable.length?usable.reduce((a,b)=>Number(a?.level||0)>=Number(b?.level||0)?a:b):null;
+}
+function activeBonusRank(skill,count,type){return rankWithRequirement(skill,count,type);}
 function isBinaryBonusSkill(skill){return !!skill && (skill.kind==='set'||skill.kind==='group');}
-function skillDisplayLevel(name, level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));return isBinaryBonusSkill(sk)?null:level;}
+function skillDisplayLevel(name,level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));return isBinaryBonusSkill(sk)?null:level;}
 function renderSkillGameBlock(name,level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));const binary=isBinaryBonusSkill(sk);const max=binary?1:Math.max(1,skillMax(sk)||Number(level)||1);const on=binary?1:Math.min(max,Math.max(0,Number(level)||0));return `<div class="skill-game${binary?' skill-game-binary':''}"><div class="skill-game-name">${esc(name)}${binary?'':' Lv'+on}</div><div class="skill-blocks">${Array.from({length:max},(_,i)=>`<span class="skill-block ${i<on?'on':''}"></span>`).join('')}</div></div>`;}
 function artiaSkillActivation(skill,type){
   if(!skill)return {active:false,count:0,required:0,rank:null};
@@ -423,11 +479,14 @@ function artiaSkillActivation(skill,type){
   const sets=type==='series'?seriesSetsForSkill(skill):groupSetsForSkill(skill);
   let count=0;
   for(const a of selected){const set=groupSetData(a);if(!set)continue;if(sets.some(x=>String(x.id)===String(set.id)))count++;}
-  const w=selectedWeapon();
-  if(isArtia(w)) count++;
-  const reqs=(skill.ranks||[]).map(r=>Number(r.setPiecesRequired||0)).filter(Boolean).sort((a,b)=>a-b);
-  const rank=activeBonusRank(skill,count);
-  const required=reqs.length?reqs[0]:0;
+  // A currently equipped Artian weapon is one effective set/group piece. This is intentional:
+  // e.g. group skill "ヌシの魂" can be activated by 2 matching armor pieces + the Artian weapon.
+  if(isArtia(selectedWeapon()))count++;
+  const reqs=[];
+  for(const set of sets){const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;for(const r of (bs?.ranks||[])){const n=Number(r?.setPiecesRequired);if(n>0)reqs.push(n);}}
+  if(!reqs.length)for(const r of (skill.ranks||[])){const n=Number(r?.setPiecesRequired);if(n>0)reqs.push(n);}
+  const required=reqs.length?Math.min(...reqs):0;
+  const rank=rankWithRequirement(skill,count,type);
   return {active:!!rank,count,required,rank,sets};
 }
 function addArtiaConditionalSkills(total){
@@ -448,9 +507,10 @@ function renderSummary(){
     <div class="gs-row"><span class="gs-label">防御力</span><span class="gs-value">${Math.round(s.defense)}</span></div>
   </div>
   <div class="metric" style="grid-column:1/-1"><div class="affline"><span>最大会心率</span><b>${maxAff}%</b></div><div class="muted small">発動可能な条件をすべて成立させた場合。</div></div>`;
-  const normalEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return !isBinaryBonusSkill(sk);});
-  const seriesEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return sk?.kind==='set';});
-  const groupEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return sk?.kind==='group';});
+  const normalEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return !isBinaryBonusSkill(sk)&&!((selectedArtia.series&&selectedArtia.series.name===n)||(selectedArtia.group&&selectedArtia.group.name===n));});
+  const selectedArtia=selectedArtiaSkillObjects();
+  const seriesEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return sk?.kind==='set'||(selectedArtia.series&&String(selectedArtia.series.name)===String(n));});
+  const groupEntries=entries.filter(([n])=>{const sk=skillByIdByName(n);return sk?.kind==='group'||(selectedArtia.group&&String(selectedArtia.group.name)===String(n));});
   const bucket=(title,arr)=>arr.length?`<div class="skill-bucket"><div class="skill-bucket-title">${title}</div><div class="skill-game-grid">${arr.map(([n,l])=>renderSkillGameBlock(n,l)).join('')}</div></div>`:'';
   $('skillOutput').innerHTML='<b>発動スキル</b><div class="skill-order-note">通常スキル・シリーズスキル・グループスキルを分離。各欄はLvの高い順 → 50音順。</div>'+bucket('通常スキル',normalEntries)+bucket('シリーズスキル',seriesEntries)+bucket('グループスキル',groupEntries);
 }
