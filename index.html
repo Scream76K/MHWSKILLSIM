@@ -19,7 +19,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v424';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v426';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -523,7 +523,7 @@ function calcBuild(){
   const elem=calcElementSkill(total,stats.elementType); stats.element=stats.element*elem.mult+elem.add;
   // Defense skill contribution (common levels)
   const dl=skillLevel(total,['防御','Defense']); const dFlat=[0,5,10,10,20,20,35,35][Math.min(7,dl)]||0; const dMult=dl>=7?1.10:dl>=6?1.08:dl>=4?1.05:1; stats.defense=(stats.defense+dFlat)*dMult;
-  calcState={total,stats};renderSummary();renderDetail();syncDamage();renderMonsterInfo();
+  calcState={total,stats,bonusDisplay:calcState.bonusDisplay||{series:[],group:[]}};renderSummary();renderDetail();syncDamage();renderMonsterInfo();
 }
 function sortedSkills(o){return Object.entries(o).sort((a,b)=>Number(b[1])-Number(a[1])||jpSort(a[0],b[0]));}
 function skillOptionSort(arr){return [...arr].sort((a,b)=>{const la=skillMax(a),lb=skillMax(b);return lb-la||jpSort(a?.name,b?.name);});}
