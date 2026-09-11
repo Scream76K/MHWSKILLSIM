@@ -316,10 +316,21 @@ function renderArtia(){
 
 function currentCharmSkills(){let o={};for(let x of build.charmCustom.skills||[]){if(x?.name)o[x.name]=(o[x.name]||0)+(+x.level||0)}return o}
 function allEquipSlots(){let arr=[];let w=selectedWeapon();if(w)(w.slots||[]).forEach((lv,i)=>arr.push({key:'w'+i,owner:'武器',level:lv,kind:'weapon'}));for(let [k,n] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let a=build.armor[k];if(a)maxBreakSlots(a).forEach((lv,i)=>arr.push({key:k+i,owner:n,level:lv,kind:'armor'}))}build.charmCustom.slots.forEach((lv,i)=>{if(lv)arr.push({key:'c'+i,owner:'護石・防具',level:lv,kind:'armor'})});if(build.charmCustom.weaponSlot)arr.push({key:'cw0',owner:'護石・武器',level:1,kind:'weapon'});return arr}
-function decoMaxLevel(d){return Math.max(0,...(Array.isArray(d?.skills)?d.skills.map(x=>Number(x?.level)||0):[]));}
-function decoOptionSort(arr){return [...arr].sort((a,b)=>decoMaxLevel(b)-decoMaxLevel(a)||jpSort(a?.name,b?.name));}
+function decoMaxLevel(d){
+  const levels=[];
+  if(Array.isArray(d?.skills)) for(const x of d.skills) levels.push(Number(x?.level??x?.rank??x?.value??0)||0);
+  else if(d?.skills && typeof d.skills==='object') for(const v of Object.values(d.skills)) levels.push(Number(v?.level??v?.rank??v?.value??v)||0);
+  if(d?.skill) levels.push(Number(d.skill?.level??d.skill?.rank??d.skill?.value??0)||0);
+  return Math.max(0,...levels);
+}
+// 装飾品候補の並びは全スロットで必ず「付与最大Lv降順 → 50音順」。
+// スロットサイズは並び順の判定には一切使わない。
+function decoOptionSort(arr){return [...arr].sort((a,b)=>{const dl=decoMaxLevel(b)-decoMaxLevel(a);return dl||jpSort(a?.name,b?.name);});}
 function sortedSkillChoices(arr){return [...arr].sort((a,b)=>skillMax(b)-skillMax(a)||jpSort(a?.name,b?.name));}
-function decosFor(slot){return decoOptionSort((Array.isArray(DB.decorations)?DB.decorations:[]).filter(d=>d.kind===slot.kind&&d.slot<=slot.level))}
+function decosFor(slot){
+  const level=Number(slot?.level)||0,kind=slot?.kind;
+  return decoOptionSort((Array.isArray(DB.decorations)?DB.decorations:[]).filter(d=>d.kind===kind&&Number(d.slot)<=level));
+}
 function renderDecorEditor(){const box=$('decorEditor');if(box)box.innerHTML='';renderCharmDecos();updateWeaponInfo();}
 function add(o,src){for(let [k,v] of Object.entries(src||{}))o[k]=(o[k]||0)+v}
 function artiaBaseElement(kind,type){
@@ -455,7 +466,10 @@ function calcBuild(){
   const atk=calcAttackSkill(total); stats.attackTrue=(stats.attack+atk.flat)*atk.mult;
   stats.attack=($('useWeaponCoeff')?.checked!==false)?stats.attackTrue*stats.weaponCoefficient:stats.attackTrue;
   stats.affinity+=calcAffinityBonus(total); const p=selectedPart(); // 条件付き会心は最大会心率のみ
-  const baseAffForMax=(Number(w?.affinity??0)+(restoreStats(w).affinity||0)); stats.maxAffinity=calcMaxAffinity(total, baseAffForMax, w, p);
+  // 最大会心率の土台は、現在会心率と同じ「無条件で乗る会心率」。
+  // アーティア基礎会心5%や生産・復元会心を w.affinity から再計算すると、
+  // APIの基礎値と二重計上/取りこぼしが起きるため、ここでは計算済み stats.affinity をそのまま渡す。
+  stats.maxAffinity=calcMaxAffinity(total, stats.affinity, w, p);
   const elem=calcElementSkill(total,stats.elementType); stats.element=stats.element*elem.mult+elem.add;
   // Defense skill contribution (common levels)
   const dl=skillLevel(total,['防御','Defense']); const dFlat=[0,5,10,10,20,20,35,35][Math.min(7,dl)]||0; const dMult=dl>=7?1.10:dl>=6?1.08:dl>=4?1.05:1; stats.defense=(stats.defense+dFlat)*dMult;
