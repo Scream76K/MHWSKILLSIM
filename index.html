@@ -318,9 +318,8 @@ function currentCharmSkills(){let o={};for(let x of build.charmCustom.skills||[]
 function allEquipSlots(){let arr=[];let w=selectedWeapon();if(w)(w.slots||[]).forEach((lv,i)=>arr.push({key:'w'+i,owner:'武器',level:lv,kind:'weapon'}));for(let [k,n] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let a=build.armor[k];if(a)maxBreakSlots(a).forEach((lv,i)=>arr.push({key:k+i,owner:n,level:lv,kind:'armor'}))}build.charmCustom.slots.forEach((lv,i)=>{if(lv)arr.push({key:'c'+i,owner:'護石・防具',level:lv,kind:'armor'})});if(build.charmCustom.weaponSlot)arr.push({key:'cw0',owner:'護石・武器',level:1,kind:'weapon'});return arr}
 function decoMaxLevel(d){
   const levels=[];
-  if(Array.isArray(d?.skills)) for(const x of d.skills) levels.push(Number(x?.level??x?.rank??x?.value??0)||0);
-  else if(d?.skills && typeof d.skills==='object') for(const v of Object.values(d.skills)) levels.push(Number(v?.level??v?.rank??v?.value??v)||0);
-  if(d?.skill) levels.push(Number(d.skill?.level??d.skill?.rank??d.skill?.value??0)||0);
+  const push=x=>{if(x==null)return;if(typeof x==='number'||typeof x==='string'){const n=Number(x);if(Number.isFinite(n))levels.push(n);return;}if(Array.isArray(x)){x.forEach(push);return;}if(typeof x==='object'){const n=Number(x.level??x.rank??x.value??x.maxLevel);if(Number.isFinite(n))levels.push(n);else Object.values(x).forEach(push);}};
+  push(d?.skills);push(d?.skill);push(d?.skillList);
   return Math.max(0,...levels);
 }
 // 装飾品候補の並びは全スロットで必ず「付与最大Lv降順 → 50音順」。
@@ -494,7 +493,15 @@ function rankWithRequirement(skill,count,type){
 function activeBonusRank(skill,count,type){return rankWithRequirement(skill,count,type);}
 function isBinaryBonusSkill(skill){return !!skill&&(skill.kind==='set'||skill.kind==='group');}
 function skillDisplayLevel(name,level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));return isBinaryBonusSkill(sk)?null:level;}
-function artiaSkillActivation(skill,type){if(!skill)return {active:false,count:0,required:0,rank:null};const key=bonusSkillKey(skill);let count=0;for(const a of Object.values(build.armor).filter(Boolean)){const set=groupSetData(a)||a?.armorSet||null;const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;if(bonusSkillKey(bs)===key)count++}const req=(skill.ranks||[]).map(r=>Number(r?.setPiecesRequired)).filter(n=>n>0),required=req.length?Math.min(...req):0,rank=(skill.ranks||[]).filter(r=>Number(r?.setPiecesRequired)>0&&count>=Number(r.setPiecesRequired)).sort((a,b)=>Number(b?.level||0)-Number(a?.level||0))[0]||null;return {active:!!rank,count,required,rank,sets:[]}}
+function artiaSkillActivation(skill,type){
+  if(!skill)return {active:false,count:0,required:0,rank:null};
+  const key=bonusSkillKey(skill);let count=0;
+  for(const a of Object.values(build.armor).filter(Boolean)){const set=groupSetData(a)||a?.armorSet||null,bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;if(bonusSkillKey(bs)===key)count++;}
+  const ranks=(skill.ranks||[]).filter(r=>Number(r?.setPiecesRequired)>0);
+  const active=ranks.filter(r=>count>=Number(r.setPiecesRequired)).sort((a,b)=>Number(b?.setPiecesRequired||0)-Number(a?.setPiecesRequired||0)||Number(b?.level||0)-Number(a?.level||0));
+  const rank=active[0]||null;
+  return {active:!!rank,count,required:rank?Number(rank.setPiecesRequired):(ranks.length?Math.min(...ranks.map(r=>Number(r.setPiecesRequired))):0),rank,sets:[]};
+}
 function addArtiaConditionalSkills(total){
   const w=selectedWeapon(); if(!isArtia(w))return [];
   const selected=selectedArtiaSkillObjects(), activated=[];
@@ -503,7 +510,27 @@ function addArtiaConditionalSkills(total){
 }
 function renderSkillGameBlock(name,level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));const binary=isBinaryBonusSkill(sk);const max=binary?1:Math.max(1,skillMax(sk)||Number(level)||1);const on=binary?1:Math.min(max,Math.max(0,Number(level)||0));return `<div class="skill-game${binary?' skill-game-binary':''}"><div class="skill-game-name">${esc(name)}${binary?'':' Lv'+on}</div><div class="skill-blocks">${Array.from({length:max},(_,i)=>`<span class="skill-block ${i<on?'on':''}"></span>`).join('')}</div></div>`;}
 function groupSetData(a){const as=a?.armorSet;if(!as)return null;return (DB.sets||[]).find(x=>String(x.id)===String(as.id)||String(x.name)===String(as.name))||null;}
-function calcSetSkills(total){const selected=Object.values(build.armor).filter(Boolean),setCounts={},groupCounts={};for(const a of selected){const set=groupSetData(a)||a?.armorSet||null;if(set){const id=String(set.id??set.name??'');if(id)setCounts[id]=(setCounts[id]||0)+1}const gs=set?.groupBonusSkill||a?.groupBonusSkill;if(gs)for(const k of [bonusSkillKey(gs),String(gs.id??''),String(gs.name??'')].filter(Boolean))groupCounts[k]=(groupCounts[k]||0)+1}for(const set of DB.sets||[]){const c=setCounts[String(set?.id??set?.name??'')]||0,sb=set?.setBonusSkill;if(!c||!sb)continue;const r=(sb.ranks||[]).filter(x=>Number(x?.setPiecesRequired)>0&&c>=Number(x.setPiecesRequired)).sort((a,b)=>Number(b?.level||0)-Number(a?.level||0))[0];if(r){const n=r?.skill?.name||r?.name||sb?.name;if(n)total[n]=Math.max(Number(total[n]||0),1)}}for(const g of (DB.skills||[]).filter(x=>x?.kind==='group')){const c=Math.max(0,...[bonusSkillKey(g),String(g.id??''),String(g.name??'')].filter(Boolean).map(k=>groupCounts[k]||0));const r=(g.ranks||[]).filter(x=>Number(x?.setPiecesRequired)>0&&c>=Number(x.setPiecesRequired)).sort((a,b)=>Number(b?.level||0)-Number(a?.level||0))[0];if(r){const n=r?.skill?.name||r?.name;if(n)total[n]=Math.max(Number(total[n]||0),1)}}return total}
+function calcSetSkills(total){
+  const selected=Object.values(build.armor).filter(Boolean);
+  const seriesCounts={},groupCounts={},seriesSkills=new Map(),groupSkills=new Map();
+  for(const a of selected){
+    const set=groupSetData(a)||a?.armorSet||null,sb=set?.setBonusSkill,gb=set?.groupBonusSkill;
+    const sk=bonusSkillKey(sb),gk=bonusSkillKey(gb);
+    if(sk){seriesCounts[sk]=(seriesCounts[sk]||0)+1;seriesSkills.set(sk,sb)}
+    if(gk){groupCounts[gk]=(groupCounts[gk]||0)+1;groupSkills.set(gk,gb)}
+  }
+  const activate=(obj,count)=>{
+    if(!obj||count<=0)return;
+    const active=(obj.ranks||[]).filter(r=>Number(r?.setPiecesRequired)>0&&count>=Number(r.setPiecesRequired))
+      .sort((a,b)=>Number(b?.setPiecesRequired||0)-Number(a?.setPiecesRequired||0)||Number(b?.level||0)-Number(a?.level||0));
+    if(!active.length)return;
+    const r=active[0],n=r?.skill?.name||r?.name||obj?.name;
+    if(n)total[n]=Math.max(Number(total[n]||0),Number(r?.level||1)||1);
+  };
+  for(const [k,obj] of seriesSkills)activate(obj,seriesCounts[k]||0);
+  for(const [k,obj] of groupSkills)activate(obj,groupCounts[k]||0);
+  return total;
+}
 function skillLevel(o,names){for(let n of names)if(o[n]!=null)return o[n];return 0}
 function renderSummary(){
   let t=calcState.total,s=calcState.stats;
