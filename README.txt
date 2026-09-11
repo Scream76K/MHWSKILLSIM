@@ -1,11 +1,11 @@
-MH Wilds ビルド＆火力シミュレーター v4.16
+MH Wilds ビルド＆火力シミュレーター v4.17
 
-v4.16 重点修正
+v4.17 重点修正
 - 防具・護石の装飾品候補を「装飾品自身が付与する最大Lvの高い順 → 装飾品名の50音順」に完全固定。
 - スロットサイズは装着可能判定にのみ使用し、候補の並び順には一切使用しない。
 - 複合装飾品は、装飾品データ内の実際の付与Lvだけから最大Lvを算出。スキル本体のmaxLevelは並び替えに使用しない。
 - 防具スロットと護石防具スロットは同じ共通ソート処理を必ず経由。
-- Service Worker / localStorageのキャッシュキーをv4.16に統一。
+- Service Worker / localStorageのキャッシュキーをv4.17に統一。
 
 配置
 GitHub Pagesへ index.html / manifest.webmanifest / sw.js / README.txt を同じ階層に配置してください。
