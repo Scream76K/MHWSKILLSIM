@@ -2,15 +2,16 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest">
-<title>MH Wilds ビルド＆火力シミュレーター v4.25</title>
+<title>MH Wilds ビルド＆火力シミュレーター v4.28</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0f1e;color:#eef2ff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}header{padding:18px;background:#111827;border-bottom:1px solid #334155}.wrap{max-width:1100px;margin:auto;padding:12px}h1{font-size:22px;margin:0 0 5px}.muted{color:#94a3b8;font-size:12px}.grid{display:grid;grid-template-columns:300px 1fr;gap:12px}.card{background:#151d33;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}h2{font-size:17px;margin:0 0 10px}h3{font-size:14px;margin:12px 0 7px}label{font-size:12px;color:#cbd5e1;display:block;margin:7px 0 4px}select,input,button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit}button{cursor:pointer}button.primary{background:#2563eb;border-color:#2563eb}button.good{background:#166534;border-color:#166534}button.danger{background:#7f1d1d;border-color:#7f1d1d}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.slot{border:1px solid #475569;border-radius:8px;padding:6px;background:#0b1020}.equip{border:1px solid #334155;border-radius:10px;padding:9px;margin:8px 0;background:#0b1020}.equip b{font-size:13px}.tag{display:inline-block;padding:3px 7px;border:1px solid #475569;border-radius:999px;margin:2px;font-size:11px}.notice{padding:9px;border:1px solid #475569;border-radius:9px;background:#0f172a;margin-top:8px}.ok{color:#86efac}.warn{color:#fbbf24}.bad{color:#fca5a5}.info{color:#93c5fd}.sticky{position:sticky;bottom:10px;z-index:5}.summarygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.metric{border:1px solid #334155;border-radius:9px;padding:10px;background:#0b1020}.metric b{display:block;font-size:19px;margin-top:3px}.affline{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px}.affline span{font-size:12px;color:#cbd5e1}.affline b{font-size:19px;margin-top:0}.game-status{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #475569;border-radius:10px;overflow:hidden;background:#0b1020}.game-status .gs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #334155}.game-status .gs-row:nth-child(odd){border-right:1px solid #334155}.game-status .gs-label{font-size:13px;color:#cbd5e1}.game-status .gs-value{font-size:20px;font-weight:700}.game-status .gs-sub{font-size:11px;color:#94a3b8;margin-left:5px;font-weight:400}.skill-order-note{font-size:11px;color:#94a3b8;margin-top:5px}.skill-game-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.skill-bucket{margin-top:9px}.skill-bucket-title{font-size:13px;font-weight:800;border-left:4px solid #64748b;padding:5px 8px;background:#0f172a;border-radius:4px}.skill-game{border:1px solid #475569;border-radius:8px;padding:8px 9px;background:#0b1020}.skill-game-name{font-size:13px;font-weight:700;margin-bottom:6px}.skill-game-binary .skill-game-name{margin-bottom:0}.skill-blocks{display:flex;gap:3px;flex-wrap:wrap}.skill-block{width:13px;height:13px;border:1px solid #64748b;border-radius:2px;background:#111827}.skill-block.on{background:#facc15;border-color:#fde047;box-shadow:0 0 5px rgba(250,204,21,.35)} .equip-title{font-size:16px;font-weight:800;letter-spacing:.02em;margin-bottom:7px}.equip-inline{border:1px solid #334155;border-radius:10px;padding:9px;margin:7px 0;background:#0b1020}.equip-inline .equip-title{margin-bottom:6px}.inline-slot-list{display:grid;gap:4px;margin-top:6px}.inline-slot{display:grid;grid-template-columns:42px minmax(0,1fr);gap:5px;align-items:center}.inline-slot .slot-num{font-weight:800;text-align:center}.inline-slot .slot-size{font-weight:800;text-align:center;border:1px solid #475569;border-radius:6px;padding:5px 2px;background:#111827}.inline-slot select{min-height:36px;padding:6px 8px}.inline-skill{font-size:12px;color:#cbd5e1;margin:4px 0 6px}.armor-equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.armor-equip-grid .equip-inline{margin:0}.section-title{font-size:16px;font-weight:800;margin:12px 0 6px}@media(max-width:760px){.armor-equip-grid{grid-template-columns:1fr 1fr}.inline-slot{grid-template-columns:22px 38px minmax(0,1fr)}}.slot-lines{display:grid;gap:4px;margin:4px 0 8px}.slot-line{font-size:14px;font-weight:700;padding:5px 8px;border:1px solid #334155;border-radius:7px;background:#0b1020}.slot-line{display:grid;grid-template-columns:48px minmax(0,1fr);gap:7px;align-items:center}.slot-line .slot-num{font-size:20px;font-weight:800;text-align:center}.slot-line select{min-height:36px;padding:6px 8px}.equip-skill-preview{font-size:12px;color:#cbd5e1;margin-top:6px}@media(max-width:760px){.slot-line{grid-template-columns:44px minmax(0,1fr)}.game-status{grid-template-columns:1fr}.game-status .gs-row:nth-child(odd){border-right:0}}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}.hidden{display:none}progress{width:100%;height:10px}.small{font-size:11px}.dangerText{color:#fca5a5}.searchbox{margin-bottom:6px}.save-build-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:end}.save-build-row button{min-width:78px}.saved-build-list{display:grid;gap:5px;margin-top:7px}.saved-build-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:center}.buildslot{margin-top:6px}.skilllist{display:grid;gap:4px;max-height:520px;overflow:auto}.skillrow{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #334155;border-radius:8px;background:#0b1020}.skillrow .lv{font-weight:700}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}.checkline input{width:auto;min-height:0}.tabs{display:flex;gap:5px;overflow:auto;margin-bottom:10px}.tab{white-space:nowrap;padding:9px 12px;border:1px solid #475569;border-radius:999px;background:#0b1020}.tab.active{background:#2563eb;border-color:#2563eb}@media(max-width:760px){.grid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.slotgrid{grid-template-columns:1fr 1fr}}
 .charm-slot-list,.charm-deco-list{display:grid;gap:5px}.charm-slot-row{display:grid;grid-template-columns:1fr 90px;gap:7px;align-items:center;border:1px solid #334155;border-radius:7px;padding:6px 8px}.charm-slot-row span{font-size:13px;font-weight:700}.charm-slot-row select{min-height:36px}.charm-deco-row{display:grid;grid-template-columns:110px 50px minmax(0,1fr);gap:6px;align-items:center;border:1px solid #334155;border-radius:7px;padding:6px 8px}.charm-deco-row .slot-size{text-align:center;font-weight:800}.charm-deco-row select{min-height:36px}@media(max-width:760px){.charm-deco-row{grid-template-columns:90px 48px minmax(0,1fr)}}
+.compare-list{display:grid;gap:6px;margin-top:8px}.compare-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:7px;align-items:center;border:1px solid #334155;border-radius:8px;padding:7px 9px;background:#0b1020}.compare-item input{width:18px;min-height:18px}.compare-item .compare-meta{font-size:11px;color:#94a3b8;margin-top:2px}.compare-table{overflow:auto;margin-top:9px}.compare-table table{min-width:680px}.compare-table th{background:#0f172a;white-space:nowrap}.compare-best{font-weight:800}.compare-note{font-size:11px;color:#94a3b8;margin-top:6px}@media(max-width:760px){.compare-table table{min-width:620px}}
 </style><style>.inline-slot-list .inline-slot{grid-template-columns:minmax(88px,auto) 44px minmax(0,1fr);gap:6px}.slot-size-label{font-weight:800;white-space:nowrap}.inline-slot-list .inline-slot:has(>select.chSlot){grid-template-columns:minmax(88px,1fr) 56px}</style></head><body>
-<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v4.25</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
+<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v4.28</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
 <main class="wrap"><div class="grid"><aside>
 <section class="card"><h2>データ</h2><button id="load" class="primary">最新データを取得 / 更新</button><progress id="prog" value="0" max="100" style="display:none;margin-top:8px"></progress><div id="status" class="muted" style="margin-top:7px">未取得</div><div id="diag" class="notice small hidden"></div></section>
-<section class="card"><h2>ビルド保存</h2><div class="muted">現在の武器・防具・護石・装飾品・巨戟アーティア設定を名前付きで保存できます。</div><div class="save-build-row"><div><label>ビルド名</label><input id="buildName" type="text" maxlength="40" placeholder="例：クピドバイン 弓装備"></div><button id="saveBuild" class="good">保存</button><button id="clearBuildName">消去</button></div><div id="savedBuilds" class="saved-build-list"></div></section><section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div id="weaponSkillPreview" class="equip-skill-preview hidden"></div><div id="weaponSlotPreview" class="equip-skill-preview hidden"></div><div id="artiaBox" class="notice hidden"></div><div class="section-title">防具</div><div id="armorSelectors" class="armor-equip-grid"></div><div class="section-title">護石</div><div id="charmEditor"></div><div id="decorEditor" class="muted small" style="display:none"></div></section>
+<section class="card"><h2>ビルド保存</h2><div class="muted">現在の武器・防具・護石・装飾品・巨戟アーティア設定を名前付きで保存できます。</div><div class="save-build-row"><div><label>ビルド名</label><input id="buildName" type="text" maxlength="40" placeholder="例：クピドバイン 弓装備"></div><button id="saveBuild" class="good">保存</button><button id="clearBuildName">消去</button></div><div id="savedBuilds" class="saved-build-list"></div><div class="section-title">装備セット比較</div><div class="muted small">保存したビルドを最大3件まで選び、攻撃力・会心率・属性・防御力・現在のダメージ設定で比較します。</div><div id="compareBuilds" class="compare-list"></div><div class="two" style="margin-top:7px"><button id="selectAllCompare">保存ビルドを全選択</button><button id="clearAllCompare">選択解除</button></div><button id="runCompare" class="primary" style="margin-top:7px">📊 選択したビルドを比較</button><div id="compareOut" class="notice">比較するビルドを選択してください。</div></section><section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div id="weaponSkillPreview" class="equip-skill-preview hidden"></div><div id="weaponSlotPreview" class="equip-skill-preview hidden"></div><div id="artiaBox" class="notice hidden"></div><div class="section-title">防具</div><div id="armorSelectors" class="armor-equip-grid"></div><div class="section-title">護石</div><div id="charmEditor"></div><div id="decorEditor" class="muted small" style="display:none"></div></section>
 <section class="card"><h2>モンスター・部位</h2><div class="muted">選択した部位の物理・属性肉質を期待値計算へ自動反映します。</div><label>モンスター</label><select id="monster"><option value="">モンスターを選択</option></select><label>部位</label><select id="monsterPart"><option value="">部位を選択</option></select><div id="monsterInfo" class="notice">未選択</div></section>
 </aside><section>
 <section class="card"><div class="tabs"><div class="tab active">Step 4 スキル・ステータス</div><div class="tab">Step 5 ダメージ・DPS</div></div><div class="checkline" style="margin:9px 0"><input id="useWeaponCoeff" type="checkbox" checked><label for="useWeaponCoeff" style="margin:0">武器係数を適用して攻撃力を表示</label></div><div class="muted small">ON：ゲーム内の表示攻撃力（武器係数あり）／OFF：武器係数なしの基礎攻撃力。属性値には武器係数を掛けません。</div><button id="calcBuild" class="primary sticky">🔄 ビルドを計算</button><div id="buildSummary" class="summarygrid" style="margin-top:9px"></div><div id="skillOutput" class="notice">データ取得後、装備を選んでください。</div></section>
@@ -19,7 +20,7 @@
 <section class="card"><h2>現在のビルド</h2><div id="buildDetail" class="muted">未計算</div></section>
 </section></div></main>
 <script>
-const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v426';
+const API='https://wilds.mhdb.io/ja', CACHE='mhwilds-build-v427';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 function normalizeDB(d){
@@ -169,488 +170,134 @@ function selectedPart(){const m=selectableMonsters().find(x=>String(x.id)===$('m
 function partPhysHz(p,w){if(!p)return 0;const k=w?.kind||'';const key=['light-bowgun','heavy-bowgun','bow'].includes(k)?'pierce':(['hammer','hunting-horn'].includes(k)?'blunt':'slash');return Number(p?.multipliers?.[key]||0)*100;}
 function partElemHz(p,type){return Number(p?.multipliers?.[type]||0)*100;}
 function groupSetData(a){
-  const as=a?.armorSet; if(!as)return null;
-  return DB.sets.find(s=>String(s.id)===String(as.id)||String(s.name)===String(as.name))||null;
+  const as=a?.armorSet;
+  if(!as) return null;
+  const sets=Array.isArray(DB.sets)?DB.sets:[];
+  return sets.find(s=>String(s?.id)===String(as?.id)||String(s?.name)===String(as?.name))||null;
 }
-function bonusRequirements(skill){
-  const req=[];
-  for(const r of (skill?.ranks||[])){const n=Number(r?.setPiecesRequired);if(n>0)req.push(n);}
-  return req.length?Math.min(...req):0;
+function bonusSkillKey(x){
+  if(!x) return '';
+  return String(x.id!=null?x.id:(x.name||'')).trim();
 }
-function calcSetSkills(total){
-  const selected=Object.values(build.armor).filter(Boolean);
-  const setCounts={},groupCounts={};
-  for(const a of selected){
-    const set=groupSetData(a); if(!set)continue;
-    const sid=String(set.id);
-    setCounts[sid]=(setCounts[sid]||0)+1;
-    const g=set.groupBonusSkill;
-    if(g?.id!=null){const gid=String(g.id);groupCounts[gid]=(groupCounts[gid]||0)+1;}
+function bonusSkillName(x){
+  if(!x) return '';
+  return String(x.name||x.skill?.name||'').trim();
+}
+function armorBonusSource(a,type){
+  const set=groupSetData(a);
+  const candidates=[];
+  if(type==='series'){
+    candidates.push(a?.setBonusSkill,a?.seriesSkill,a?.armorSet?.setBonusSkill,set?.setBonusSkill);
+  }else{
+    candidates.push(a?.groupBonusSkill,a?.groupSkill,a?.armorSet?.groupBonusSkill,set?.groupBonusSkill);
   }
-
-  // シリーズ：同一シリーズ防具の装備部位数だけで判定。
-  for(const set of (DB.sets||[])){
-    const c=setCounts[String(set?.id)]||0;
-    const sb=set?.setBonusSkill;
-    if(!c||!sb)continue;
-    const r=activeBonusRank(sb,c,'series');
-    if(r){
-      const n=r?.skill?.name||r?.name||sb?.name;
-      if(n)total[n]=Math.max(Number(total[n]||0),1);
-    }
-  }
-
-  // グループ：選択した5部位の防具が持つ groupBonusSkill のIDを数える。
-  // DB.sets 全件を無条件に走査して「そのグループを持っている」だけで
-  // 発動扱いにしない。必要部位数を満たした場合だけ追加する。
-  const groupSkills=(DB.skills||[]).filter(x=>x?.kind==='group');
-  for(const g of groupSkills){
-    const gid=String(g.id);
-    const count=groupCounts[gid]||0;
-    const required=bonusRequirements(g);
-    if(required>0 && count>=required){
-      const rank=(g.ranks||[]).filter(r=>Number(r?.setPiecesRequired)>0 && count>=Number(r.setPiecesRequired))
-        .sort((a,b)=>Number(b?.level||0)-Number(a?.level||0))[0];
-      const n=rank?.skill?.name||rank?.name;
-      if(n)total[n]=Math.max(Number(total[n]||0),1);
-    }
-  }
-  return total;
+  return candidates.find(x=>x && (bonusSkillKey(x)||bonusSkillName(x)))||null;
 }
-const PART_JP={'head':'頭','head-neck':'頭/首','body':'胴','torso':'胴','chest':'胸','abdomen':'腹','stomach':'腹','back':'背中','left-wing':'左翼','right-wing':'右翼','wing':'翼','left-foreleg':'左前脚','right-foreleg':'右前脚','foreleg':'前脚','left-hindleg':'左後脚','right-hindleg':'右後脚','hindleg':'後脚','leg':'脚','legs':'脚','tail':'尻尾','tail-tip':'尻尾先端','neck':'首','horn':'角','horns':'角','beak':'嘴','snout':'鼻先','face':'顔','eye':'目','mouth':'口','throat':'喉','shoulder':'肩','arm':'腕','claw':'爪','carapace':'甲羅','shell':'甲殻','tentacle':'触手','tentacles':'触手','fin':'ヒレ','left-fin':'左ヒレ','right-fin':'右ヒレ','wing-arm':'翼腕','core':'核','body-core':'胴体・核','left-leg':'左脚','right-leg':'右脚','left-arm':'左腕','right-arm':'右腕','left-chain-blade-wing':'左鎖翼刃','right-chain-blade-wing':'右鎖翼刃','chain-blade-wing':'鎖翼刃','left-chain-wing':'左鎖翼','right-chain-wing':'右鎖翼','chain-wing':'鎖翼','left-chain':'左鎖','right-chain':'右鎖','chain':'鎖'};
-function partNameJP(p){
-  const raw=String(p?.name??p?.part??p?.kind??'').trim();
-  if(!raw)return 'その他部位';
-  // Synthetic/explicit Japanese names must remain Japanese.
-  if(/[\u3040-\u30ff\u3400-\u9fff]/.test(raw))return raw;
-  if(PART_JP[raw])return PART_JP[raw];
-  const x=raw.toLowerCase();
-  if(x.includes('chain')&&x.includes('blade')&&x.includes('wing'))return x.includes('left')?'左鎖翼刃':x.includes('right')?'右鎖翼刃':'鎖翼刃';
-  if(x.includes('wing'))return x.includes('left')?'左翼':x.includes('right')?'右翼':'翼';
-  if(x.includes('head'))return '頭';
-  if(x.includes('body')||x.includes('torso'))return '胴';
-  if(x.includes('foreleg'))return x.includes('left')?'左前脚':x.includes('right')?'右前脚':'前脚';
-  if(x.includes('hindleg'))return x.includes('left')?'左後脚':x.includes('right')?'右後脚':'後脚';
-  if(x.includes('leg'))return x.includes('left')?'左脚':x.includes('right')?'右脚':'脚';
-  if(x.includes('tail'))return x.includes('tip')?'尻尾先端':'尻尾';
-  if(x.includes('horn'))return '角'; if(x.includes('claw'))return '爪';
-  if(x.includes('fin'))return x.includes('left')?'左ヒレ':x.includes('right')?'右ヒレ':'ヒレ';
-  return 'その他部位';
+function sameBonusSkill(a,b){
+  if(!a||!b) return false;
+  const ak=bonusSkillKey(a), bk=bonusSkillKey(b);
+  if(ak && bk && ak===bk) return true;
+  const an=bonusSkillName(a), bn=bonusSkillName(b);
+  return !!an && !!bn && an===bn;
 }
-function expandMonsterVariants(){
+function bonusRanks(skill,type){
   const out=[];
-  for(const m of DB.monsters||[]){
-    out.push(m);
-    for(const v of (m.variants||[])){
-      // MHDB variants generally contain only variant metadata, not a second hitzone table.
-      // Do not discard them: retain the base parts until a variant-specific part table exists.
-      const vp=Array.isArray(v.parts)&&v.parts.length?v.parts:m.parts;
-      if(vp?.length)out.push({...m,id:`${m.id}:v${v.id}`,name:v.name||`${m.name}（${v.kind||'特殊個体'}）`,parts:vp,variant:v});
+  if(skill?.ranks?.length) out.push(...skill.ranks);
+  // API/DB versions may keep the ranks on the armor-set bonus object instead.
+  if(!out.length){
+    for(const set of (DB.sets||[])){
+      const src=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;
+      if(sameBonusSkill(src,skill) && Array.isArray(src?.ranks)) out.push(...src.ranks);
     }
   }
-  return out;
+  return out.filter(r=>Number(r?.setPiecesRequired)>0);
 }
-function kingAlshubeldParts(){
-  const rows=[['頭',45,5],['胴',28,1],['左翼',42,2],['右翼',42,2],['左鎖翼刃',50,0],['右鎖翼刃',50,0],['左脚',26,2],['右脚',26,2],['尻尾',45,5]];
-  return rows.map((x,i)=>({id:`king-alsh:${i}`,name:x[0],part:x[0],kind:x[0],multipliers:{slash:x[1]/100,blunt:x[1]/100,pierce:x[1]/100,fire:x[2]/100,water:x[2]/100,thunder:x[2]/100,ice:x[2]/100,dragon:x[2]/100}}));
-}
-function selectableMonsters(){
-  let arr=expandMonsterVariants().filter(m=>m.kind==='large'||m.kind===undefined||m.kind===null||m.kind==='');
-  const base=arr.find(m=>String(m.name)==='アルシュベルド');
-  if(base&&!arr.some(m=>String(m.name).includes('歴戦王アルシュベルド'))){
-    arr.push({...base,id:`${base.id}:king`,name:'歴戦王アルシュベルド（★10）',parts:kingAlshubeldParts(),variant:{kind:'arch-tempered'}});
-  }
-  return arr;
-}
-
-function renderAll(){
-  normalizeCharm();
-  renderKinds();
-  renderWeapon();
-  updateWeaponInfo();
-  renderArmor();
-  renderCharmEditor();
-  renderMonsters();
-  renderArtia();
-  renderDecorEditor();
-  try{calcBuild();}catch(e){stat('表示準備中：'+e.message,'warn');}
-}
-function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
-function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
-function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const opts=decorationCandidates(lv,(prefix==='w' || prefix==='cw')?'weapon':'armor');return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}"><option value="">空き</option>${opts.map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`}).join('')}</div>`}
-function bindInlineDecos(root){(root||document).querySelectorAll('.decoSel').forEach(s=>{s.value=build.decos[s.dataset.slot]||'';s.onchange=()=>{build.decos[s.dataset.slot]=s.value;calcBuild()}})}
-function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=[];build.charmCustom.slots.forEach((lv,i)=>{if(lv)slots.push({key:'c'+i,level:lv,owner:'防具スロット'+(i+1),kind:'armor'})});if(build.charmCustom.weaponSlot)slots.push({key:'cw0',level:1,owner:'武器スロット1',kind:'weapon'});if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
-function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia),normals=raw.filter(w=>!isArtia(w)),arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;updateWeaponInfo();renderArtia();}
-function updateWeaponInfo(){const w=selectedWeapon(),sk=$('weaponSkillPreview'),sl=$('weaponSlotPreview');if(!sk||!sl)return;const skills=w?sortedSkills(weaponSkills(w)):[];sk.innerHTML=skills.length?`<div class="equip-inline"><div class="equip-title">武器スキル</div><div class="inline-skill">${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}</div></div>`:'';sk.classList.toggle('hidden',!skills.length);if(!w){sl.innerHTML='';sl.classList.add('hidden');return;}const slots=slotLevels(w.slots);sl.innerHTML=`<div class="equip-inline"><div class="equip-title">武器スロット</div>${inlineDecoRows(slots,'w')}</div>`;sl.classList.remove('hidden');bindInlineDecos(sl);}
-function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip-inline"><div class="equip-title">${name}</div><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><div class="armorSkillPreview inline-skill"></div><div class="armorSlotLines"></div></div>`);let card=box.querySelectorAll('.equip-inline')[box.querySelectorAll('.equip-inline').length-1],sel=card.querySelector(`select[data-armor="${kind}"]`),preview=card.querySelector('.armorSkillPreview'),slotBox=card.querySelector('.armorSlotLines');if(old)sel.value=old;const update=()=>{let a=arr.find(x=>String(x.id)===sel.value);const skills=a?sortedSkills(armorSkills(a)):[];preview.innerHTML=skills.length?`スキル：${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}`:'';preview.style.display=skills.length?'block':'none';slotBox.innerHTML=a?`<div class="equip-title">${name}スロット</div>${inlineDecoRows(maxBreakSlots(a),kind)}`:'';if(a)bindInlineDecos(slotBox)};update();sel.onchange=()=>{build.armor[kind]=arr.find(a=>String(a.id)===sel.value)||null;update();calcBuild()}}}
-function renderCharmPresets(){let s=$('charmPreset');if(!s)return;const charms=Array.isArray(DB.charms)?DB.charms:[];s.innerHTML='<option value="">自由設定</option>'+charms.flatMap(c=>Array.isArray(c?.ranks)?c.ranks.map(r=>({id:c.id+'|'+r.id,name:r.name,skills:r.skills})):[]).map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');}
-function renderCharmEditor(){const armorOpts=sortedSkillChoices((DB.skills||[]).filter(s=>s.kind==='armor')).map(s=>({name:s.name,max:skillMax(s)}));const weaponOpts=sortedSkillChoices((DB.skills||[]).filter(s=>s.kind==='weapon')).map(s=>({name:s.name,max:skillMax(s)}));const all=[...armorOpts.map(x=>({...x,type:'armor'})),...weaponOpts.map(x=>({...x,type:'weapon'}))].sort((a,b)=>b.max-a.max||jpSort(a.name,b.name));let h='<div class="muted small">護石スキルは最大3つ。防具/武器スキルを自由に組み合わせできます。</div><label>既存の護石</label><select id="charmPreset"><option value="">自由設定</option></select><div id="charmSkills">';for(let i=0;i<3;i++)h+=`<div class="equip-inline"><div class="two"><div><label>護石スキル${i+1}</label><select class="chSkill" data-i="${i}"><option value="">なし</option>${all.map(x=>`<option value="${esc(x.name)}" data-type="${x.type}">${esc(x.name)}</option>`).join('')}</select></div><div><label>Lv</label><select class="chLv" data-i="${i}"></select></div></div></div>`;h+='</div><div class="equip-inline"><div class="equip-title">護石防具スロット</div><div class="charm-slot-list">';for(let i=0;i<2;i++)h+=`<div class="charm-slot-row"><span>スロット${i+1}</span><select class="chSlot" data-i="${i}"><option value="0">なし</option><option value="1">[1]</option><option value="2">[2]</option><option value="3">[3]</option></select></div>`;h+='</div><div class="equip-title" style="margin-top:10px">護石武器スロット</div><div class="charm-slot-list"><div class="charm-slot-row"><span>スロット1</span><select id="chWeaponSlot"><option value="0">なし</option><option value="1">[1]</option></select></div></div><div id="charmDecos"></div></div>';$('charmEditor').innerHTML=h;const charms=DB.charms||[],preset=$('charmPreset');preset.innerHTML='<option value="">自由設定</option>'+charms.flatMap(c=>(c.ranks||[]).map(r=>({id:c.id+'|'+r.id,name:r.name}))).map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');for(let i=0;i<3;i++){const se=document.querySelector(`.chSkill[data-i="${i}"]`),le=document.querySelector(`.chLv[data-i="${i}"]`),v=build.charmCustom.skills[i]||{name:'',level:1,type:'armor'};se.value=v.name||'';const fill=()=>{v.type=se.selectedOptions[0]?.dataset?.type||v.type||'armor';v.name=se.value;const pool=v.type==='weapon'?weaponOpts:armorOpts,f=pool.find(x=>x.name===v.name),m=Math.max(1,Number(f?.max)||skillMax(skillByIdByName(v.name))||1);le.innerHTML=Array.from({length:m},(_,n)=>`<option value="${n+1}">Lv${n+1}</option>`).join('');v.level=Math.max(1,Math.min(m,Number(v.level)||1));le.value=v.level;build.charmCustom.skills[i]=v};fill();se.onchange=()=>{v.name=se.value;v.type=se.selectedOptions[0]?.dataset?.type||'armor';v.level=1;build.charmCustom.skills[i]=v;renderCharmEditor();calcBuild()};le.onchange=()=>{v.level=+le.value||1;build.charmCustom.skills[i]=v;calcBuild()}}document.querySelectorAll('.chSlot').forEach((e,i)=>{e.value=build.charmCustom.slots[i]||0;e.onchange=()=>{build.charmCustom.slots[i]=+e.value||0;renderCharmEditor();calcBuild()}});const cw=$('chWeaponSlot');cw.value=build.charmCustom.weaponSlot?'1':'0';cw.onchange=()=>{build.charmCustom.weaponSlot=cw.value==='1';renderCharmEditor();calcBuild()};preset.onchange=()=>{if(!preset.value)return;const [cid,rid]=preset.value.split('|'),c=charms.find(x=>String(x.id)===cid),r=c?.ranks?.find(x=>String(x.id)===rid);if(r?.skills){build.charmCustom.skills=[...r.skills].slice(0,3).map(x=>({name:x.skill?.name||x.name||'',level:x.level||1,type:x.skill?.kind==='weapon'?'weapon':'armor'}));while(build.charmCustom.skills.length<3)build.charmCustom.skills.push({name:'',level:1,type:'armor'});normalizeCharm();renderCharmEditor();calcBuild()}};renderCharmDecos()}
-function renderMonsters(){let s=$('monster');if(!s)return;let old=s.value;let arr=selectableMonsters().sort((a,b)=>jpSort(a.name,b.name));s.innerHTML='<option value="">モンスターを選択</option>'+arr.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join('');if(old&&arr.some(m=>String(m.id)===old))s.value=old;renderMonsterParts()}
-function renderMonsterParts(){let m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value),s=$('monsterPart');if(!s)return;let old=s.value;let parts=(m?.parts||[]).slice().sort((a,b)=>jpSort(partNameJP(a),partNameJP(b)));s.innerHTML='<option value="">部位を選択</option>'+parts.map(p=>`<option value="${p.id}">${esc(partNameJP(p))}</option>`).join('');if(old&&parts.some(p=>String(p.id)===old))s.value=old;renderMonsterInfo()}
-function renderMonsterInfo(){let m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value),p=m?.parts?.find(x=>String(x.id)===$('monsterPart')?.value);if(!m||!p){$('monsterInfo').textContent='未選択';return}let w=selectedWeapon();let hz=partPhysHz(p,w);let ehz=w&&weaponElementInfo(w).type?partElemHz(p,weaponElementInfo(w).type):0;$('monsterInfo').innerHTML=`<b>${esc(m.name)} / ${esc(partNameJP(p))}</b><br>物理肉質 ${hz}% / 属性肉質 ${ehz}%`}
-function selectedWeapon(){return DB.weapons.find(w=>String(w.id)===$('weapon').value)||null}
-function renderArtia(){
-  let w=selectedWeapon(),box=$('artiaBox');
-  if(!isArtia(w)){box.classList.add('hidden');return;}
-  box.classList.remove('hidden');
-  const elems=['fire','water','ice','thunder','dragon','poison','paralysis','sleep','blast'];
-  const ej={fire:'火',water:'水',ice:'氷',thunder:'雷',dragon:'龍',poison:'毒',paralysis:'麻痺',sleep:'睡眠',blast:'爆破'};
-  const opts=[['attack','攻撃激化'],['affinity','会心激化'],['element','属性激化']];
-  const partOpts=[['none','未設定'],['attack','基礎攻撃力増強'],['affinity','会心率増強'],['element','属性増強']];
-  const setSkills=skillOptionSort((DB.skills||[]).filter(x=>x.kind==='set'));
-  const groupSkills=skillOptionSort((DB.skills||[]).filter(x=>x.kind==='group'));
-  box.innerHTML=`<b>★ 巨戟アーティア設定</b>
-  <div class="muted">${esc(w.name)} は巨戟アーティア14種として登録されています。</div>
-  <label>巨戟変異ボーナス</label><select id="aProd">${opts.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}</select>
-  <label>シリーズスキル（1枠）</label><select id="aSeries"><option value="">なし</option>${setSkills.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select>
-  <label>グループスキル（1枠）</label><select id="aGroup"><option value="">なし</option>${groupSkills.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select>
-  <div id="aSkillStatus" class="notice small">シリーズ/グループスキルは、武器を1部位として発動条件を判定します。</div>
-  <label>生産ボーナス（3枠）</label><div id="aParts"></div>
-  <label>属性パーツ</label><div class="muted small">属性増強を2個以上選ぶと選択属性が発現。3個なら追加の属性増強が発生します。</div>
-  <label>属性</label><select id="aElem">${elems.map(e=>`<option value="${e}">${ej[e]}</option>`).join('')}</select>
-  <div class="muted small">攻撃/会心の生産ボーナス3枠とは別に、属性パーツ数を設定します。3個同属性なら武器種固有の属性増強が付きます。</div>
-  <label>復元ボーナス（5枠）</label><div id="aRestore"></div>
-  <div class="muted small">初期状態は「復元ボーナスなし」。実際の武器に付いている復元ボーナスを選択してください。</div>`;
-  $('aProd').value=build.artia.production; $('aElem').value=build.artia.element; $('aSeries').value=build.artia.seriesSkill||''; $('aGroup').value=build.artia.groupSkill||'';
-  const updateSkillStatus=()=>{const ss=skillById($('aSeries').value),gg=skillById($('aGroup').value);let lines=[];for(const [label,skill,type] of [['シリーズ',ss,'series'],['グループ',gg,'group']]){if(!skill)continue;const a=artiaSkillActivation(skill,type);const req=a.required?`必要${a.required}部位`:'条件未定義';lines.push(`${label}：${esc(skill.name)} → ${a.active?`発動（${a.count}/${req}）`:`未発動（${a.count}/${req}）`}`);} $('aSkillStatus').innerHTML=lines.length?lines.join('<br>'):'シリーズ/グループスキル未選択';};
-  const parts=$('aParts'); parts.innerHTML=build.artia.parts.map((v,i)=>`<select class="aPart" data-i="${i}">${partOpts.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}</select>`).join('');
-  document.querySelectorAll('.aPart').forEach((el,i)=>{el.value=build.artia.parts[i];el.onchange=()=>{build.artia.parts[i]=el.value;calcBuild()}});
-  let r=$('aRestore');
-  const choices=[['none','なし'],['atk:I','基礎攻撃力強化Ⅰ +5'],['atk:II','基礎攻撃力強化Ⅱ +6'],['atk:III','基礎攻撃力強化Ⅲ +9'],['atk:EX','基礎攻撃力強化EX +12'],['aff:I','会心強化Ⅰ +5%'],['aff:II','会心強化Ⅱ +6%'],['aff:III','会心強化Ⅲ +8%'],['aff:EX','会心強化EX +10%'],['elem:I','属性強化Ⅰ'],['elem:II','属性強化Ⅱ'],['elem:EX','属性強化EX'],['sharp:I','斬れ味・装填数強化Ⅰ +30'],['sharp:EX','斬れ味・装填数強化EX +50']];
-  r.innerHTML=build.artia.restores.map((v,i)=>`<select class="aR" data-i="${i}">${choices.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join('')}</select>`).join('');
-  document.querySelectorAll('.aR').forEach((el,i)=>{el.value=build.artia.restores[i];el.onchange=()=>{build.artia.restores[i]=el.value;calcBuild()}});
-  $('aProd').onchange=()=>{build.artia.production=$('aProd').value;calcBuild()}; $('aElem').onchange=()=>{build.artia.element=$('aElem').value;calcBuild()};
-  $('aSeries').onchange=()=>{build.artia.seriesSkill=$('aSeries').value;calcBuild();updateSkillStatus()}; $('aGroup').onchange=()=>{build.artia.groupSkill=$('aGroup').value;calcBuild();updateSkillStatus()};
-  updateSkillStatus();
-}
-
-function currentCharmSkills(){let o={};for(let x of build.charmCustom.skills||[]){if(x?.name)o[x.name]=(o[x.name]||0)+(+x.level||0)}return o}
-function allEquipSlots(){let arr=[];let w=selectedWeapon();if(w)(w.slots||[]).forEach((lv,i)=>arr.push({key:'w'+i,owner:'武器',level:lv,kind:'weapon'}));for(let [k,n] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let a=build.armor[k];if(a)maxBreakSlots(a).forEach((lv,i)=>arr.push({key:k+i,owner:n,level:lv,kind:'armor'}))}build.charmCustom.slots.forEach((lv,i)=>{if(lv)arr.push({key:'c'+i,owner:'護石・防具',level:lv,kind:'armor'})});if(build.charmCustom.weaponSlot)arr.push({key:'cw0',owner:'護石・武器',level:1,kind:'weapon'});return arr}
-// 装飾品の並び順は「珠そのもののレベル（slot）」を基準にする。
-// 【1】【2】【3】は装着可能スロットLvであり、付与スキルLvとは別物。
-function decorationSortLevel(d){
-  return Number(d?.slot)||0;
-}
-const decorationNameCollator=new Intl.Collator('ja-JP',{numeric:true,sensitivity:'base'});
-function compareDecorationName(a,b){
-  return decorationNameCollator.compare(String(a?.name??''),String(b?.name??''));
-}
-// 【重要】珠選択欄の最終表示順をここで確定する。
-// 1. 装飾品Lv（slot）の降順：Lv3 → Lv2 → Lv1
-// 2. 同Lvなら珠の名称の50音順
-// 付与スキルLv・レア度・IDなどはソート条件にしない。
-function sortDecorationCandidates(arr){
-  return [...arr].sort((a,b)=>{
-    const lv=decorationSortLevel(b)-decorationSortLevel(a);
-    return lv!==0?lv:compareDecorationName(a,b);
-  });
-}
-function decorationCandidates(slotLevel,kind){
-  const level=Number(slotLevel)||0;
-  const wantedKind=kind==='weapon'?'weapon':'armor';
-  const eligible=(Array.isArray(DB.decorations)?DB.decorations:[])
-    .filter(d=>d?.kind===wantedKind && Number(d?.slot)<=level);
-  return sortDecorationCandidates(eligible);
-}
-function armorDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'armor');}
-function weaponDecorationCandidates(slotLevel){return decorationCandidates(slotLevel,'weapon');}
-function charmDecorationCandidates(slotLevel,kind){return decorationCandidates(slotLevel,kind);}
-function decosFor(slot){
-  const kind=slot?.kind;
-  return kind==='charm'
-    ? charmDecorationCandidates(slot?.level,slot?.decoKind||'armor')
-    : decorationCandidates(slot?.level,kind);
-}
-function sortedSkillChoices(arr){return [...arr].sort((a,b)=>skillMax(b)-skillMax(a)||jpSort(a?.name,b?.name));}
-function renderDecorEditor(){const box=$('decorEditor');if(box)box.innerHTML='';renderCharmDecos();updateWeaponInfo();}
-function add(o,src){for(let [k,v] of Object.entries(src||{}))o[k]=(o[k]||0)+v}
-function artiaBaseElement(kind,type){
-  const base={
-    'great-sword':{fire:450,water:450,ice:450,thunder:450,dragon:450,poison:300,paralysis:250,sleep:250,blast:300},
-    'long-sword':{fire:270,water:270,ice:270,thunder:270,dragon:270,poison:120,paralysis:70,sleep:70,blast:120},
-    'sword-and-shield':{fire:260,water:260,ice:260,thunder:260,dragon:260,poison:110,paralysis:60,sleep:60,blast:110},
-    'dual-blades':{fire:250,water:250,ice:250,thunder:250,dragon:250,poison:100,paralysis:50,sleep:50,blast:100},
-    hammer:{fire:320,water:320,ice:320,thunder:320,dragon:320,poison:170,paralysis:120,sleep:120,blast:170},
-    'hunting-horn':{fire:320,water:320,ice:320,thunder:320,dragon:320,poison:170,paralysis:120,sleep:120,blast:170},
-    lance:{fire:270,water:270,ice:270,thunder:270,dragon:270,poison:120,paralysis:70,sleep:70,blast:120},
-    gunlance:{fire:370,water:370,ice:370,thunder:370,dragon:370,poison:220,paralysis:170,sleep:170,blast:220},
-    'switch-axe':{fire:260,water:260,ice:260,thunder:260,dragon:260,poison:110,paralysis:60,sleep:60,blast:110},
-    'charge-blade':{fire:270,water:270,ice:270,thunder:270,dragon:270,poison:120,paralysis:70,sleep:70,blast:120},
-    'insect-glaive':{fire:260,water:260,ice:260,thunder:260,dragon:260,poison:110,paralysis:60,sleep:60,blast:110},
-    bow:{fire:210,water:210,ice:210,thunder:210,dragon:210,poison:60,paralysis:50,sleep:50,blast:60}
-  };
-  return base[kind]?.[type]||0;
-}
-function artiaElementPartBonus(kind,type,count){if(count<2)return 0;const normal=['fire','water','ice','thunder','dragon'].includes(type);if(normal&&count>=3){return ['sword-and-shield','dual-blades','switch-axe','insect-glaive','bow'].includes(kind)?20:30;}return 0;}
-function weaponElementInfo(w){
-  if(isArtia(w)){
-    const type=build.artia.element;if(!type)return {type:'',value:0};
-    const count=(build.artia.parts||[]).filter(x=>x==='element').length;
-    return {type,value:artiaBaseElement(w.kind,type)+artiaElementPartBonus(w.kind,type,count)};
-  }
-  let out={type:'',value:0};
-  for(const x of (Array.isArray(w?.specials)?w.specials:[])){if(x?.kind==='element'&&x?.element){const val=Number(x?.damage?.display??x?.damage?.raw??0);if(val>0){out.type=String(x.element).toLowerCase();out.value=val;return out;}}}
-  for(const x of (Array.isArray(w?.elements)?w.elements:[])){const type=x?.element||x?.type||x?.elementType||'';const val=Number(x?.damage?.display??x?.damage??x?.value??0);if(val>0){out.type=String(type).toLowerCase();out.value=val;return out;}}
-  return out;
-}
-function artiaElementBonus(kind,level){let table={'great-sword':{I:80,II:90,EX:110},'long-sword':{I:50,II:60,EX:90},'sword-and-shield':{I:30,II:50,EX:80},'dual-blades':{I:20,II:30,EX:50},hammer:{I:50,II:60,EX:90},'hunting-horn':{I:50,II:60,EX:90},lance:{I:50,II:60,EX:90},gunlance:{I:50,II:60,EX:90},'switch-axe':{I:30,II:50,EX:80},'charge-blade':{I:50,II:60,EX:90},'insect-glaive':{I:30,II:50,EX:80},bow:{I:30,II:40,EX:60}};return table[kind]?.[level]||0}
-function artiaProductionStats(w){
-  const st={attack:0,affinity:0,element:0};
-  if(!isArtia(w))return st;
-  const parts=build.artia.parts||[];
-  st.attack += parts.filter(x=>x==='attack').length*5;
-  st.affinity += parts.filter(x=>x==='affinity').length*5;
-  return st;
-}
-function artiaMutationStats(w){
-  const st={attack:0,affinity:0,element:0};
-  if(!isArtia(w))return st;
-  const kind=w.kind;
-  if(build.artia.production==='attack'){st.attack=10;st.affinity=-15;st.element=({'hunting-horn':30,'gunlance':40}[kind]||0);}
-  else if(build.artia.production==='affinity'){st.attack=-10;st.affinity=10;st.element=({'great-sword':-10,'long-sword':-20,'sword-and-shield':-20,'dual-blades':-20,'hammer':-10,'hunting-horn':20,'lance':-20,'gunlance':30,'switch-axe':-20,'charge-blade':-20,'insect-glaive':-20,'bow':-20}[kind]||0);}
-  else if(build.artia.production==='element'){st.attack=0;st.affinity=-5;st.element=({'great-sword':50,'long-sword':50,'sword-and-shield':40,'dual-blades':30,'hammer':40,'hunting-horn':80,'lance':50,'gunlance':80,'switch-axe':40,'charge-blade':50,'insect-glaive':40,'bow':30}[kind]||0);}
-  return st;
-}
-function restoreStats(w){let st={attack:0,affinity:0,element:0,sharp:0};if(!isArtia(w))return st;
-  const p=artiaProductionStats(w),m=artiaMutationStats(w);st.attack+=p.attack+m.attack;st.affinity+=p.affinity+m.affinity;st.element+=p.element+m.element;
-  for(const x of build.artia.restores||[]){let [t,l]=String(x).split(':');if(t==='atk')st.attack+={I:5,II:6,III:9,EX:12}[l]||0;if(t==='aff')st.affinity+={I:5,II:6,III:8,EX:10}[l]||0;if(t==='elem')st.element+=artiaElementBonus(w.kind,l);if(t==='sharp')st.sharp+={I:30,EX:50}[l]||0;}
-  return st;
-}
-function hasSkill(total,names){return skillLevel(total,names)>0}
-function calcMaxAffinity(total, baseAffinity, w, part){
-  // 「最大会心率」は、武器固有値＋アーティアの生産/変化/復元ボーナスを土台に、
-  // 発動可能な会心上昇条件をすべて同時成立させた場合の実効値。100%を上限表示とする。
-  let v=Number(baseAffinity)||0;
-  v+=calcAffinityBonus(total);
-
-  // 弱点特効：有効部位30%＋傷口追加20%（Lv5）。最大値なので傷口も成立させる。
-  const wex=skillLevel(total,['弱点特効','Weakness Exploit']);
-  if(wex){const i=Math.min(5,wex);v += [0,5,10,15,20,30][i] + [0,3,5,10,15,20][i];}
-
-  const ch=skillLevel(total,['挑戦者','Agitator']); if(ch) v += [0,3,5,7,10,15][Math.min(5,ch)];
-  const hm=skillLevel(total,['渾身','Maximum Might']); if(hm) v += [0,10,20,30][Math.min(3,hm)];
-  const rel=skillLevel(total,['力の解放','Latent Power']); if(rel) v += [0,10,20,30,40,50][Math.min(5,rel)];
-  const op=skillLevel(total,['攻勢','Foray']); if(op) v += [0,0,5,10,15,20][Math.min(5,op)];
-
-  // 抜刀術【技】はLv1=50 / Lv2=75 / Lv3=100%。最大条件として加算。
-  const draw=skillLevel(total,['抜刀術【技】','抜刀術[技]','Critical Draw']); if(draw) v += [0,50,75,100][Math.min(3,draw)];
-
-  // 濡れ刃紋：濡れ状態＋泡状態を同時成立させるとLv3で+9%+21%=30%。
-  const wet=skillLevel(total,['濡れ刃紋','Wet Blade Mark']); if(wet){const i=Math.min(3,wet);v += [0,10,20,30][i];}
-
-  // 狂竜症克服：基礎+15%。無我の境地は追加でLv1=3/Lv2=6/Lv3=10%。
-  // 無我の境地だけでは+15%は発生しない。黒蝕竜の力、または狂竜化/ゴア相手など、
-  // 狂竜症感染が成立する場合だけ克服会心を最大値に含める。
-  const frenzySkill=hasSkill(total,['無我の境地','Antivirus']);
-  const seriesFrenzy=hasSkill(total,['黒蝕竜の力','黒蝕一体']);
-  const mn=String(part?.monsterName||selectedMonsterName()||'');
-  const monsterCanFrenzy=/ゴア|狂竜|狂化|黒蝕/.test(mn);
-  if(seriesFrenzy||monsterCanFrenzy){
-    v += 15;
-    if(frenzySkill){const i=Math.min(3,skillLevel(total,['無我の境地','Antivirus']));v += [0,3,6,10][i];}
-  }
-
-  // シリーズ/グループ由来の会心上昇。
-  if(hasSkill(total,['海竜の渦雷','蒼雷一閃'])) v += 15;
-  if(hasSkill(total,['オメガレゾナンス','レゾナンス'])) v += 20;
-
-  return Math.min(100,Math.max(-100,v));
-}
-function selectedMonsterName(){const m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value);return String(m?.name||'');}
-function artiaProductionBreakdown(w){if(!isArtia(w))return '';const m={attack:'攻撃増強',affinity:'会心増強',element:'属性増強',none:'未設定'};const a=build.artia.parts||[];return `生産：${a.map(x=>m[x]||x).join(' / ')}（攻撃+${a.filter(x=>x==='attack').length*5} / 会心+${a.filter(x=>x==='affinity').length*5}% / 属性パーツ${a.filter(x=>x==='element').length}）`;}
-function artiaRestoreBreakdown(w){
-  if(!isArtia(w)) return '';
-  const labels={ 'atk:I':'+5攻撃','atk:II':'+6攻撃','atk:III':'+9攻撃','atk:EX':'+12攻撃','aff:I':'+5%会心','aff:II':'+6%会心','aff:III':'+8%会心','aff:EX':'+10%会心','sharp:I':'+30斬れ味','sharp:EX':'+50斬れ味'};
-  const vals=(build.artia.restores||[]).map(x=>x==='none'?'なし':(labels[x]||x));
-  const atk=(build.artia.restores||[]).reduce((n,x)=>x.startsWith('atk:')?n+({'I':5,'II':6,'III':9,'EX':12}[x.split(':')[1]]||0):n,0);
-  const aff=(build.artia.restores||[]).reduce((n,x)=>x.startsWith('aff:')?n+({'I':5,'II':6,'III':8,'EX':10}[x.split(':')[1]]||0):n,0);
-  const elem=(build.artia.restores||[]).reduce((n,x)=>x.startsWith('elem:')?n+artiaElementBonus(w.kind,x.split(':')[1]):n,0);
-  return `復元：${vals.join(' / ')}<br>復元加算：攻撃 +${atk} / 会心 +${aff}% / 属性 +${elem}`;
-}
-function artiaCanonicalBase(w){
-  // 巨戟アーティアはAPIに複数の同名派生/基礎値が混在するため、
-  // 巨戟化後の基準値を武器種ごとに優先する。弓はゲーム内の基礎190/会心5%を使用。
-  if(!isArtia(w)) return null;
-  const byKind={bow:{attack:190,affinity:5}};
-  return byKind[w?.kind]||null;
-}
-function armorMaxDefense(a){
-  const d=a?.defense;
-  // MHDB APIの defense.max は「限界突破前の最大強化値」。
-  // このシミュレータは「防具は限界突破後」として扱うため、
-  // レア度別の限界突破後Lv上限での防御力を算出する。
-  // R5:+54 / R6:+42 / R7:+30 / R8:+26 は、ゲーム内の最大強化値に対する上昇幅。
-  const base=Number(d?.base);
-  const rarity=Number(a?.rarity);
-  const transBonus={5:54,6:42,7:30,8:26}[rarity];
-  if(Number.isFinite(base)&&Number.isFinite(transBonus)) return base+transBonus;
-  if(d&&typeof d==='object'){
-    const candidates=[d.max,d.maximum,d.maxDefense,d.maxLevel];
-    for(const x of candidates){const n=Number(x);if(Number.isFinite(n)&&n>0)return n;}
-    const vals=Object.values(d).map(Number).filter(Number.isFinite);if(vals.length)return Math.max(...vals);
-  }
-  const n=Number(d);return Number.isFinite(n)?n:0;
-}
-function calcBuild(){
-  let total={},w=selectedWeapon(),coef=weaponCoefficient(w?.kind),baseAttackTrue=Number(w?.damage?.raw);
-  const canonical=artiaCanonicalBase(w);
-  if(canonical){
-    baseAttackTrue=canonical.attack;
-  }else if(!Number.isFinite(baseAttackTrue)||baseAttackTrue<=0){
-    const disp=Number(w?.damage?.display??w?.attack??0);baseAttackTrue=coef>0?disp/coef:disp;
-  }
-  let stats={attack:baseAttackTrue,attackTrue:baseAttackTrue,affinity:canonical?canonical.affinity:Number(w?.affinity??0),element:0,elementType:'',defense:1,weaponCoefficient:coef};
-  if(w){add(total,weaponSkills(w));let ei=weaponElementInfo(w);stats.element=ei.value;stats.elementType=ei.type;let rs=restoreStats(w);stats.attack+=Number(rs.attack)||0;stats.affinity+=Number(rs.affinity)||0;stats.element+=Number(rs.element)||0;}
-  for(const k of ['head','chest','arms','waist','legs']){let a=build.armor[k];if(a){add(total,armorSkills(a));stats.defense+=armorMaxDefense(a)}}
-  // ハンター本体の基礎防御力1を含める。防具5部位だけではゲーム内表示より1低くなる。
-  // 武器に defenseBonus が設定されている場合は、それも加算する。
-  if(w) stats.defense+=Number(w?.defenseBonus)||0;
-  add(total,currentCharmSkills());
-  for(const s of allEquipSlots()){let id=build.decos[s.key];if(id){let d=DB.decorations.find(x=>String(x.id)===String(id));if(d)addSkillEntries(total,d.skills)}}
-  // シリーズ/グループスキルは、武器＋防具の必要部位数を満たした場合だけ合算する。
-  // 発動結果は calcState.bonusDisplay にも保持し、表示区分と計算値を一致させる。
-  calcState.bonusDisplay={series:[],group:[]};
-  calcSetSkills(total);
-  if(isArtia(w) && $('aSkillStatus')){let lines=[];for(const [label,skill,type] of [['シリーズ',skillById(build.artia.seriesSkill),'series'],['グループ',skillById(build.artia.groupSkill),'group']]){if(skill){const a=artiaSkillActivation(skill,type);lines.push(`${label}：${esc(skill.name)} → ${a.active?`発動（${a.count}/${a.required||"条件"}）`:`未発動（${a.count}/${a.required||"条件"}）`}`)}}$('aSkillStatus').innerHTML=lines.length?lines.join('<br>'):'シリーズ/グループスキル未選択';}
-  // Always-on/selected-state combat stats
-  const atk=calcAttackSkill(total); stats.attackTrue=(stats.attack+atk.flat)*atk.mult;
-  stats.attack=($('useWeaponCoeff')?.checked!==false)?stats.attackTrue*stats.weaponCoefficient:stats.attackTrue;
-  stats.affinity+=calcAffinityBonus(total); const p=selectedPart(); // 条件付き会心は最大会心率のみ
-  // 最大会心率の土台は、現在会心率と同じ「無条件で乗る会心率」。
-  // アーティア基礎会心5%や生産・復元会心を w.affinity から再計算すると、
-  // APIの基礎値と二重計上/取りこぼしが起きるため、ここでは計算済み stats.affinity をそのまま渡す。
-  stats.maxAffinity=calcMaxAffinity(total, stats.affinity, w, p);
-  const elem=calcElementSkill(total,stats.elementType); stats.element=stats.element*elem.mult+elem.add;
-  // Defense skill contribution (common levels)
-  const dl=skillLevel(total,['防御','Defense']); const dFlat=[0,5,10,10,20,20,35,35][Math.min(7,dl)]||0; const dMult=dl>=7?1.10:dl>=6?1.08:dl>=4?1.05:1; stats.defense=(stats.defense+dFlat)*dMult;
-  calcState={total,stats,bonusDisplay:calcState.bonusDisplay||{series:[],group:[]}};renderSummary();renderDetail();syncDamage();renderMonsterInfo();
-}
-function sortedSkills(o){return Object.entries(o).sort((a,b)=>Number(b[1])-Number(a[1])||jpSort(a[0],b[0]));}
-function skillOptionSort(arr){return [...arr].sort((a,b)=>{const la=skillMax(a),lb=skillMax(b);return lb-la||jpSort(a?.name,b?.name);});}
-function skillById(id){return (DB.skills||[]).find(x=>String(x.id)===String(id))||null;}
-function skillByIdByName(name){return (DB.skills||[]).find(x=>String(x.name)===String(name))||null;}
-function selectedArtiaSkillObjects(){return {series:skillById(build.artia?.seriesSkill),group:skillById(build.artia?.groupSkill)};}
-function seriesSetsForSkill(skill){if(!skill)return [];return (DB.sets||[]).filter(set=>String(set?.setBonusSkill?.id)===String(skill.id));}
-function bonusSkillKey(x){return x?String(x.id!=null?x.id:(x.name||'')).trim():'';}
-function seriesSetsForSkill(skill){const key=bonusSkillKey(skill);return key?(DB.sets||[]).filter(set=>bonusSkillKey(set?.setBonusSkill)===key):[];}
-function groupSetsForSkill(skill){const key=bonusSkillKey(skill);return key?(DB.sets||[]).filter(set=>bonusSkillKey(set?.groupBonusSkill)===key):[];}
-function rankWithRequirement(skill,count,type){
-  if(!skill)return null; const direct=Array.isArray(skill.ranks)?skill.ranks:[], setList=type==='series'?seriesSetsForSkill(skill):groupSetsForSkill(skill), ranks=[];
-  for(const set of setList){const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill; for(const r of (bs?.ranks||[]))ranks.push(r);}
-  const source=ranks.length?ranks:direct;
-  const usable=source.filter(r=>{const req=Number(r?.setPiecesRequired);return req>0&&count>=req;});
-  return usable.length?usable.reduce((a,b)=>Number(a?.level||0)>=Number(b?.level||0)?a:b):null;
-}
-function activeBonusRank(skill,count,type){return rankWithRequirement(skill,count,type);}
-function isBinaryBonusSkill(skill){return !!skill&&(skill.kind==='set'||skill.kind==='group');}
-function skillDisplayLevel(name,level){const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));return isBinaryBonusSkill(sk)?null:level;}
-function artiaSkillActivation(skill,type){
-  if(!skill)return {active:false,count:0,required:0,rank:null};
-  const key=bonusSkillKey(skill);let count=0;
-  // 巨戟アーティアに付与したシリーズ/グループスキルは武器1部位として数える。
-  if(isArtia(selectedWeapon()))count=1;
-  for(const a of Object.values(build.armor).filter(Boolean)){
-    const set=groupSetData(a)||a?.armorSet||null;
-    const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;
-    if(bonusSkillKey(bs)===key)count++;
-  }
-  const rankList=[];
-  for(const set of (type==='series'?seriesSetsForSkill(skill):groupSetsForSkill(skill))){
-    const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;
-    rankList.push(...(bs?.ranks||[]));
-  }
-  if(!rankList.length)rankList.push(...(skill.ranks||[]));
-  const ranks=rankList.filter(r=>Number(r?.setPiecesRequired)>0);
+function activateBonusSkill(skill,type,count){
+  if(!skill||count<=0) return null;
+  const ranks=bonusRanks(skill,type);
   const active=ranks.filter(r=>count>=Number(r.setPiecesRequired))
     .sort((a,b)=>Number(b?.setPiecesRequired||0)-Number(a?.setPiecesRequired||0)||Number(b?.level||0)-Number(a?.level||0));
   const rank=active[0]||null;
-  return {active:!!rank,count,required:rank?Number(rank.setPiecesRequired):(ranks.length?Math.min(...ranks.map(r=>Number(r.setPiecesRequired))):0),rank,sets:[]};
+  return rank ? {active:true,count,required:Number(rank.setPiecesRequired),rank} : null;
 }
 function activatedBonusEntry(type,skill,activation){
   if(!skill||!activation?.active)return null;
   const rank=activation.rank||{};
   const name=rank?.skill?.name||rank?.name||skill?.name;
   if(!name)return null;
-  // シリーズスキルはシリーズスキル欄に表示する。
-  const displayType=type;
-  return {name:String(name),level:1,source:type,displayType,bonusName:String(skill.name||'')};
+  return {name:String(name),level:1,source:type,displayType:type,bonusName:String(skill.name||'')};
 }
 function addBonusDisplay(entry){
   if(!entry)return;
   const bucket=calcState.bonusDisplay[entry.displayType]||[];
-  if(!bucket.some(x=>x.name===entry.name))bucket.push(entry);
+  if(!bucket.some(x=>x.name===entry.name)) bucket.push(entry);
   calcState.bonusDisplay[entry.displayType]=bucket;
 }
-function addArtiaConditionalSkills(total){
-  const w=selectedWeapon(); if(!isArtia(w))return [];
-  const selected=selectedArtiaSkillObjects(), activated=[];
-  for(const [type,skill] of Object.entries(selected)){
-    if(!skill)continue;
-    const a=artiaSkillActivation(skill,type);
-    if(a.active){
-      const entry=activatedBonusEntry(type,skill,a);
-      if(entry){
-        total[entry.name]=Math.max(Number(total[entry.name]||0),1);
-        addBonusDisplay(entry);
-        activated.push({type,skill,activation:a,entry});
-      }
-    }
-  }
-  return activated;
-}
-function renderBonusSkillGameBlock(name){return `<div class="skill-game skill-game-binary"><div class="skill-game-name">${esc(name)}</div><div class="skill-blocks"><span class="skill-block on"></span></div></div>`;}
-function renderSkillGameBlock(name,level){
-  const sk=(DB.skills||[]).find(x=>String(x.name)===String(name));
-  const binary=isBinaryBonusSkill(sk);
-  const max=binary?1:Math.max(1,skillMax(sk)||Number(level)||1);
-  const on=binary?1:Math.min(max,Math.max(0,Number(level)||0));
-  return `<div class="skill-game${binary?' skill-game-binary':''}"><div class="skill-game-name">${esc(name)}${binary?'':' Lv'+on}</div><div class="skill-blocks">${Array.from({length:max},(_,i)=>`<span class="skill-block ${i<on?'on':''}"></span>`).join('')}</div></div>`;
-}
-function groupSetData(a){const as=a?.armorSet;if(!as)return null;return (DB.sets||[]).find(x=>String(x.id)===String(as.id)||String(x.name)===String(as.name))||null;}
 function calcSetSkills(total){
   const selected=Object.values(build.armor).filter(Boolean);
-  const setCounts={},groupCounts={},seriesSkills=new Map(),groupSkills=new Map();
-  for(const a of selected){
-    const set=groupSetData(a)||a?.armorSet||null;
-    const sb=set?.setBonusSkill,gb=set?.groupBonusSkill;
-    const sk=bonusSkillKey(sb),gk=bonusSkillKey(gb);
-    if(sk){setCounts[String(set.id)]=(setCounts[String(set.id)]||0)+1;seriesSkills.set(sk,sb)}
-    if(gk){groupCounts[gk]=(groupCounts[gk]||0)+1;groupSkills.set(gk,gb)}
-  }
-  // 巨戟アーティアの付与スキルは武器1部位として加算する。
-  const artia=selectedArtiaSkillObjects();
-  if(isArtia(selectedWeapon())){
-    const sb=artia.series,gb=artia.group;
-    if(sb){const k=bonusSkillKey(sb);setCounts['__artia_series__']=(setCounts['__artia_series__']||0)+1;seriesSkills.set(k,sb)}
-    if(gb){const k=bonusSkillKey(gb);groupCounts[k]=(groupCounts[k]||0)+1;groupSkills.set(k,gb)}
-  }
-  const activate=(obj,count,type)=>{
-    if(!obj||count<=0)return;
-    const rankList=[];
-    for(const set of (type==='series'?seriesSetsForSkill(obj):groupSetsForSkill(obj))){
-      const bs=type==='series'?set?.setBonusSkill:set?.groupBonusSkill;
-      rankList.push(...(bs?.ranks||[]));
+  const selectedArtia=selectedArtiaSkillObjects();
+  const targets={series:selectedArtia.series,group:selectedArtia.group};
+
+  // 防具そのものが持つ「シリーズ/グループ」の情報を直接比較して部位数を数える。
+  // armorSet ID の一致に依存しないため、API/キャッシュのID差異でも正しく判定する。
+  for(const type of ['series','group']){
+    const target=targets[type];
+    if(!target) continue;
+
+    let count=isArtia(selectedWeapon())?1:0;
+    for(const armor of selected){
+      const src=armorBonusSource(armor,type);
+      if(sameBonusSkill(src,target)) count++;
     }
-    if(!rankList.length)rankList.push(...(obj.ranks||[]));
-    const active=rankList.filter(r=>Number(r?.setPiecesRequired)>0&&count>=Number(r.setPiecesRequired))
-      .sort((a,b)=>Number(b?.setPiecesRequired||0)-Number(a?.setPiecesRequired||0)||Number(b?.level||0)-Number(a?.level||0));
-    if(!active.length)return;
-    const r=active[0],entry=activatedBonusEntry(type,obj,{active:true,count,required:Number(r.setPiecesRequired),rank:r});
-    if(!entry)return;
+
+    const activation=activateBonusSkill(target,type,count);
+    if(!activation) continue;
+
+    const entry=activatedBonusEntry(type,target,activation);
+    if(!entry) continue;
+
     total[entry.name]=Math.max(Number(total[entry.name]||0),1);
     addBonusDisplay(entry);
-  };
-  for(const [k,obj] of seriesSkills)activate(obj,(k===bonusSkillKey(artia.series)&&isArtia(selectedWeapon())?1:0)+(seriesSetsForSkill(obj).reduce((sum,set)=>sum+(setCounts[String(set.id)]||0),0)), 'series');
-  for(const [k,obj] of groupSkills)activate(obj,groupCounts[k]||0,'group');
-  // アーティアシリーズは上の集計と防具セット集計を合わせる必要があるため、念のため選択スキルを直接評価する。
-  if(isArtia(selectedWeapon())&&artia.series){
-    const a=artiaSkillActivation(artia.series,'series');
-    if(a.active){const entry=activatedBonusEntry('series',artia.series,a);if(entry){total[entry.name]=Math.max(Number(total[entry.name]||0),1);addBonusDisplay(entry)}}
   }
-  if(isArtia(selectedWeapon())&&artia.group){
-    const a=artiaSkillActivation(artia.group,'group');
-    if(a.active){const entry=activatedBonusEntry('group',artia.group,a);if(entry){total[entry.name]=Math.max(Number(total[entry.name]||0),1);addBonusDisplay(entry)}}
+
+  // アーティア以外でも、防具だけで成立するシリーズ/グループスキルを処理する。
+  // 同じスキルを持つ防具の部位数を直接集計する。
+  const processed=new Set([
+    selectedArtia.series ? `series:${bonusSkillKey(selectedArtia.series) || bonusSkillName(selectedArtia.series)}` : '',
+    selectedArtia.group ? `group:${bonusSkillKey(selectedArtia.group) || bonusSkillName(selectedArtia.group)}` : ''
+  ]);
+
+  for(const armor of selected){
+    for(const type of ['series','group']){
+      const src=armorBonusSource(armor,type);
+      if(!src) continue;
+      const key=`${type}:${bonusSkillKey(src) || bonusSkillName(src)}`;
+      if(processed.has(key)) continue;
+      processed.add(key);
+
+      const skill=skillById(src.id)||skillByIdByName(bonusSkillName(src))||src;
+      let count=0;
+      for(const a of selected){
+        if(sameBonusSkill(armorBonusSource(a,type),skill)) count++;
+      }
+      const activation=activateBonusSkill(skill,type,count);
+      if(!activation) continue;
+
+      const entry=activatedBonusEntry(type,skill,activation);
+      if(!entry) continue;
+      total[entry.name]=Math.max(Number(total[entry.name]||0),1);
+      addBonusDisplay(entry);
+    }
   }
+
+  // 発動したシリーズ/グループ効果は通常スキル欄から除外する。
+  for(const name of [...(calcState.bonusDisplay.series||[]),...(calcState.bonusDisplay.group||[])]){
+    if(name?.name) delete total[name.name];
+  }
+  for(const entry of [...(calcState.bonusDisplay.series||[]),...(calcState.bonusDisplay.group||[])]){
+    if(entry?.name) total[entry.name]=1;
+  }
+
   return total;
 }
 function skillLevel(o,names){for(let n of names)if(o[n]!=null)return o[n];return 0}
@@ -688,9 +335,65 @@ const BUILDS_KEY='mh-wilds-builds-v45';
 function savedBuildMap(){try{return JSON.parse(localStorage.getItem(BUILDS_KEY)||'{}')||{}}catch(e){return {}}}
 function buildSnapshot(){return {weaponId:$('weapon')?.value||'',armor:Object.fromEntries(Object.entries(build.armor).map(([k,a])=>[k,a?.id||''])),charmCustom:JSON.parse(JSON.stringify(build.charmCustom)),artia:JSON.parse(JSON.stringify(build.artia)),decos:JSON.parse(JSON.stringify(build.decos)),savedAt:new Date().toISOString()}}
 function applyBuildSnapshot(x){if(!x)return;const weapon=DB.weapons.find(w=>String(w.id)===String(x.weaponId));if(weapon){$('weaponKind').value=weapon.kind||'';renderWeapon();$('weapon').value=String(weapon.id);build.weapon=weapon;}for(const k of ['head','chest','arms','waist','legs']){const id=x.armor?.[k];build.armor[k]=id?DB.armor.find(a=>String(a.id)===String(id))||null:null;}build.charmCustom=x.charmCustom||build.charmCustom;build.artia=x.artia||build.artia;build.decos=x.decos||{};normalizeCharm();renderArmor();renderCharmEditor();renderArtia();renderWeapon();updateWeaponInfo();calcBuild();renderSavedBuilds()}
-function renderSavedBuilds(){const box=$('savedBuilds');if(!box)return;const m=savedBuildMap(),names=Object.keys(m).sort((a,b)=>a.localeCompare(b,'ja',{numeric:true}));box.innerHTML=names.length?names.map(n=>`<div class="saved-build-item"><span>${esc(n)}</span><button data-build-load="${esc(n)}">読込</button><button class="danger" data-build-del="${esc(n)}">削除</button></div>`).join(''):'<div class="muted small">保存したビルドはありません。</div>';box.querySelectorAll('[data-build-load]').forEach(b=>b.onclick=()=>applyBuildSnapshot(m[b.dataset.buildLoad]));box.querySelectorAll('[data-build-del]').forEach(b=>b.onclick=()=>{const n=b.dataset.buildDel,m2=savedBuildMap();delete m2[n];localStorage.setItem(BUILDS_KEY,JSON.stringify(m2));renderSavedBuilds()})}
+function renderSavedBuilds(){
+  const box=$('savedBuilds');if(!box)return;
+  const m=savedBuildMap(),names=Object.keys(m).sort((a,b)=>a.localeCompare(b,'ja',{numeric:true}));
+  box.innerHTML=names.length?names.map(n=>`<div class="saved-build-item"><span>${esc(n)}</span><button data-build-load="${esc(n)}">読込</button><button class="danger" data-build-del="${esc(n)}">削除</button></div>`).join(''):'<div class="muted small">保存したビルドはありません。</div>';
+  box.querySelectorAll('[data-build-load]').forEach(b=>b.onclick=()=>applyBuildSnapshot(m[b.dataset.buildLoad]));
+  box.querySelectorAll('[data-build-del]').forEach(b=>b.onclick=()=>{const n=b.dataset.buildDel,m2=savedBuildMap();delete m2[n];localStorage.setItem(BUILDS_KEY,JSON.stringify(m2));renderSavedBuilds();renderCompareBuilds()});
+  renderCompareBuilds();
+}
+function compareSelectedNames(){
+  return [...document.querySelectorAll('#compareBuilds input[data-compare-name]:checked')].map(x=>x.dataset.compareName).filter(Boolean);
+}
+function renderCompareBuilds(){
+  const box=$('compareBuilds');if(!box)return;
+  const m=savedBuildMap(),names=Object.keys(m).sort((a,b)=>a.localeCompare(b,'ja',{numeric:true}));
+  const old=new Set(compareSelectedNames());
+  box.innerHTML=names.length?names.map(n=>`<label class="compare-item"><input type="checkbox" data-compare-name="${esc(n)}" ${old.has(n)?'checked':''}><span><b>${esc(n)}</b><div class="compare-meta">保存済み装備セット</div></span></label>`).join(''):'<div class="muted small">比較できる保存ビルドがありません。まずビルドを名前付きで保存してください。</div>';
+}
+function compareSnapshot(name,snapshot){
+  applyBuildSnapshot(snapshot);
+  const st=calcState.stats||{};
+  let dmg=null;
+  try{dmg=damage().total}catch(e){dmg=null}
+  const total=calcState.total||{};
+  const skillCount=Object.keys(total).length;
+  return {name,attack:Number(st.attack)||0,attackTrue:Number(st.attackTrue)||0,affinity:Number(st.affinity)||0,element:Number(st.element)||0,elementType:String(st.elementType||'—'),defense:Number(st.defense)||0,damage:dmg,skillCount};
+}
+function renderCompareTable(rows){
+  if(!rows.length)return '<span class="muted small">比較結果はありません。</span>';
+  const max=(key)=>Math.max(...rows.map(r=>r[key]));
+  const maxAttack=max('attack'),maxAff=max('affinity'),maxElem=max('element'),maxDef=max('defense'),maxDmg=Math.max(...rows.map(r=>Number(r.damage)||0));
+  const th=(v)=>`<th>${esc(v)}</th>`;
+  const cell=(v,best=false)=>`<td class="${best?'compare-best':''}">${esc(v)}</td>`;
+  let h='<div class="compare-table"><table><thead><tr><th>項目</th>'+rows.map(r=>th(r.name)).join('')+'</tr></thead><tbody>';
+  h+='<tr><th>表示攻撃力</th>'+rows.map(r=>cell(Math.round(r.attack),r.attack===maxAttack)).join('')+'</tr>';
+  h+='<tr><th>真攻撃力</th>'+rows.map(r=>cell(Math.round(r.attackTrue))).join('')+'</tr>';
+  h+='<tr><th>会心率</th>'+rows.map(r=>cell(Math.round(r.affinity)+'%',r.affinity===maxAff)).join('')+'</tr>';
+  h+='<tr><th>属性</th>'+rows.map(r=>cell(Math.round(r.element)+(r.elementType!=='—'?' '+r.elementType:''),r.element===maxElem)).join('')+'</tr>';
+  h+='<tr><th>防御力</th>'+rows.map(r=>cell(Math.round(r.defense),r.defense===maxDef)).join('')+'</tr>';
+  h+='<tr><th>1ヒット期待値</th>'+rows.map(r=>cell(r.damage==null?'—':r.damage.toFixed(2),r.damage!=null&&r.damage===maxDmg)).join('')+'</tr>';
+  h+='<tr><th>有効スキル数</th>'+rows.map(r=>cell(r.skillCount)).join('')+'</tr>';
+  h+='</tbody></table></div><div class="compare-note">太字は各項目で数値が最大のセットです。1ヒット期待値は現在Step 5に設定されているモーション値・肉質・斬れ味等を共通条件として計算しています。</div>';
+  return h;
+}
+function runBuildCompare(){
+  const names=compareSelectedNames();
+  if(!names.length){$('compareOut').innerHTML='<span class="warn">比較するビルドを1〜3件選択してください。</span>';return}
+  if(names.length>3){$('compareOut').innerHTML='<span class="warn">比較は最大3件までです。</span>';return}
+  const map=savedBuildMap();
+  const current=buildSnapshot();
+  const rows=[];
+  try{
+    for(const n of names){if(map[n])rows.push(compareSnapshot(n,map[n]));}
+  }finally{
+    applyBuildSnapshot(current);
+  }
+  $('compareOut').innerHTML=renderCompareTable(rows);
+}
 function saveNamedBuild(){const name=String($('buildName')?.value||'').trim();if(!name){alert('ビルド名を入力してください。');return}const m=savedBuildMap();m[name]=buildSnapshot();localStorage.setItem(BUILDS_KEY,JSON.stringify(m));renderSavedBuilds();stat(`ビルド「${name}」を保存しました。`,'ok')}
-$('useWeaponCoeff')?.addEventListener('change',calcBuild);$('load').onclick=loadData;$('weaponKind').onchange=()=>{renderWeapon();build.weapon=null;renderArtia();calcBuild()};$('weapon').onchange=()=>{build.weapon=selectedWeapon();updateWeaponInfo();renderArtia();calcBuild()};$('charmPreset')?.addEventListener('change',()=>{calcBuild()});$('monster').onchange=()=>{renderMonsterParts();syncDamage();showDamage()};$('monsterPart').onchange=()=>{renderMonsterInfo();syncDamage();showDamage()};$('calcBuild').onclick=calcBuild;$('calcDamage').onclick=showDamage;$('addCombo').onclick=addCombo;$('calcDps').onclick=calcDps;$('saveBuild')?.addEventListener('click',saveNamedBuild);$('clearBuildName')?.addEventListener('click',()=>{if($('buildName'))$('buildName').value=''});renderSavedBuilds();
+$('useWeaponCoeff')?.addEventListener('change',calcBuild);$('load').onclick=loadData;$('weaponKind').onchange=()=>{renderWeapon();build.weapon=null;renderArtia();calcBuild()};$('weapon').onchange=()=>{build.weapon=selectedWeapon();updateWeaponInfo();renderArtia();calcBuild()};$('charmPreset')?.addEventListener('change',()=>{calcBuild()});$('monster').onchange=()=>{renderMonsterParts();syncDamage();showDamage()};$('monsterPart').onchange=()=>{renderMonsterInfo();syncDamage();showDamage()};$('calcBuild').onclick=calcBuild;$('calcDamage').onclick=showDamage;$('addCombo').onclick=addCombo;$('calcDps').onclick=calcDps;$('saveBuild')?.addEventListener('click',saveNamedBuild);$('runCompare')?.addEventListener('click',runBuildCompare);$('selectAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=true)});$('clearAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=false)});$('clearBuildName')?.addEventListener('click',()=>{if($('buildName'))$('buildName').value=''});renderSavedBuilds();
 loadCache();renderKinds();if(!DB.armor.length)stat('「最新データを取得」を押してください。');addCombo();
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
