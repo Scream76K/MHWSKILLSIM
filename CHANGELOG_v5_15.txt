@@ -1,0 +1,7 @@
+MH Wilds Skill Simulator v5.15
+
+- Skill evaluation UI now clearly distinguishes real DPS calculation from priority-only evaluation.
+- Modeled skills only receive a real Lv+1 DPS delta; unmodeled skill effects are not presented as fake DPS values.
+- Critical Boost evaluation uses the current build's actual Critical Boost level rather than the Step 5 manual field.
+- Displays baseline DPS and evaluation method in the skill evaluation table.
+- Keeps the user-as-final-decision design: evaluation assists candidate exploration and does not auto-confirm a build.
