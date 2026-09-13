@@ -941,7 +941,15 @@ function renderSkillGameBlock(name,level){
   const on=binary?1:Math.min(max,Math.max(0,Number(level)||0));
   return `<div class="skill-game${binary?' skill-game-binary':''}"><div class="skill-game-name">${esc(name)}${binary?'':' Lv'+on}</div><div class="skill-blocks">${Array.from({length:max},(_,i)=>`<span class="skill-block ${i<on?'on':''}"></span>`).join('')}</div></div>`;
 }
-function groupSetData(a){const as=a?.armorSet;if(!as)return null;return (DB.sets||[]).find(x=>String(x.id)===String(as.id)||String(x.name)===String(as.name))||null;}
+function groupSetData(a){
+  const as=a?.armorSet;if(!as)return null;
+  const ag=as?.gameId, ai=as?.id, an=as?.name;
+  return (DB.sets||[]).find(x=>
+    (ag!=null&&x?.gameId!=null&&String(x.gameId)===String(ag)) ||
+    (ai!=null&&x?.id!=null&&String(x.id)===String(ai)) ||
+    (an&&x?.name&&String(x.name)===String(an))
+  )||null;
+}
 function calcSetSkills(total){
   const selected=Object.values(build.armor).filter(Boolean);
   const setCounts={},groupCounts={},seriesSkills=new Map(),groupSkills=new Map();
@@ -1075,7 +1083,11 @@ function bonusRankMatchesSkill(rank,skill){
   const names=[rank?.name,rank?.description,rank?.skill?.name,rank?.derivedSkill?.name,rank?.effectSkill?.name];
   return names.some(n=>groupProposalSkillNameMatches(n,skill?.name));
 }
-function groupProposalSetKey(set){return set?String(set.id??set.name??''):'';}
+function groupProposalSetKey(set){
+  if(!set)return '';
+  // MHDBのarmorSetとArmorSet一覧ではidよりgameIdの方が安定して対応するため、gameIdを最優先する。
+  return String(set.gameId??set.id??set.name??'');
+}
 function groupProposalSetObjects(){
   const out=[],seen=new Set();
   for(const set of (DB.sets||[])){
@@ -1116,9 +1128,12 @@ function groupProposalPieces(info){
   const keys=new Set(info?.parentSetKeys||[]),parent=info?.parentSkill||null;
   return (DB.armor||[]).filter(a=>{
     if(a.rank==='low')return false;
-    const set=groupSetData(a)||a?.armorSet||null,key=groupProposalSetKey(set);
-    if(keys.size&&keys.has(key))return true;
-    return !!parent&&bonusSkillMatches(set?.setBonusSkill,parent);
+    const raw=a?.armorSet||null,set=groupSetData(a)||raw,key=groupProposalSetKey(set||raw);
+    if(keys.size&&key&&keys.has(key))return true;
+    if(parent&&(bonusSkillMatches(set?.setBonusSkill,parent)||bonusSkillMatches(raw?.setBonusSkill,parent)))return true;
+    // setBonusSkillがスタブでも、Armor側のsetBonusSkill/rank名から直接判定できるようにする。
+    if(parent&&(bonusRankMatchesSkill(set?.setBonusSkill?.ranks?.[0],parent)||bonusRankMatchesSkill(raw?.setBonusSkill?.ranks?.[0],parent)))return true;
+    return false;
   });
 }
 function groupProposalGroupSkillInfo(name){
@@ -1214,6 +1229,13 @@ function groupProposalBuildReasonScore(map,info,nushiInfo,mode,targetEffect,base
 }
 function groupProposalEvaluate(candidateMap,base,cond,targetInfo){for(const k of ['head','chest','arms','waist','legs'])build.armor[k]=candidateMap[k]||null;calcBuild();const st=JSON.parse(JSON.stringify(calcState.stats||{})),tot=JSON.parse(JSON.stringify(calcState.total||{}));const targetEffect=targetInfo?.effectName||targetInfo?.parentSkill?.name||'';const directSeriesCount=groupProposalCountBonus(candidateMap,targetInfo,'series');const targetLv=directSeriesCount>=Number(targetInfo?.required||999)?Number(targetInfo?.rank?.level||targetInfo?.requestedLevel||1):0;return {armor:Object.fromEntries(Object.entries(candidateMap).map(([k,a])=>[k,a?.id||''])),stats:st,total:tot,targetLv,targetEffect,directSeriesCount,dps:dpsForStats(st,cond),damage:damageForStats(st,cond.mv,cond),skills:groupProposalSkillSummary(tot,targetEffect),reasonScore:groupProposalBuildReasonScore(candidateMap,targetInfo,null,'balance',targetEffect,base)};}
 function groupProposalRenderCandidate(r,i){const names=[['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']];let armorHtml=names.map(([k,n])=>{const a=DB.armor.find(x=>String(x.id)===String(r.armor[k]||''));return `<div><b>${n}</b>：${a?esc(a.name):'—'}</div>`}).join('');const target=$('groupProposalSkill')?.selectedOptions[0]?.textContent||'';return `<div class="equip" style="margin-top:9px"><div class="equip-title">案${i+1}：${i===0?'バランス候補':i===1?'火力寄り候補':'スキル自由度寄り候補'}</div>${armorHtml}<div class="notice small"><b>${esc(target)}</b> → Lv${r.targetLv} / 1ヒット ${Number(r.damage).toFixed(2)} / DPS ${Number(r.dps).toFixed(2)} / 現在比 ${r.dps>=0?'+':''}${Number(r.dps).toFixed(2)}</div><div class="small">主なスキル：${r.skills.length?r.skills.map(esc).join(' / '):'—'}</div><button type="button" class="good group-proposal-apply" data-group-proposal-index="${i}" style="margin-top:7px">この案を採用</button></div>`;}
+function groupProposalDiagnostic(info,nushiInfo,bySlot,states,rows){
+  const seriesPieces=groupProposalPieces(info),nushiPieces=nushiInfo?(DB.armor||[]).filter(a=>{const g=groupProposalBonusObject(a,'group');return g&&bonusSkillMatches(g,nushiInfo.skill)}):[];
+  const perSlot=arr=>arr.map(k=>`${k}:${(bySlot?.[k]||[]).length}`).join(' / ');
+  const samples=seriesPieces.slice(0,8).map(a=>a.name).join('、')||'なし';
+  const nushiSamples=nushiPieces.slice(0,6).map(a=>a.name).join('、')||'なし';
+  return `<details class="small" style="margin-top:8px"><summary>提案診断情報</summary><div style="margin-top:6px">シリーズ親：${esc(info?.parentSkill?.name||'—')} / 必要：${Number(info?.required||0)}部位 / 対象部位数：${seriesPieces.length}<br>シリーズ候補：${esc(samples)}<br>${nushiInfo?`ヌシの魂 必要：${Number(nushiInfo.required||0)}部位 / 対象部位数：${nushiPieces.length}<br>ヌシ候補：${esc(nushiSamples)}<br>`:''}各部位候補数：${perSlot(['head','chest','arms','waist','legs'])}<br>探索終了状態数：${states?.length||0} / 最終評価行数：${rows?.length||0}</div></details>`;
+}
 function runGroupProposal(){
   const skillName=$('groupProposalSkill')?.value||'',targetLv=Number($('groupProposalLevel')?.value)||1,wantNushi=!!$('groupProposalNushi')?.checked,mode=$('groupProposalMode')?.value||'balance';
   if(!skillName){$('groupProposalOut').innerHTML='<span class="warn">採用したいシリーズスキルを選択してください。</span>';return;}
@@ -1226,13 +1248,20 @@ function runGroupProposal(){
   // 「シリーズ部位だけで5部位を埋める」のではなく、全防具から補完部位を選ぶ。目的シリーズ/ヌシ部位は必ず候補プールへ残す。
   const allArmor=(DB.armor||[]).filter(a=>a.rank!=='low');const bySlot={};
   for(const k of slots){
-    const current=build.armor[k];const forced=[...info?groupProposalPieces(info).filter(a=>a.kind===k):[]];if(wantNushi)forced.push(...allArmor.filter(a=>a.kind===k));
+    const current=build.armor[k];
+    const seriesForced=[...groupProposalPieces(info).filter(a=>a.kind===k)];
+    const nushiForced=wantNushi?[...allArmor.filter(a=>{
+      const g=groupProposalBonusObject(a,'group');
+      return g&&bonusSkillMatches(g,nushiInfo.skill);
+    }).filter(a=>a.kind===k)]:[];
+    const forced=[...seriesForced,...nushiForced];
     const pool=[...(current?[current]:[]),...allArmor.filter(a=>a.kind===k),...forced];
     const uniq=[...new Map(pool.map(a=>[String(a.id),a])).values()];
     uniq.sort((a,b)=>groupProposalArmorIntrinsic(b,mode,targetEffect)-groupProposalArmorIntrinsic(a,mode,targetEffect));
-    const keep=uniq.slice(0,70); // 各部位の有望候補＋目的シリーズを確保
+    const keep=uniq.slice(0,70);
+    // 目的シリーズ/ヌシの魂の発動候補はスコアが低くても必ず残す。
     for(const a of forced)if(!keep.some(x=>String(x.id)===String(a.id)))keep.push(a);
-    bySlot[k]=keep.slice(0,90);
+    bySlot[k]=keep;
   }
   let states=[{}];
   for(let idx=0;idx<slots.length;idx++){
@@ -1260,7 +1289,7 @@ function runGroupProposal(){
   const pool=[];for(const arr of [mode==='dps'?sortedDps:sortedReason,sortedDps,sortedFlex])for(const r of arr)if(!pool.includes(r))pool.push(r);
   const shown=pool.slice(0,Number($('groupProposalCount')?.value)||3);window._groupProposalRows=shown;
   const targetLabel=$('groupProposalSkill')?.selectedOptions[0]?.textContent||'';
-  $('groupProposalOut').innerHTML=shown.length?`<b>${esc(targetLabel)} Lv${targetLv} を成立させる候補を${shown.length}案提示します。</b>${wantNushi?'<br><span class="ok">✓ ヌシの魂も発動条件に含めています。</span>':''}<br><span class="muted small">全防具から目的スキルとの相性・装飾品スロット・現在装備の維持度を推論して候補順位を作成しています。最適解を自動確定する機能ではありません。</span>`+shown.map(groupProposalRenderCandidate).join(''):'<span class="warn">条件を満たす候補を作れませんでした。</span>';
+  $('groupProposalOut').innerHTML=shown.length?`<b>${esc(targetLabel)} Lv${targetLv} を成立させる候補を${shown.length}案提示します。</b>${wantNushi?'<br><span class="ok">✓ ヌシの魂も発動条件に含めています。</span>':''}<br><span class="muted small">全防具から目的スキルとの相性・装飾品スロット・現在装備の維持度を推論して候補順位を作成しています。最適解を自動確定する機能ではありません。</span>`+shown.map(groupProposalRenderCandidate).join(''): '<span class="warn">条件を満たす候補を作れませんでした。</span>'+groupProposalDiagnostic(info,nushiInfo,bySlot,states,rows);
   document.querySelectorAll('.group-proposal-apply').forEach(btn=>btn.onclick=()=>{const r=window._groupProposalRows?.[Number(btn.dataset.groupProposalIndex)];if(!r)return;for(const k of slots)build.armor[k]=DB.armor.find(a=>String(a.id)===String(r.armor[k]||''))||null;renderArmor();calcBuild();$('groupProposalOut').insertAdjacentHTML('afterbegin','<div class="notice"><b class="ok">選択した案を現在の装備に採用しました。</b> 最終判断はユーザーが行う方式です。</div>');});
 }
 function renderGroupProposalOptions(){const el=$('groupProposalSkill');if(!el)return;const arr=(DB.skills||[]).filter(s=>s.kind==='set').sort((a,b)=>jpSort(a.name,b.name));const old=el.value;el.innerHTML='<option value="">選択してください</option>'+arr.map(s=>{const info=groupProposalSeriesInfo(s,1);const effect=info?.effectName&&info.effectName!==s.name?`${info.effectName}（シリーズ：${s.name}）`:s.name;return `<option value="${esc(s.name)}">${esc(effect)}</option>`;}).join('');if(arr.some(s=>s.name===old))el.value=old;const lv=$('groupProposalLevel');if(lv)lv.onchange=()=>{};}
