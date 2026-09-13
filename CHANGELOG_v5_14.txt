@@ -1,0 +1,9 @@
+MH Wilds Skill Simulator v5.14
+
+- Added Skill Evaluation Engine.
+- Added built-in build patterns: balance, critical-focused, attack-focused, challenger-focused, comfort-balance.
+- Added weapon-specific and common skill priority metadata.
+- Added conditional marginal DPS estimate for Lv+1 using the simulator's current damage/DPS conditions.
+- Unknown/unmodeled skill effects are not fabricated as fixed DPS percentages; they remain priority-only until modeled.
+- Integrated skill priority/marginal contribution into series-skill proposal scoring as advisory ranking only.
+- User remains the final decision maker; no automatic build confirmation.
