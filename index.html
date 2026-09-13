@@ -1056,9 +1056,27 @@ function runArmorCompare(){
 
 function groupProposalSnapshot(){return {armor:Object.fromEntries(Object.entries(build.armor).map(([k,a])=>[k,a?.id||''])),charmCustom:JSON.parse(JSON.stringify(build.charmCustom||{})),artia:JSON.parse(JSON.stringify(build.artia||{})),decos:JSON.parse(JSON.stringify(build.decos||{}))};}
 function groupProposalRestore(base){build.armor=Object.fromEntries(Object.entries(base.armor||{}).map(([k,id])=>[k,id?DB.armor.find(a=>String(a.id)===String(id))||null:null]));build.charmCustom=JSON.parse(JSON.stringify(base.charmCustom||{}));build.artia=JSON.parse(JSON.stringify(base.artia||{}));build.decos=JSON.parse(JSON.stringify(base.decos||{}));calcBuild();renderArmor();}
-function groupProposalGroupInfo(skill,targetLv){const key=bonusSkillKey(skill);const sets=(DB.sets||[]).filter(set=>bonusSkillKey(set?.setBonusSkill)===key);const ranks=[];for(const set of sets){const bs=set?.setBonusSkill;for(const r of (bs?.ranks||[]))ranks.push(r)}if(!ranks.length)for(const r of (skill?.ranks||[]))ranks.push(r);const candidates=ranks.filter(r=>Number(r?.level||0)>=targetLv&&Number(r?.setPiecesRequired||0)>0).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired)||Number(a.level)-Number(b.level));const exact=candidates[0]||null;return {sets,required:exact?Number(exact.setPiecesRequired):0,rank:exact};}
-function groupProposalPieces(skill){const sets=groupSetsForSkill(skill);const ids=new Set(sets.map(x=>String(x.id)));return DB.armor.filter(a=>a.rank!=='low'&&ids.has(String(groupSetData(a)?.id||a?.armorSet?.id||'')));}
-function groupProposalGroupSkillInfo(name){const skill=(DB.skills||[]).find(s=>String(s?.name)===String(name)&&s?.kind==='group');if(!skill)return null;const ranks=(skill.ranks||[]).filter(r=>Number(r?.setPiecesRequired||0)>0).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired));return {skill,required:ranks.length?Number(ranks[0].setPiecesRequired):0};}
+function bonusSkillMatches(aSkill,bSkill){if(!aSkill||!bSkill)return false;const aid=bonusSkillKey(aSkill),bid=bonusSkillKey(bSkill);if(aid&&bid&&aid===bid)return true;return String(aSkill?.name||'').trim()===String(bSkill?.name||'').trim();}
+function groupProposalGroupInfo(skill,targetLv){
+  const sets=(DB.sets||[]).filter(set=>bonusSkillMatches(set?.setBonusSkill,skill));
+  const ranks=[];
+  for(const set of sets){for(const r of (set?.setBonusSkill?.ranks||[]))ranks.push(r)}
+  for(const a of (DB.armor||[])){const set=groupSetData(a)||a?.armorSet||null;const bs=set?.setBonusSkill;if(bonusSkillMatches(bs,skill))for(const r of (bs?.ranks||[]))ranks.push(r)}
+  if(!ranks.length)for(const r of (skill?.ranks||[]))ranks.push(r);
+  const candidates=ranks.filter(r=>Number(r?.level||0)>=targetLv&&Number(r?.setPiecesRequired||0)>0).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired)||Number(a.level)-Number(b.level));
+  const exact=candidates[0]||null;
+  return {sets,required:exact?Number(exact.setPiecesRequired):0,rank:exact};
+}
+function groupProposalPieces(skill){
+  // シリーズスキルはDB.setsだけに依存せず、各防具のarmorSet.setBonusSkillも直接確認する。
+  // MHDB側でシリーズスキル名/IDと防具側の参照形式が異なる場合でも候補を拾えるようにする。
+  return (DB.armor||[]).filter(a=>{
+    if(a.rank==='low')return false;
+    const set=groupSetData(a)||a?.armorSet||null;
+    return bonusSkillMatches(set?.setBonusSkill,skill);
+  });
+}
+function groupProposalGroupSkillInfo(name){const skill=(DB.skills||[]).find(s=>String(s?.name)===String(name)&&s?.kind==='group');if(!skill)return null;const ranks=[];for(const r of (skill.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r);for(const set of (DB.sets||[])){const bs=set?.groupBonusSkill;if(bonusSkillMatches(bs,skill))for(const r of (bs?.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r)}const unique=ranks.filter((r,i,a)=>a.findIndex(x=>Number(x?.setPiecesRequired)===Number(r?.setPiecesRequired)&&Number(x?.level)===Number(r?.level))===i).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired));return {skill,required:unique.length?Number(unique[0].setPiecesRequired):0};}
 function groupProposalCountBonus(map, name, kind){let c=0;for(const a of Object.values(map)){const set=groupSetData(a);if(!set)continue;const b=kind==='series'?set.setBonusSkill:set.groupBonusSkill;if(String(b?.name||'')===String(name)||String(b?.id||'')===String((DB.skills||[]).find(s=>s?.name===name)?.id||''))c++;}return c;}
 function groupProposalSkillSummary(total,target){const names=Object.keys(total||{}).filter(n=>n!==target);return names.map(n=>`${n} Lv${Number(total[n])||0}`).sort((a,b)=>jpSort(a,b)).slice(0,8);}
 function groupProposalEvaluate(candidateMap,base,cond){for(const k of ['head','chest','arms','waist','legs'])build.armor[k]=candidateMap[k]||null;calcBuild();const st=JSON.parse(JSON.stringify(calcState.stats||{})),tot=JSON.parse(JSON.stringify(calcState.total||{}));const target=$('groupProposalSkill')?.value||'';return {armor:Object.fromEntries(Object.entries(candidateMap).map(([k,a])=>[k,a?.id||''])),stats:st,total:tot,targetLv:Number(tot[target]||0),dps:dpsForStats(st,cond),damage:damageForStats(st,cond.mv,cond),skills:groupProposalSkillSummary(tot,target)};}
