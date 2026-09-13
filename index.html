@@ -1056,39 +1056,97 @@ function runArmorCompare(){
 
 function groupProposalSnapshot(){return {armor:Object.fromEntries(Object.entries(build.armor).map(([k,a])=>[k,a?.id||''])),charmCustom:JSON.parse(JSON.stringify(build.charmCustom||{})),artia:JSON.parse(JSON.stringify(build.artia||{})),decos:JSON.parse(JSON.stringify(build.decos||{}))};}
 function groupProposalRestore(base){build.armor=Object.fromEntries(Object.entries(base.armor||{}).map(([k,id])=>[k,id?DB.armor.find(a=>String(a.id)===String(id))||null:null]));build.charmCustom=JSON.parse(JSON.stringify(base.charmCustom||{}));build.artia=JSON.parse(JSON.stringify(base.artia||{}));build.decos=JSON.parse(JSON.stringify(base.decos||{}));calcBuild();renderArmor();}
-function bonusSkillMatches(aSkill,bSkill){if(!aSkill||!bSkill)return false;const aid=bonusSkillKey(aSkill),bid=bonusSkillKey(bSkill);if(aid&&bid&&aid===bid)return true;return String(aSkill?.name||'').trim()===String(bSkill?.name||'').trim();}
-function bonusRankMatchesSkill(rank,skill){if(!rank||!skill)return false;const rs=rank?.skill||rank?.derivedSkill||null;if(rs&&bonusSkillMatches(rs,skill))return true;return String(rank?.name||'').trim()===String(skill?.name||'').trim();}
-function groupProposalSetObjects(){const out=[],seen=new Set();for(const set of (DB.sets||[])){if(!set)continue;const key=String(set.id??set.name??'');if(!seen.has(key)){seen.add(key);out.push(set);}}for(const a of (DB.armor||[])){const set=groupSetData(a)||a?.armorSet||null;if(!set)continue;const key=String(set.id??set.name??'');if(!seen.has(key)){seen.add(key);out.push(set);}}return out;}
+function bonusSkillMatches(aSkill,bSkill){
+  if(!aSkill||!bSkill)return false;
+  const aid=bonusSkillKey(aSkill),bid=bonusSkillKey(bSkill);
+  if(aid&&bid&&String(aid)===String(bid))return true;
+  return String(aSkill?.name||'').trim()===String(bSkill?.name||'').trim();
+}
+function groupProposalNormName(v){return String(v||'').replace(/[\s　]/g,'').replace(/[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]/g,'').replace(/Lv?\d+/gi,'').replace(/[1-9０-９]+$/,'').trim();}
+function groupProposalSkillNameMatches(a,b){
+  const x=groupProposalNormName(a),y=groupProposalNormName(b);
+  if(!x||!y)return false;
+  return x===y||x.includes(y)||y.includes(x);
+}
+function bonusRankMatchesSkill(rank,skill){
+  if(!rank||!skill)return false;
+  const rs=rank?.skill||rank?.derivedSkill||rank?.effectSkill||null;
+  if(rs&&bonusSkillMatches(rs,skill))return true;
+  const names=[rank?.name,rank?.description,rank?.skill?.name,rank?.derivedSkill?.name,rank?.effectSkill?.name];
+  return names.some(n=>groupProposalSkillNameMatches(n,skill?.name));
+}
+function groupProposalSetKey(set){return set?String(set.id??set.name??''):'';}
+function groupProposalSetObjects(){
+  const out=[],seen=new Set();
+  for(const set of (DB.sets||[])){
+    if(!set)continue;const key=groupProposalSetKey(set);if(!key||seen.has(key))continue;seen.add(key);out.push(set);
+  }
+  for(const a of (DB.armor||[])){
+    const set=groupSetData(a)||a?.armorSet||null;const key=groupProposalSetKey(set);
+    if(!set||!key||seen.has(key))continue;seen.add(key);out.push(set);
+  }
+  return out;
+}
 function groupProposalSeriesInfo(skill,targetLv){
-  const sets=groupProposalSetObjects(), matches=[];
+  const sets=groupProposalSetObjects(),matches=[];
   for(const set of sets){
     const bs=set?.setBonusSkill;if(!bs)continue;
-    if(bonusSkillMatches(bs,skill)){
-      for(const r of (bs.ranks||[])){if(Number(r?.setPiecesRequired||0)>0)matches.push({set,bs,rank:r});}
-    }else{
-      for(const r of (bs.ranks||[])){if(Number(r?.setPiecesRequired||0)>0&&bonusRankMatchesSkill(r,skill))matches.push({set,bs,rank:r});}
+    for(const r of (bs.ranks||[])){
+      if(Number(r?.setPiecesRequired||0)<=0)continue;
+      if(bonusSkillMatches(bs,skill)||bonusRankMatchesSkill(r,skill))matches.push({set,bs,rank:r});
     }
   }
   for(const r of (skill?.ranks||[])){
     if(Number(r?.setPiecesRequired||0)>0)matches.push({set:null,bs:skill,rank:r});
   }
-  const candidates=matches.filter(x=>Number(x.rank?.level||0)>=targetLv).sort((a,b)=>Number(a.rank?.setPiecesRequired||0)-Number(b.rank?.setPiecesRequired||0)||Number(a.rank?.level||0)-Number(b.rank?.level||0));
+  const candidates=matches.filter(x=>Number(x.rank?.level||0)>=targetLv)
+    .sort((a,b)=>Number(a.rank?.setPiecesRequired||999)-Number(b.rank?.setPiecesRequired||999)||Number(a.rank?.level||0)-Number(b.rank?.level||0));
   const pick=candidates[0]||null;
-  return {sets:sets, parentSkill:pick?.bs||null, rank:pick?.rank||null, required:pick?Number(pick.rank.setPiecesRequired):0, effectName:String(pick?.rank?.skill?.name||pick?.rank?.derivedSkill?.name||pick?.rank?.name||skill?.name||'')};
+  const parent=pick?.bs||null;
+  const parentKeys=new Set();
+  if(parent){
+    for(const set of sets)if(bonusSkillMatches(set?.setBonusSkill,parent))parentKeys.add(groupProposalSetKey(set));
+  }
+  if(pick?.set)parentKeys.add(groupProposalSetKey(pick.set));
+  const effectName=String(pick?.rank?.skill?.name||pick?.rank?.derivedSkill?.name||pick?.rank?.effectSkill?.name||pick?.rank?.name||skill?.name||'').replace(/[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]/g,'');
+  return {sets,parentSkill:parent,rank:pick?.rank||null,required:pick?Number(pick.rank.setPiecesRequired):0,effectName,parentSetKeys:[...parentKeys]};
 }
 function groupProposalGroupInfo(skill,targetLv){return groupProposalSeriesInfo(skill,targetLv);}
 function groupProposalPieces(info){
-  const parent=info?.parentSkill||null;
-  if(!parent)return [];
+  const keys=new Set(info?.parentSetKeys||[]),parent=info?.parentSkill||null;
   return (DB.armor||[]).filter(a=>{
     if(a.rank==='low')return false;
-    const set=groupSetData(a)||a?.armorSet||null;
-    return bonusSkillMatches(set?.setBonusSkill,parent);
+    const set=groupSetData(a)||a?.armorSet||null,key=groupProposalSetKey(set);
+    if(keys.size&&keys.has(key))return true;
+    return !!parent&&bonusSkillMatches(set?.setBonusSkill,parent);
   });
 }
-function groupProposalGroupSkillInfo(name){const skill=(DB.skills||[]).find(s=>String(s?.name)===String(name)&&s?.kind==='group');if(!skill)return null;const ranks=[];for(const r of (skill.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r);for(const set of groupProposalSetObjects()){const bs=set?.groupBonusSkill;if(bonusSkillMatches(bs,skill))for(const r of (bs?.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r)}const unique=ranks.filter((r,i,a)=>a.findIndex(x=>Number(x?.setPiecesRequired)===Number(r?.setPiecesRequired)&&Number(x?.level)===Number(r?.level))===i).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired));return {skill,required:unique.length?Number(unique[0].setPiecesRequired):0};}
+function groupProposalGroupSkillInfo(name){
+  const skill=(DB.skills||[]).find(s=>String(s?.name)===String(name)&&s?.kind==='group');if(!skill)return null;
+  const ranks=[];for(const r of (skill.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r);
+  const setKeys=new Set();
+  for(const set of groupProposalSetObjects()){
+    const bs=set?.groupBonusSkill;
+    if(bonusSkillMatches(bs,skill)){
+      setKeys.add(groupProposalSetKey(set));
+      for(const r of (bs?.ranks||[]))if(Number(r?.setPiecesRequired||0)>0)ranks.push(r);
+    }
+  }
+  const unique=ranks.filter((r,i,a)=>a.findIndex(x=>Number(x?.setPiecesRequired)===Number(r?.setPiecesRequired)&&Number(x?.level)===Number(r?.level))===i).sort((a,b)=>Number(a.setPiecesRequired)-Number(b.setPiecesRequired));
+  return {skill,required:unique.length?Number(unique[0].setPiecesRequired):0,setKeys:[...setKeys]};
+}
 function groupProposalBonusObject(a,kind){const set=groupSetData(a)||a?.armorSet||null;return kind==='series'?set?.setBonusSkill:set?.groupBonusSkill;}
-function groupProposalCountBonus(map, target, kind){let c=0;const targetObj=kind==='series'?(target?.parentSkill||target):target;for(const a of Object.values(map)){const b=groupProposalBonusObject(a,kind);if(b&&bonusSkillMatches(b,targetObj))c++;}return c;}
+function groupProposalCountBonus(map,target,kind){
+  const targetKeys=new Set(kind==='series'?(target?.parentSetKeys||[]):(target?.setKeys||[]));
+  let c=0;
+  for(const a of Object.values(map)){
+    const set=groupSetData(a)||a?.armorSet||null,key=groupProposalSetKey(set);
+    if(targetKeys.size&&targetKeys.has(key)){c++;continue;}
+    const b=groupProposalBonusObject(a,kind),targetObj=kind==='series'?(target?.parentSkill||target):(target?.skill||target);
+    if(b&&bonusSkillMatches(b,targetObj))c++;
+  }
+  return c;
+}
 function groupProposalSkillSummary(total,target){const names=Object.keys(total||{}).filter(n=>n!==target);return names.map(n=>`${n} Lv${Number(total[n])||0}`).sort((a,b)=>jpSort(a,b)).slice(0,8);}
 function groupProposalEvaluate(candidateMap,base,cond,targetInfo){for(const k of ['head','chest','arms','waist','legs'])build.armor[k]=candidateMap[k]||null;calcBuild();const st=JSON.parse(JSON.stringify(calcState.stats||{})),tot=JSON.parse(JSON.stringify(calcState.total||{}));const targetEffect=targetInfo?.effectName||'';return {armor:Object.fromEntries(Object.entries(candidateMap).map(([k,a])=>[k,a?.id||''])),stats:st,total:tot,targetLv:Number(tot[targetEffect]||0),targetEffect,dps:dpsForStats(st,cond),damage:damageForStats(st,cond.mv,cond),skills:groupProposalSkillSummary(tot,targetEffect)};}
 function groupProposalRenderCandidate(r,i){const names=[['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']];let armorHtml=names.map(([k,n])=>{const a=DB.armor.find(x=>String(x.id)===String(r.armor[k]||''));return `<div><b>${n}</b>：${a?esc(a.name):'—'}</div>`}).join('');const target=$('groupProposalSkill')?.selectedOptions[0]?.textContent||'';return `<div class="equip" style="margin-top:9px"><div class="equip-title">案${i+1}：${i===0?'バランス候補':i===1?'火力寄り候補':'スキル自由度寄り候補'}</div>${armorHtml}<div class="notice small"><b>${esc(target)}</b> → Lv${r.targetLv} / 1ヒット ${Number(r.damage).toFixed(2)} / DPS ${Number(r.dps).toFixed(2)} / 現在比 ${r.dps>=0?'+':''}${Number(r.dps).toFixed(2)}</div><div class="small">主なスキル：${r.skills.length?r.skills.map(esc).join(' / '):'—'}</div><button type="button" class="good group-proposal-apply" data-group-proposal-index="${i}" style="margin-top:7px">この案を採用</button></div>`;}

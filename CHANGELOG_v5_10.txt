@@ -19,3 +19,4 @@ Monster Hunter Wilds スキルシミュレーター v5.10
 - 「ヌシの魂」ON時はシリーズ防具だけでなく全防具を候補プールに含め、シリーズスキルとヌシの魂を同時に満たす組み合わせを探索。
 - 防具の armorSet 参照からシリーズ/グループスキルを直接取得するフォールバックを追加。
 - 候補評価時も選択した派生効果（例：無尽蔵）を実際の calcBuild() 結果から確認。
+v5.10.2: series-effect resolver and set-identity based candidate generation fix
