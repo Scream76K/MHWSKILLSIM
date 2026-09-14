@@ -1,0 +1,9 @@
+v6.2.4
+
+- v5.21.3で実績のある「Step1の武器select → DB → selectedWeapon」経路を復元
+- Step1の武器選択をBuild Stateへ明示同期
+- 武器種変更時にApp.state.ui.weaponKindも同期
+- 武器選択解除時のDOM/State不整合を防止
+- 武器DOM値とBuild Stateの一致をV6回帰チェックへ追加
+- ビルド保存キーをv6.2.4へ更新し、v6.2.1〜v6.2.3を旧キーとして移行対象化
+- App.version / title / visible VERSION / UI version / cache / changelogを6.2.4へ統一
