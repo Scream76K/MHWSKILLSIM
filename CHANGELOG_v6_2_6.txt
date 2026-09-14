@@ -1,0 +1,31 @@
+MH Wilds スキルシミュレータ v6.2.6
+
+【今回の方針】
+武器種判定を推論方式から廃止し、MHDB公式APIの「List all weapons by type」に従う方式へ変更。
+
+【武器取得】
+- MHDB公式仕様の /weapons?q={"kind":"..."} を武器種ごとに使用。
+- 各API応答のトップレベル kind をそのまま保存。
+- weaponType / type / category / class / ネスト探索などから武器種を推測しない。
+- 片手剣だけ、UI値「sword-and-shield」と公式API値「sword-shield」の対応を明示定義。
+- 各kindの取得結果について、応答レコードのkindが要求した公式kindと一致することを取得時に検証。
+- 旧版で分類済みの武器キャッシュをv6.2.6へ移行しない。
+
+【武器選択】
+- 武器種select → 公式kind検索結果 → 武器select → Build State の順に同期。
+- 表示中の武器は選択された公式kindと完全一致するレコードのみ。
+- 既存のArtian先頭表示、武器選択状態、Step5連携は維持。
+
+【回帰防止】
+- 公式kind以外の推論経路をcanonicalWeaponKindから削除。
+- normalizeWeaponsは武器データを書き換えず、そのまま保持。
+- v6.2.6専用キャッシュキーを使用。
+
+【検証】
+- App.version / HTML title / 画面タイトル / visible version / changelog を6.2.6へ統一。
+- JavaScript構文チェック PASS。
+- 公式kindフィルタの静的・ユニット検証を実施。
+- ZIP完全性チェックを実施。
+
+参照：Monster Hunter: Wilds API Reference
+https://docs.wilds.mhdb.io/
