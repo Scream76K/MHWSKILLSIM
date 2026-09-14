@@ -3,19 +3,19 @@
 <html lang="ja"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#111827" name="theme-color"/><link href="manifest.webmanifest" rel="manifest"/>
-<title>MH Wilds ビルド＆火力シミュレーター v5.21.2</title>
+<title>MH Wilds ビルド＆火力シミュレーター v6.0.0</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0f1e;color:#eef2ff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}header{padding:18px;background:#111827;border-bottom:1px solid #334155}.wrap{max-width:1100px;margin:auto;padding:12px}h1{font-size:22px;margin:0 0 5px}.muted{color:#94a3b8;font-size:12px}.grid{display:grid;grid-template-columns:300px 1fr;gap:12px}.card{background:#151d33;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}h2{font-size:17px;margin:0 0 10px}h3{font-size:14px;margin:12px 0 7px}label{font-size:12px;color:#cbd5e1;display:block;margin:7px 0 4px}select,input,button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit}button{cursor:pointer}button.primary{background:#2563eb;border-color:#2563eb}button.good{background:#166534;border-color:#166534}button.danger{background:#7f1d1d;border-color:#7f1d1d}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.slot{border:1px solid #475569;border-radius:8px;padding:6px;background:#0b1020}.equip{border:1px solid #334155;border-radius:10px;padding:9px;margin:8px 0;background:#0b1020}.equip b{font-size:13px}.tag{display:inline-block;padding:3px 7px;border:1px solid #475569;border-radius:999px;margin:2px;font-size:11px}.notice{padding:9px;border:1px solid #475569;border-radius:9px;background:#0f172a;margin-top:8px}.ok{color:#86efac}.warn{color:#fbbf24}.bad{color:#fca5a5}.info{color:#93c5fd}.sticky{position:sticky;bottom:10px;z-index:5}.summarygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.metric{border:1px solid #334155;border-radius:9px;padding:10px;background:#0b1020}.metric b{display:block;font-size:19px;margin-top:3px}.affline{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px}.affline span{font-size:12px;color:#cbd5e1}.affline b{font-size:19px;margin-top:0}.game-status{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #475569;border-radius:10px;overflow:hidden;background:#0b1020}.game-status .gs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #334155}.game-status .gs-row:nth-child(odd){border-right:1px solid #334155}.game-status .gs-label{font-size:13px;color:#cbd5e1}.game-status .gs-value{font-size:20px;font-weight:700}.game-status .gs-sub{font-size:11px;color:#94a3b8;margin-left:5px;font-weight:400}.skill-order-note{font-size:11px;color:#94a3b8;margin-top:5px}.skill-game-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.skill-bucket{margin-top:9px}.skill-bucket-title{font-size:13px;font-weight:800;border-left:4px solid #64748b;padding:5px 8px;background:#0f172a;border-radius:4px}.skill-game{border:1px solid #475569;border-radius:8px;padding:8px 9px;background:#0b1020}.skill-game-name{font-size:13px;font-weight:700;margin-bottom:6px}.skill-game-binary .skill-game-name{margin-bottom:0}.skill-blocks{display:flex;gap:3px;flex-wrap:wrap}.skill-block{width:13px;height:13px;border:1px solid #64748b;border-radius:2px;background:#111827}.skill-block.on{background:#facc15;border-color:#fde047;box-shadow:0 0 5px rgba(250,204,21,.35)} .equip-title{font-size:16px;font-weight:800;letter-spacing:.02em;margin-bottom:7px}.equip-inline{border:1px solid #334155;border-radius:10px;padding:9px;margin:7px 0;background:#0b1020}.equip-inline .equip-title{margin-bottom:6px}.inline-slot-list{display:grid;gap:4px;margin-top:6px}.inline-slot{display:grid;grid-template-columns:42px minmax(0,1fr);gap:5px;align-items:center}.inline-slot .slot-num{font-weight:800;text-align:center}.inline-slot .slot-size{font-weight:800;text-align:center;border:1px solid #475569;border-radius:6px;padding:5px 2px;background:#111827}.inline-slot select{min-height:36px;padding:6px 8px}.inline-skill{font-size:12px;color:#cbd5e1;margin:4px 0 6px}.armor-equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.armor-equip-grid .equip-inline{margin:0}.section-title{font-size:16px;font-weight:800;margin:12px 0 6px}@media(max-width:760px){.armor-equip-grid{grid-template-columns:1fr 1fr}.inline-slot{grid-template-columns:22px 38px minmax(0,1fr)}}.slot-lines{display:grid;gap:4px;margin:4px 0 8px}.slot-line{font-size:14px;font-weight:700;padding:5px 8px;border:1px solid #334155;border-radius:7px;background:#0b1020}.slot-line{display:grid;grid-template-columns:48px minmax(0,1fr);gap:7px;align-items:center}.slot-line .slot-num{font-size:20px;font-weight:800;text-align:center}.slot-line select{min-height:36px;padding:6px 8px}.equip-skill-preview{font-size:12px;color:#cbd5e1;margin-top:6px}@media(max-width:760px){.slot-line{grid-template-columns:44px minmax(0,1fr)}.game-status{grid-template-columns:1fr}.game-status .gs-row:nth-child(odd){border-right:0}}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}.hidden{display:none}progress{width:100%;height:10px}.small{font-size:11px}.dangerText{color:#fca5a5}.searchbox{margin-bottom:6px}.save-build-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:end}.save-build-row button{min-width:78px}.saved-build-list{display:grid;gap:5px;margin-top:7px}.compare-list{display:grid;gap:6px;margin-top:8px}.compare-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:7px;align-items:center;border:1px solid #334155;border-radius:8px;padding:7px 9px;background:#0b1020}.compare-item input{width:18px;min-height:18px}.compare-item .compare-meta{font-size:11px;color:#94a3b8;margin-top:2px}.compare-table{overflow:auto;margin-top:9px}.compare-table table{min-width:680px}.compare-table th{background:#0f172a;white-space:nowrap}.compare-best{font-weight:800}.compare-note{font-size:11px;color:#94a3b8;margin-top:6px}
 .saved-build-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:center}.buildslot{margin-top:6px}.skilllist{display:grid;gap:4px;max-height:520px;overflow:auto}.skillrow{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #334155;border-radius:8px;background:#0b1020}.skillrow .lv{font-weight:700}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}.checkline input{width:auto;min-height:0}.tabs{display:flex;gap:5px;overflow:auto;margin-bottom:10px}.tab{white-space:nowrap;padding:9px 12px;border:1px solid #475569;border-radius:999px;background:#0b1020}.tab.active{background:#2563eb;border-color:#2563eb}@media(max-width:760px){.grid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.slotgrid{grid-template-columns:1fr 1fr}}
 .charm-slot-list,.charm-deco-list{display:grid;gap:5px}.charm-slot-row{display:grid;grid-template-columns:1fr 90px;gap:7px;align-items:center;border:1px solid #334155;border-radius:7px;padding:6px 8px}.charm-slot-row span{font-size:13px;font-weight:700}.charm-slot-row select{min-height:36px}.charm-deco-row{display:grid;grid-template-columns:110px 50px minmax(0,1fr);gap:6px;align-items:center;border:1px solid #334155;border-radius:7px;padding:6px 8px}.charm-deco-row .slot-size{text-align:center;font-weight:800}.charm-deco-row select{min-height:36px}@media(max-width:760px){.charm-deco-row{grid-template-columns:90px 48px minmax(0,1fr)}}
 textarea:focus,select:focus,input:focus,button:focus{outline:2px solid #3b82f6;outline-offset:1px}#aiAdvisorCard .aiQuick{font-size:12px}#aiAdvisorCard pre{margin:0;background:#0b1020;border-color:#334155}
 </style><style>.inline-slot-list .inline-slot{grid-template-columns:minmax(88px,auto) 44px minmax(0,1fr);gap:6px}.slot-size-label{font-weight:800;white-space:nowrap}.inline-slot-list .inline-slot:has(>select.chSlot){grid-template-columns:minmax(88px,1fr) 56px}</style></head><body>
-<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v5.21.2</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
+<header><div class="wrap"><h1>⚔️ MH Wilds ビルド＆火力シミュレーター v6.0.0</h1><div class="muted">Step 1〜5：武器・防具・護石 → 装飾品 → スキル/ステータス → 期待値/DPS</div></div></header>
 <main class="wrap"><div class="grid"><aside>
-<section class="card"><h2>データ取得（独立モジュール）</h2><div class="muted">ゲームデータの取得・検証・保存はビルド計算とは独立して管理します。取得済みデータがあれば、APIへ再接続できない場合でも利用できます。</div><div class="two" style="margin-top:8px"><button class="primary" id="load" type="button" onclick="window.__startDataLoad && window.__startDataLoad()">最新データを取得 / 更新</button><button id="clearDataCache">取得データを削除</button></div><progress id="prog" max="100" style="display:none;margin-top:8px" value="0"></progress><div class="muted" id="status" style="margin-top:7px">未取得</div><div class="game-status" id="dataStatus" style="margin-top:8px"></div><div class="notice small hidden" id="diag"></div></section>
-<section class="card"><details><summary class="small"><b>スキル最大Lv監査</b></summary><div class="notice small" id="skillMaxAudit">データ取得後に監査します。</div></details></section>  <section class="card" id="groupProposalCard"><h2>🎯 シリーズスキルから装備を提案 v5.21.2</h2><div class="muted">「このシリーズスキルを採用したい」を起点に、全防具から候補を探索し、目的スキルとの相性・武器種適性・装飾品スロット・現在装備の維持度を推論して複数案を作ります。<b>巨戟アーティアのシリーズ/グループスキルも武器1部位として考慮</b>します。<b>ヌシの魂</b>は重要なグループスキルとして、必要な場合だけ別途指定できます。候補の決定・採用はユーザーが行います。</div><div class="two" style="margin-top:8px"><div><label for="groupProposalSkill">採用したいシリーズスキル</label><select id="groupProposalSkill"><option value="">データ取得後に選択</option></select></div><div><label for="groupProposalLevel">目標Lv</label><select id="groupProposalLevel"><option value="1">Lv1</option><option value="2">Lv2</option><option value="3">Lv3</option></select></div></div><div class="notice small" style="margin-top:7px"><label style="display:flex;align-items:center;gap:8px;margin:0"><input id="groupProposalNushi" type="checkbox"/> <span><b>ヌシの魂を採用する</b></span></label><div class="muted" style="margin-top:4px">ONにすると、シリーズスキルに加えて「ヌシの魂」の発動条件も満たす候補だけを提示します。</div></div><div class="two" style="margin-top:7px"><div><label for="groupProposalMode">提案の考え方</label><select id="groupProposalMode"><option value="balance">バランス</option><option value="dps">火力重視</option><option value="flex">スキル自由度重視</option></select></div><div><label for="groupProposalCount">候補数</label><select id="groupProposalCount"><option selected="" value="3">3案</option><option value="5">5案</option></select></div></div><button class="primary" id="groupProposalRun" style="margin-top:8px">🔎 この条件で装備候補を作る</button><div class="notice" id="groupProposalOut" style="margin-top:8px">例：「無尽蔵 Lv1」を選んで、必要なら「ヌシの魂」をONにして試してください。</div></section> <section class="card" id="skillEvalCard"><h2>📐 スキル評価エンジン v5.21.2</h2><div class="muted">スキルを「固定DPS値」として決め打ちせず、①ゲーム内効果データ、②武器種・ビルドパターンの優先度、③現在の条件での限界DPS（Lv+1）を分けて評価します。トレンドは候補探索の優先順位に使い、最終判断は実際のDPS計算に委ねます。</div><div class="two" style="margin-top:8px"><div><label for="skillEvalPattern">評価パターン</label><select id="skillEvalPattern"><option value="balance">バランス型</option><option value="crit">会心火力型</option><option value="attack">攻撃火力型</option><option value="challenger">挑戦者型</option><option value="comfort">快適バランス型</option></select></div><div><label for="skillEvalLimit">表示件数</label><select id="skillEvalLimit"><option selected="" value="8">8</option><option value="12">12</option><option value="20">20</option></select></div></div><button class="primary" id="skillEvalRun" style="margin-top:8px">📊 現在ビルドのスキル価値を評価</button><div class="notice" id="skillEvalOut" style="margin-top:8px">現在のビルドを設定して評価してください。攻撃コンボが登録されていれば、そのDPSを基準にします。</div><div class="notice small" style="margin-top:8px"><b>ビルドパターン</b><br/><span class="tag">会心火力型</span><span class="tag">攻撃火力型</span><span class="tag">挑戦者型</span><span class="tag">快適バランス型</span><br/><span class="muted">各パターンは「正解」ではなく探索時の優先順位です。スキル同士の相乗効果は最終DPSで再評価します。</span></div></section> <section class="card"><h2>ビルド保存</h2><div class="muted">現在の武器・防具・護石・装飾品・巨戟アーティア設定を名前付きで保存できます。</div><div class="save-build-row"><div><label>ビルド名</label><input id="buildName" maxlength="40" placeholder="例：クピドバイン 弓装備" type="text"/></div><button class="good" id="saveBuild">保存</button><button id="clearBuildName">消去</button></div><div class="saved-build-list" id="savedBuilds"></div><div class="section-title">装備セット比較</div><div class="muted small">保存したビルドを最大3件まで選び、攻撃力・会心率・属性・1ヒット期待値・DPSを比較します。</div><div class="compare-list" id="compareBuilds"></div><div class="two" style="margin-top:7px"><button id="selectAllCompare">保存ビルドを全選択</button><button id="clearAllCompare">選択解除</button></div><button class="primary" id="runCompare" style="margin-top:7px">📊 選択したビルドを比較</button><div class="notice" id="compareOut">比較するビルドを選択してください。</div></section>
+<section class="card"><h2>データ取得（独立モジュール）</h2><div class="muted">ゲームデータの取得・検証・保存はビルド計算とは独立して管理します。取得済みデータがあれば、APIへ再接続できない場合でも利用できます。</div><div class="two" style="margin-top:8px"><button class="primary" id="load" type="button" onclick="window.__startDataLoad && window.__startDataLoad()">最新データを取得 / 更新</button><button id="clearDataCache">取得データを削除</button></div><progress id="prog" max="100" style="display:none;margin-top:8px" value="0"></progress><div class="muted" id="status" style="margin-top:7px">未取得</div><div class="game-status" id="dataStatus" style="margin-top:8px"></div><div class="notice small" id="architectureStatus" style="margin-top:8px">V6構造チェック待機中</div><div class="notice small hidden" id="diag"></div></section>
+<section class="card"><details><summary class="small"><b>スキル最大Lv監査</b></summary><div class="notice small" id="skillMaxAudit">データ取得後に監査します。</div></details></section>  <section class="card" id="groupProposalCard"><h2>🎯 シリーズスキルから装備を提案 v6.0.0</h2><div class="muted">「このシリーズスキルを採用したい」を起点に、全防具から候補を探索し、目的スキルとの相性・武器種適性・装飾品スロット・現在装備の維持度を推論して複数案を作ります。<b>巨戟アーティアのシリーズ/グループスキルも武器1部位として考慮</b>します。<b>ヌシの魂</b>は重要なグループスキルとして、必要な場合だけ別途指定できます。候補の決定・採用はユーザーが行います。</div><div class="two" style="margin-top:8px"><div><label for="groupProposalSkill">採用したいシリーズスキル</label><select id="groupProposalSkill"><option value="">データ取得後に選択</option></select></div><div><label for="groupProposalLevel">目標Lv</label><select id="groupProposalLevel"><option value="1">Lv1</option><option value="2">Lv2</option><option value="3">Lv3</option></select></div></div><div class="notice small" style="margin-top:7px"><label style="display:flex;align-items:center;gap:8px;margin:0"><input id="groupProposalNushi" type="checkbox"/> <span><b>ヌシの魂を採用する</b></span></label><div class="muted" style="margin-top:4px">ONにすると、シリーズスキルに加えて「ヌシの魂」の発動条件も満たす候補だけを提示します。</div></div><div class="two" style="margin-top:7px"><div><label for="groupProposalMode">提案の考え方</label><select id="groupProposalMode"><option value="balance">バランス</option><option value="dps">火力重視</option><option value="flex">スキル自由度重視</option></select></div><div><label for="groupProposalCount">候補数</label><select id="groupProposalCount"><option selected="" value="3">3案</option><option value="5">5案</option></select></div></div><button class="primary" id="groupProposalRun" style="margin-top:8px">🔎 この条件で装備候補を作る</button><div class="notice" id="groupProposalOut" style="margin-top:8px">例：「無尽蔵 Lv1」を選んで、必要なら「ヌシの魂」をONにして試してください。</div></section> <section class="card" id="skillEvalCard"><h2>📐 スキル評価エンジン v6.0.0</h2><div class="muted">スキルを「固定DPS値」として決め打ちせず、①ゲーム内効果データ、②武器種・ビルドパターンの優先度、③現在の条件での限界DPS（Lv+1）を分けて評価します。トレンドは候補探索の優先順位に使い、最終判断は実際のDPS計算に委ねます。</div><div class="two" style="margin-top:8px"><div><label for="skillEvalPattern">評価パターン</label><select id="skillEvalPattern"><option value="balance">バランス型</option><option value="crit">会心火力型</option><option value="attack">攻撃火力型</option><option value="challenger">挑戦者型</option><option value="comfort">快適バランス型</option></select></div><div><label for="skillEvalLimit">表示件数</label><select id="skillEvalLimit"><option selected="" value="8">8</option><option value="12">12</option><option value="20">20</option></select></div></div><button class="primary" id="skillEvalRun" style="margin-top:8px">📊 現在ビルドのスキル価値を評価</button><div class="notice" id="skillEvalOut" style="margin-top:8px">現在のビルドを設定して評価してください。攻撃コンボが登録されていれば、そのDPSを基準にします。</div><div class="notice small" style="margin-top:8px"><b>ビルドパターン</b><br/><span class="tag">会心火力型</span><span class="tag">攻撃火力型</span><span class="tag">挑戦者型</span><span class="tag">快適バランス型</span><br/><span class="muted">各パターンは「正解」ではなく探索時の優先順位です。スキル同士の相乗効果は最終DPSで再評価します。</span></div></section> <section class="card"><h2>ビルド保存</h2><div class="muted">現在の武器・防具・護石・装飾品・巨戟アーティア設定を名前付きで保存できます。</div><div class="save-build-row"><div><label>ビルド名</label><input id="buildName" maxlength="40" placeholder="例：クピドバイン 弓装備" type="text"/></div><button class="good" id="saveBuild">保存</button><button id="clearBuildName">消去</button></div><div class="saved-build-list" id="savedBuilds"></div><div class="section-title">装備セット比較</div><div class="muted small">保存したビルドを最大3件まで選び、攻撃力・会心率・属性・1ヒット期待値・DPSを比較します。</div><div class="compare-list" id="compareBuilds"></div><div class="two" style="margin-top:7px"><button id="selectAllCompare">保存ビルドを全選択</button><button id="clearAllCompare">選択解除</button></div><button class="primary" id="runCompare" style="margin-top:7px">📊 選択したビルドを比較</button><div class="notice" id="compareOut">比較するビルドを選択してください。</div></section>
 <section class="card" id="aiAdvisorCard"><h2>🤖 AI装備相談</h2><div class="muted">現在の装備・スキル・Step 5条件をAIに渡して、装備構築を相談できる機能です。現在のビルドをAI相談用データに変換します。AIは候補提示・比較・評価を行い、最終ビルドはユーザーが決定します。</div><div class="two" style="margin-top:8px"><button class="aiQuick" data-ai="この武器で火力重視の装備を組んでください。" type="button">🔥 火力重視</button><button class="aiQuick" data-ai="この武器で属性火力を重視した装備を組んでください。" type="button">🧊 属性重視</button></div><div class="two" style="margin-top:7px"><button class="aiQuick" data-ai="この装備をベースに、DPSを上げる方法を提案してください。" type="button">📈 DPS改善</button><button class="aiQuick" data-ai="現在の装備について、改善できる点を教えてください。" type="button">🔎 装備診断</button></div><label for="aiPrompt" style="margin-top:9px">相談内容</label><textarea id="aiPrompt" placeholder="例：この武器でDPS最大の装備を作って。会心率100%は維持したい。" rows="4" style="width:100%;padding:9px;border:1px solid #475569;border-radius:9px;background:#0b1020;color:#fff;font:inherit;resize:vertical"></textarea><div class="two" style="margin-top:7px"><button class="primary" id="aiPrepare" type="button">🤖 AI相談データを作成</button><button id="aiCopy" type="button">📋 送信用データをコピー</button></div><div class="notice" id="aiOut">相談内容を入力して「AI相談データを作成」を押してください。</div><details style="margin-top:7px"><summary class="small">AIに送る現在のビルドデータを確認</summary><pre class="notice small" id="aiPayload" style="white-space:pre-wrap;overflow:auto;max-height:360px"></pre></details></section>
-<section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div class="equip-skill-preview hidden" id="weaponSkillPreview"></div><div class="equip-skill-preview hidden" id="weaponSlotPreview"></div><div class="notice hidden" id="artiaBox"></div><div class="section-title">防具</div><div class="armor-equip-grid" id="armorSelectors"></div><div class="section-title">護石</div><div id="charmEditor"></div><div class="notice small" id="charmLegality" style="margin-top:8px"></div><div class="muted small" id="decorEditor" style="display:none"></div></section>
+<section class="card"><h2>Step 1〜3：ビルド構築</h2><div class="muted">武器・防具・護石を選び、そのまま各スロットへ装飾品を割り当てます。防具は限界突破後として扱います。</div><h3>武器</h3><label>武器種</label><select id="weaponKind"></select><label>武器</label><select id="weapon"></select><div class="muted small" id="weaponDataState"></div><div class="equip-skill-preview hidden" id="weaponSkillPreview"></div><div class="equip-skill-preview hidden" id="weaponSlotPreview"></div><div class="notice hidden" id="artiaBox"></div><div class="section-title">防具</div><div class="armor-equip-grid" id="armorSelectors"></div><div class="section-title">護石</div><div id="charmEditor"></div><div class="notice small" id="charmLegality" style="margin-top:8px"></div><div class="muted small" id="decorEditor" style="display:none"></div></section>
 <section class="card"><h2>モンスター・部位</h2><div class="muted">選択した部位の物理・属性肉質を期待値計算へ自動反映します。</div><label>モンスター</label><select id="monster"><option value="">モンスターを選択</option></select><label>部位</label><select id="monsterPart"><option value="">部位を選択</option></select><div class="notice" id="monsterInfo">未選択</div></section>
 </aside><section>
 <section class="card"><div class="tabs"><div class="tab active">Step 4 スキル・ステータス</div><div class="tab">Step 5 ダメージ・DPS</div></div><div class="checkline" style="margin:9px 0"><input checked="" id="useWeaponCoeff" type="checkbox"/><label for="useWeaponCoeff" style="margin:0">武器係数を適用して攻撃力を表示</label></div><div class="muted small" id="weaponCoeffState">ON：ゲーム内表示攻撃力（武器係数あり）</div><div class="muted small">この切替は<strong>表示上の攻撃力</strong>だけを変更します。ダメージ計算は真攻撃力を基準にします。属性値には武器係数を掛けません。</div><button class="primary sticky" id="calcBuild">🔄 ビルドを計算</button><div class="summarygrid" id="buildSummary" style="margin-top:9px"></div><div class="notice" id="skillOutput">データ取得後、装備を選んでください。</div></section>
@@ -24,7 +24,8 @@ textarea:focus,select:focus,input:focus,button:focus{outline:2px solid #3b82f6;o
 </section></div></main>
 <script>
 const API='https://wilds.mhdb.io/ja';
-const DATA_CACHE='mhwilds-data-v520';
+const DATA_CACHE='mhwilds-data-v600';
+const LEGACY_DATA_CACHES=['mhwilds-data-v520'];
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DB={weapons:[],armor:[],charms:[],decorations:[],skills:[],sets:[],monsters:[],motionValues:[]};
 // ---- v5.1 Charm legality engine ----
@@ -230,6 +231,49 @@ build.artia.parts=build.artia.parts.slice(0,3); while(build.artia.parts.length<3
   build.artia.restores=build.artia.restores.slice(0,5);
   while(build.artia.restores.length<5) build.artia.restores.push('none');
 }let build={weapon:null,armor:{head:null,chest:null,arms:null,waist:null,legs:null},charm:null,charmCustom:{skills:[{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'},{name:'',level:1,type:'armor'}],slots:[0,0], weaponSlots:[], weaponSlot:false},artia:{production:'element',element:'fire',parts:['none','none','none'],elementParts:0,restores:['none','none','none','none','none'],seriesSkill:'',groupSkill:''},decos:{}};let calcState={total:{},stats:{},bonusDisplay:{series:[],group:[]}};
+/* ========================= V6 Architecture =========================
+ * Single source of truth: App.state. Legacy local variables remain as
+ * compatibility aliases during the migration, but all new code should
+ * access state through App.* APIs rather than DOM or raw API objects.
+ */
+const App={
+  version:'6.0.0',
+  state:{
+    db:DB, dataState:null, build:build, calc:calcState,
+    hunt:{monsterId:'',partId:''}, combo:{moves:[],uptime:85,uptimeMode:'1'},
+    ui:{weaponKind:''}
+  },
+  data:{
+    set(db,state){App.state.db=db; App.state.dataState=state||{}; DB=db; dataState=App.state.dataState;},
+    get(){return App.state.db},
+    requiredReady(){return ['skills','armor','decorations','charms','sets','weapons'].every(k=>Array.isArray(App.state.db[k])&&App.state.db[k].length>0)}
+  },
+  build:{
+    setWeapon(w){build.weapon=w||null; App.state.build.weapon=build.weapon;},
+    setArmor(slot,a){if(!build.armor)build.armor={}; build.armor[slot]=a||null; App.state.build.armor=build.armor;},
+    snapshot(){return buildSnapshot()},
+    restore(x){applyBuildSnapshot(x)}
+  },
+  combo:{
+    reset(){App.state.combo.moves=[];},
+    syncFromDOM(){App.state.combo.moves=[...document.querySelectorAll('.comboRow')].map(r=>({techniqueId:r.querySelector('.cmove')?.value||'',repeat:Math.max(1,Number(r.querySelector('.chits')?.value)||1)})); App.state.combo.uptime=Number($('uptime')?.value)||85; App.state.combo.uptimeMode=$('uptimeMode')?.value||'1';},
+    get(){return App.state.combo}
+  },
+  normalize(){App.state.db=normalizeDB(App.state.db);DB=App.state.db;App.state.build=build;App.state.calc=calcState;},
+  regression(){
+    const checks=[];
+    checks.push(['DB shape',!!DB&&Array.isArray(DB.weapons)&&Array.isArray(DB.armor)&&Array.isArray(DB.skills)]);
+    checks.push(['Build shape',!!build&&!!build.armor&&['head','chest','arms','waist','legs'].every(k=>Object.prototype.hasOwnProperty.call(build.armor,k))]);
+    checks.push(['Weapon kind map',KINDS.length===14&&Object.keys(WEAPON_COEFF).length===14]);
+    checks.push(['Decoration slot ownership',typeof decorationCompatibleWithSlot==='function']);
+    checks.push(['Damage engine',typeof damageFromValues==='function'&&typeof damageForStats==='function']);
+    checks.push(['Combo engine',typeof comboData==='function'&&typeof calcDps==='function']);
+    checks.push(['Build persistence',typeof buildSnapshot==='function'&&typeof applyBuildSnapshot==='function']);
+    const failed=checks.filter(x=>!x[1]).map(x=>x[0]);
+    return {ok:failed.length===0,failed,checks};
+  }
+};
+
 const KINDS=[['great-sword','大剣'],['long-sword','太刀'],['sword-and-shield','片手剣'],['dual-blades','双剣'],['hammer','ハンマー'],['hunting-horn','狩猟笛'],['lance','ランス'],['gunlance','ガンランス'],['switch-axe','スラッシュアックス'],['charge-blade','チャージアックス'],['insect-glaive','操虫棍'],['light-bowgun','ライトボウガン'],['heavy-bowgun','ヘビィボウガン'],['bow','弓']];
 const JP_KIND=Object.fromEntries(KINDS);
 const DATASETS=[
@@ -246,7 +290,7 @@ let dataState={};
 function emptyDataState(){return Object.fromEntries(DATASETS.map(x=>[x.key,{status:'none',count:0,error:'',updatedAt:''}]));}
 function normalizeDB(d){
   return {
-    weapons:Array.isArray(d?.weapons)?d.weapons:[],
+    weapons:normalizeWeapons(d?.weapons),
     armor:Array.isArray(d?.armor)?d.armor:[],
     charms:Array.isArray(d?.charms)?d.charms:[],
     decorations:Array.isArray(d?.decorations)?d.decorations:[],
@@ -255,6 +299,11 @@ function normalizeDB(d){
     monsters:Array.isArray(d?.monsters)?d.monsters:[],
     motionValues:[]
   };
+}
+function renderArchitectureStatus(){
+  const box=$('architectureStatus'); if(!box)return;
+  const r=App.regression();
+  box.innerHTML=r.ok?'<span class="ok">✓ V6構造チェック：主要エンジン・状態構造OK</span>':'<span class="bad">✕ V6構造チェック：'+r.failed.map(esc).join(' / ')+'</span>';
 }
 function renderDataStatus(){
   const box=$('dataStatus'); if(!box)return;
@@ -265,20 +314,22 @@ function renderDataStatus(){
   }).join('');
   box.innerHTML=rows;
 }
-function saveDataCache(){try{localStorage.setItem(DATA_CACHE,JSON.stringify({version:'5.21.1',savedAt:new Date().toISOString(),data:normalizeDB(DB),state:dataState}))}catch(e){}}
+function saveDataCache(){try{localStorage.setItem(DATA_CACHE,JSON.stringify({version:App.version,savedAt:new Date().toISOString(),data:normalizeDB(DB),state:dataState}))}catch(e){}}
 function loadDataCache(){
   try{
-    const raw=localStorage.getItem(DATA_CACHE); if(!raw)return false;
+    let raw=localStorage.getItem(DATA_CACHE), sourceKey=DATA_CACHE;
+    if(!raw){for(const key of LEGACY_DATA_CACHES){const candidate=localStorage.getItem(key);if(candidate){raw=candidate;sourceKey=key;break;}}}
+    if(!raw)return false;
     const pack=JSON.parse(raw); const d=pack?.data; if(!d)return false;
     const n=normalizeDB(d); if(!n.skills.length||!n.armor.length||!n.weapons.length)return false;
-    DB=n; dataState=emptyDataState();
+    DB={...n,weapons:normalizeWeapons(n.weapons)}; dataState=emptyDataState(); App.data.set(DB,dataState);
     for(const x of DATASETS){const count=Array.isArray(DB[x.key])?DB[x.key].length:0; dataState[x.key]={status:count?'cached':'none',count,error:'',updatedAt:pack.savedAt||''};}
-    normalizeCharm();sanitizeDecorationSelections();renderDataStatus();stat(`保存済みデータを読み込みました（${new Date(pack.savedAt||Date.now()).toLocaleString('ja-JP')}）`,'warn');renderAll();renderSkillMaxAudit();renderGroupProposalOptions();return true;
+    normalizeCharm();sanitizeDecorationSelections();renderDataStatus();stat(`保存済みデータを読み込みました（${new Date(pack.savedAt||Date.now()).toLocaleString('ja-JP')}）${sourceKey!==DATA_CACHE?'（旧キャッシュから移行）':''}`,'warn');renderAll();renderSkillMaxAudit();renderGroupProposalOptions();renderArchitectureStatus();return true;
   }catch(e){return false}
 }
 function clearDataCache(){
   try{localStorage.removeItem(DATA_CACHE)}catch(e){}
-  DB=normalizeDB({});dataState=emptyDataState();
+  DB=normalizeDB({});dataState=emptyDataState();App.data.set(DB,dataState);
   renderDataStatus();stat('取得データを削除しました。','warn');$('diag').classList.add('hidden');renderAll();
 }
 async function get(url,timeout=10000,retries=1){
@@ -346,13 +397,13 @@ async function loadData(fromWrapper=false){
     const requiredFailed=DATASETS.filter(x=>x.required&&dataState[x.key]?.status==='error');
     if(requiredFailed.length){
       // 取得できたデータだけは保持するが、ビルド計算は不完全データとして扱う。
-      DB=result;renderDataStatus();$('prog').value=100;
+      DB={...result,weapons:normalizeWeapons(result.weapons)};App.data.set(DB,dataState);renderDataStatus();$('prog').value=100;
       const names=requiredFailed.map(x=>x.label).join('、');
       stat(`データ取得未完了：必須データ（${names}）を取得できませんでした。`,'bad');
       $('diag').classList.remove('hidden');$('diag').innerHTML='<b>取得診断</b><br>'+failed.map(esc).join('<br>')+'<br><br>必須データが揃うまで、取得データを「完成」として保存しません。';
       return false;
     }
-    DB=result;normalizeCharm();sanitizeDecorationSelections();saveDataCache();renderAll();renderSkillMaxAudit();renderGroupProposalOptions();$('prog').value=100;
+    DB={...result,weapons:normalizeWeapons(result.weapons)};App.data.set(DB,dataState);normalizeCharm();sanitizeDecorationSelections();saveDataCache();renderAll();renderSkillMaxAudit();renderGroupProposalOptions();$('prog').value=100;
     const optionalFailed=DATASETS.filter(x=>!x.required&&dataState[x.key]?.status==='error');
     if(optionalFailed.length){stat(`必須データ取得完了（任意：${optionalFailed.map(x=>x.label).join('、')}は未取得）`,'warn');}
     else{stat(`データ取得完了：防具${DB.armor.length} / 武器${DB.weapons.length} / 装飾品${DB.decorations.length} / 護石${DB.charms.length}`,'ok');}
@@ -489,7 +540,7 @@ function calcElementSkill(total,type){
   const lv=skillLevel(total,map[type]||[]); if(lv<=0)return {add:0,mult:1}; if(lv===1)return {add:40,mult:1}; if(lv===2)return {add:50,mult:1.1}; return {add:60,mult:1.2};
 }
 function selectedPart(){const m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value);return m?.parts?.find(p=>String(p.id)===$('monsterPart')?.value)||null;}
-function partPhysHz(p,w){if(!p)return 0;const k=w?.kind||'';const key=['light-bowgun','heavy-bowgun','bow'].includes(k)?'pierce':(['hammer','hunting-horn'].includes(k)?'blunt':'slash');return Number(p?.multipliers?.[key]||0)*100;}
+function partPhysHz(p,w){if(!p)return 0;const k=canonicalWeaponKind(w);const key=['light-bowgun','heavy-bowgun','bow'].includes(k)?'pierce':(['hammer','hunting-horn'].includes(k)?'blunt':'slash');return Number(p?.multipliers?.[key]||0)*100;}
 function partElemHz(p,type){return Number(p?.multipliers?.[type]||0)*100;}
 function groupSetData(a){
   const as=a?.armorSet; if(!as)return null;
@@ -600,13 +651,13 @@ function renderAll(){
   try{calcBuild();}catch(e){stat('表示準備中：'+e.message,'warn');}
 }
 function renderKinds(){let x=$('weaponKind');if(!x.options.length)KIND_LOOP:KINDS.forEach(([v,n])=>{let o=document.createElement('option');o.value=v;o.textContent=n;x.appendChild(o)});if(!x.value)x.value='great-sword'}
-function weaponsOfKind(){let k=$('weaponKind').value;return DB.weapons.filter(w=>w.kind===k)}
-function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const kind=(prefix==='w' || prefix==='cw')?'weapon':'armor'; const opts=decorationCandidates(lv,kind);return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}" data-deco-kind="${kind}"><option value="">空き</option>${opts.map(d=>{const score=decorationRecommendationScore(d,(prefix==='w'||prefix==='cw')?(selectedWeapon()?.kind||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`}).join('')}</div>`}
+function weaponsOfKind(){let k=normalizeWeaponKindValue($('weaponKind')?.value);return DB.weapons.filter(w=>canonicalWeaponKind(w)===k)}
+function inlineDecoRows(slots,prefix){const a=slotLevels(slots);if(!a.length)return '<div class="muted small">スロットなし</div>';return `<div class="slot-lines">${a.map((lv,i)=>{const key=prefix+i;const kind=(prefix==='w' || prefix==='cw')?'weapon':'armor'; const opts=decorationCandidates(lv,kind);return `<div class="slot-line"><span class="slot-size">${lv?'['+lv+']':'－'}</span><select class="decoSel" data-slot="${key}" data-deco-kind="${kind}"><option value="">空き</option>${opts.map(d=>{const score=decorationRecommendationScore(d,(prefix==='w'||prefix==='cw')?(canonicalWeaponKind(selectedWeapon())||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`}).join('')}</div>`}
 function bindInlineDecos(root){(root||document).querySelectorAll('.decoSel').forEach(s=>{s.value=build.decos[s.dataset.slot]||'';s.onchange=()=>{build.decos[s.dataset.slot]=s.value;calcBuild()}})}
-function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=charmSlotEntries(build.charmCustom);if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}" data-deco-kind="${x.kind}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>{const score=decorationRecommendationScore(d,x.kind==='weapon'?(selectedWeapon()?.kind||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
-function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia),normals=raw.filter(w=>!isArtia(w)),arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;updateWeaponInfo();renderArtia();}
+function renderCharmDecos(){const box=$('charmDecos');if(!box)return;const slots=charmSlotEntries(build.charmCustom);if(!slots.length){box.innerHTML='';return}box.innerHTML='<div class="equip-title" style="margin-top:10px">護石装飾品</div><div class="charm-deco-list">'+slots.map(x=>`<div class="charm-deco-row"><span>${x.owner}</span><span class="slot-size">[${x.level}]</span><select class="decoSel" data-slot="${x.key}" data-deco-kind="${x.kind}"><option value="">空き</option>${decorationCandidates(x.level,x.kind).map(d=>{const score=decorationRecommendationScore(d,x.kind==='weapon'?(canonicalWeaponKind(selectedWeapon())||''):'');return `<option value="${d.id}">${score>0?'★ ':''}${esc(d.name)}</option>`}).join('')}</select></div>`).join('')+'</div>';bindInlineDecos(box)}
+function renderWeapon(){let sel=$('weapon'),raw=sortByName(weaponsOfKind());const arts=raw.filter(isArtia),normals=raw.filter(w=>!isArtia(w)),arr=arts.length?[arts[0],...normals]:normals;let old=build.weapon?.id;sel.innerHTML='<option value="">武器を選択</option>'+arr.map(w=>`<option value="${w.id}">${esc(w.name)}${isArtia(w)?' ★ 巨戟アーティア':''}</option>`).join('');if(old&&arr.some(w=>String(w.id)===String(old)))sel.value=old;const state=$('weaponDataState');if(state){const total=DB.weapons.length;state.textContent=total?`武器データ ${total}件 / ${JP_KIND[normalizeWeaponKindValue($('weaponKind')?.value)]||$('weaponKind')?.value||'—'}：${arr.length}件`:'武器データ未取得';state.className=arr.length?'muted small':'muted small bad';}updateWeaponInfo();renderArtia();}
 function updateWeaponInfo(){const w=selectedWeapon(),sk=$('weaponSkillPreview'),sl=$('weaponSlotPreview');if(!sk||!sl)return;const skills=w?sortedSkills(weaponSkills(w)):[];sk.innerHTML=skills.length?`<div class="equip-inline"><div class="equip-title">武器スキル</div><div class="inline-skill">${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}</div></div>`:'';sk.classList.toggle('hidden',!skills.length);if(!w){sl.innerHTML='';sl.classList.add('hidden');return;}const slots=slotLevels(w.slots);sl.innerHTML=`<div class="equip-inline"><div class="equip-title">武器スロット</div>${inlineDecoRows(slots,'w')}</div>`;sl.classList.remove('hidden');bindInlineDecos(sl);}
-function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip-inline"><div class="equip-title">${name}</div><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><div class="armorSkillPreview inline-skill"></div><div class="armorSlotLines"></div></div>`);let card=box.querySelectorAll('.equip-inline')[box.querySelectorAll('.equip-inline').length-1],sel=card.querySelector(`select[data-armor="${kind}"]`),preview=card.querySelector('.armorSkillPreview'),slotBox=card.querySelector('.armorSlotLines');if(old)sel.value=old;const update=()=>{let a=arr.find(x=>String(x.id)===sel.value);const skills=a?sortedSkills(armorSkills(a)):[];preview.innerHTML=skills.length?`スキル：${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}`:'';preview.style.display=skills.length?'block':'none';slotBox.innerHTML=a?`<div class="equip-title">${name}スロット</div>${inlineDecoRows(maxBreakSlots(a),kind)}`:'';if(a)bindInlineDecos(slotBox)};update();sel.onchange=()=>{build.armor[kind]=arr.find(a=>String(a.id)===sel.value)||null;update();calcBuild()}}}
+function renderArmor(){let box=$('armorSelectors');box.innerHTML='';for(let [kind,name] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let arr=sortByName(DB.armor.filter(a=>a.kind===kind&&a.rank!=='low'));let old=build.armor[kind]?.id;box.insertAdjacentHTML('beforeend',`<div class="equip-inline"><div class="equip-title">${name}</div><select data-armor="${kind}"><option value="">${name}防具を選択</option>${arr.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><div class="armorSkillPreview inline-skill"></div><div class="armorSlotLines"></div></div>`);let card=box.querySelectorAll('.equip-inline')[box.querySelectorAll('.equip-inline').length-1],sel=card.querySelector(`select[data-armor="${kind}"]`),preview=card.querySelector('.armorSkillPreview'),slotBox=card.querySelector('.armorSlotLines');if(old)sel.value=old;const update=()=>{let a=arr.find(x=>String(x.id)===sel.value);const skills=a?sortedSkills(armorSkills(a)):[];preview.innerHTML=skills.length?`スキル：${skills.map(x=>`${esc(x[0])} Lv${x[1]}`).join(' / ')}`:'';preview.style.display=skills.length?'block':'none';slotBox.innerHTML=a?`<div class="equip-title">${name}スロット</div>${inlineDecoRows(maxBreakSlots(a),kind)}`:'';if(a)bindInlineDecos(slotBox)};update();sel.onchange=()=>{App.build.setArmor(kind,arr.find(a=>String(a.id)===sel.value)||null);update();calcBuild()}}}
 function renderCharmPresets(){let s=$('charmPreset');if(!s)return;const charms=Array.isArray(DB.charms)?DB.charms:[];s.innerHTML='<option value="">自由設定</option>'+charms.flatMap(c=>Array.isArray(c?.ranks)?c.ranks.map(r=>({id:c.id+'|'+r.id,name:r.name,skills:r.skills})):[]).map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');}
 function charmPrefixRules(skills){
   const ss=(skills||[]).filter(x=>x?.name);
@@ -663,7 +714,77 @@ function renderCharmEditor(){
 function renderMonsters(){let s=$('monster');if(!s)return;let old=s.value;let arr=selectableMonsters().sort((a,b)=>jpSort(a.name,b.name));s.innerHTML='<option value="">モンスターを選択</option>'+arr.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join('');if(old&&arr.some(m=>String(m.id)===old))s.value=old;renderMonsterParts()}
 function renderMonsterParts(){let m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value),s=$('monsterPart');if(!s)return;let old=s.value;let parts=(m?.parts||[]).slice().sort((a,b)=>jpSort(partNameJP(a),partNameJP(b)));s.innerHTML='<option value="">部位を選択</option>'+parts.map(p=>`<option value="${p.id}">${esc(partNameJP(p))}</option>`).join('');if(old&&parts.some(p=>String(p.id)===old))s.value=old;renderMonsterInfo()}
 function renderMonsterInfo(){let m=selectableMonsters().find(x=>String(x.id)===$('monster')?.value),p=m?.parts?.find(x=>String(x.id)===$('monsterPart')?.value);if(!m||!p){$('monsterInfo').textContent='未選択';return}let w=selectedWeapon();let hz=partPhysHz(p,w);let ehz=w&&weaponElementInfo(w).type?partElemHz(p,weaponElementInfo(w).type):0;$('monsterInfo').innerHTML=`<b>${esc(m.name)} / ${esc(partNameJP(p))}</b><br>物理肉質 ${hz}% / 属性肉質 ${ehz}%`}
-function selectedWeapon(){return DB.weapons.find(w=>String(w.id)===$('weapon').value)||null}
+function normalizeWeaponKindValue(v){
+  if(v==null)return '';
+  if(typeof v==='object'){
+    for(const k of ['id','key','slug','name','value','type','kind','weaponType','weapon_type']){
+      if(v[k]!=null){const r=normalizeWeaponKindValue(v[k]);if(r)return r;}
+    }
+    return '';
+  }
+  const raw=String(v).trim();
+  const x=raw.toLowerCase().replace(/[\s_]+/g,'-').replace(/[&＆]/g,'and').replace(/[‐‑‒–—―]/g,'-');
+  const map={
+    'great-sword':'great-sword','greatsword':'great-sword','greatswordbase':'great-sword','greatswordbaseuserdata':'great-sword','大剣':'great-sword','great-sword':'great-sword',
+    'long-sword':'long-sword','longsword':'long-sword','longswordbase':'long-sword','太刀':'long-sword',
+    'sword-and-shield':'sword-and-shield','sword-shield':'sword-and-shield','short-sword':'sword-and-shield','shortsword':'sword-and-shield','片手剣':'sword-and-shield',
+    'dual-blades':'dual-blades','dualblades':'dual-blades','双剣':'dual-blades',
+    'hammer':'hammer','hammerbase':'hammer','ハンマー':'hammer',
+    'hunting-horn':'hunting-horn','huntinghorn':'hunting-horn','horn':'hunting-horn','狩猟笛':'hunting-horn',
+    'lance':'lance','ランス':'lance',
+    'gunlance':'gunlance','gun-lance':'gunlance','ガンランス':'gunlance',
+    'switch-axe':'switch-axe','switchaxe':'switch-axe','slash-axe':'switch-axe','slashaxe':'switch-axe','スラッシュアックス':'switch-axe',
+    'charge-blade':'charge-blade','chargeblade':'charge-blade','charge-axe':'charge-blade','chargeaxe':'charge-blade','チャージアックス':'charge-blade',
+    'insect-glaive':'insect-glaive','insectglaive':'insect-glaive','insect-glave':'insect-glaive','操虫棍':'insect-glaive',
+    'light-bowgun':'light-bowgun','lightbowgun':'light-bowgun','light-bow-gun':'light-bowgun','ライトボウガン':'light-bowgun',
+    'heavy-bowgun':'heavy-bowgun','heavybowgun':'heavy-bowgun','heavy-bow-gun':'heavy-bowgun','ヘビィボウガン':'heavy-bowgun',
+    'bow':'bow','弓':'bow'
+  };
+  if(map[x])return map[x];
+  // API/merged data sometimes exposes the weapon class as a longer enum or label.
+  if(/great.*sword|greatsword|大剣/i.test(raw))return 'great-sword';
+  if(/long.*sword|longsword|太刀/i.test(raw))return 'long-sword';
+  if(/sword.*shield|short.*sword|shortsword|片手剣/i.test(raw))return 'sword-and-shield';
+  if(/dual.*blade|dualblades|双剣/i.test(raw))return 'dual-blades';
+  if(/^hammer$|ハンマー/i.test(raw))return 'hammer';
+  if(/hunting.*horn|huntinghorn|狩猟笛/i.test(raw))return 'hunting-horn';
+  if(/^lance$|ランス/i.test(raw))return 'lance';
+  if(/gun.*lance|gunlance|ガンランス/i.test(raw))return 'gunlance';
+  if(/switch.*axe|slash.*axe|switchaxe|slashaxe|スラッシュアックス/i.test(raw))return 'switch-axe';
+  if(/charge.*blade|charge.*axe|chargeblade|chargeaxe|チャージアックス/i.test(raw))return 'charge-blade';
+  if(/insect.*glaive|insectglaive|操虫棍/i.test(raw))return 'insect-glaive';
+  if(/light.*bowgun|lightbowgun|ライトボウガン/i.test(raw))return 'light-bowgun';
+  if(/heavy.*bowgun|heavybowgun|ヘビィボウガン/i.test(raw))return 'heavy-bowgun';
+  if(raw==='bow'||raw==='弓')return 'bow';
+  return '';
+}
+function canonicalWeaponKind(w){
+  if(!w)return '';
+  const candidates=[w.kind,w.weaponKind,w.weaponType,w.weapon_type,w.type,w.category,w.categoryName,w.category_name,w.class,w.className,w.class_name];
+  for(const v of candidates){const k=normalizeWeaponKindValue(v);if(k)return k;}
+  // Last-resort recursive scan: MHDB/merged snapshots can wrap the weapon class in nested objects.
+  const seen=new Set();
+  const scan=(v,depth)=>{
+    if(depth>3||v==null)return '';
+    if(typeof v==='string'||typeof v==='number')return normalizeWeaponKindValue(v);
+    if(typeof v!=='object'||seen.has(v))return '';
+    seen.add(v);
+    for(const [key,val] of Object.entries(v)){
+      if(/^(id|key|slug|name|type|kind|weaponType|weapon_type|category|categoryName|category_name|class|className|class_name)$/i.test(key)){
+        const k=normalizeWeaponKindValue(val);if(k)return k;
+      }
+    }
+    for(const val of Object.values(v)){const k=scan(val,depth+1);if(k)return k;}
+    return '';
+  };
+  return scan(w,0);
+}
+function normalizeWeapons(arr){return (Array.isArray(arr)?arr:[]).map(w=>{const k=canonicalWeaponKind(w);return k?{...w,kind:k}:{...w};});}
+function selectedWeapon(){
+  const id=$('weapon')?.value;
+  const byDom=id?DB.weapons.find(w=>String(w.id)===String(id)):null;
+  return byDom||build.weapon||null;
+}
 function renderArtia(){
   let w=selectedWeapon(),box=$('artiaBox');
   if(!isArtia(w)){box.classList.add('hidden');return;}
@@ -826,7 +947,7 @@ function decorationCandidates(slotLevel,kind){
   const wantedKind=normalizeDecorationKind(kind)==='weapon'?'weapon':'armor';
   const eligible=(Array.isArray(DB.decorations)?DB.decorations:[])
     .filter(d=>decorationCompatibleWithSlot(d,wantedKind) && Number(d?.slot)<=level);
-  return sortDecorationCandidates(eligible,wantedKind==='weapon'?(selectedWeapon()?.kind||''):'');
+  return sortDecorationCandidates(eligible,wantedKind==='weapon'?(canonicalWeaponKind(selectedWeapon())||''):'');
 }
 function sanitizeDecorationSelections(){
   for(const s of allEquipSlots()){
@@ -856,7 +977,7 @@ function refreshDecorationSelects(){
       delete build.decos[sel.dataset.slot];
       sel.value='';
     }
-    sel.innerHTML='<option value="">空き</option>'+opts.map(d=>{const score=decorationRecommendationScore(d,kind==='weapon'?(selectedWeapon()?.kind||''):'');const mark=score>0?'★ ':'';return `<option value="${esc(d.id)}">${mark}${esc(d.name)}</option>`}).join('');
+    sel.innerHTML='<option value="">空き</option>'+opts.map(d=>{const score=decorationRecommendationScore(d,kind==='weapon'?(canonicalWeaponKind(selectedWeapon())||''):'');const mark=score>0?'★ ':'';return `<option value="${esc(d.id)}">${mark}${esc(d.name)}</option>`}).join('');
     const next=build.decos[sel.dataset.slot]||'';
     sel.value=allowed.has(String(next))?next:'';
   });
@@ -981,7 +1102,7 @@ function artiaCanonicalBase(w){
   // 巨戟化後の基準値を武器種ごとに優先する。弓はゲーム内の基礎190/会心5%を使用。
   if(!isArtia(w)) return null;
   const byKind={bow:{attack:190,affinity:5}};
-  return byKind[w?.kind]||null;
+  return byKind[canonicalWeaponKind(w)]||null;
 }
 function armorMaxDefense(a){
   const d=a?.defense;
@@ -1012,14 +1133,14 @@ function updateWeaponCoeffDisplay(){
   renderSummary();renderDetail();syncDamage();
 }
 function calcBuild(){renderCharmLegality();
-  let total={},w=selectedWeapon(),coef=weaponCoefficient(w?.kind),baseAttackTrue=Number(w?.damage?.raw);
+  let total={},w=selectedWeapon(),kind=canonicalWeaponKind(w),coef=weaponCoefficient(kind),baseAttackTrue=Number(w?.damage?.raw);
   const canonical=artiaCanonicalBase(w);
   if(canonical){
     baseAttackTrue=canonical.attack;
   }else if(!Number.isFinite(baseAttackTrue)||baseAttackTrue<=0){
     const disp=Number(w?.damage?.display??w?.attack??0);baseAttackTrue=coef>0?disp/coef:disp;
   }
-  let stats={attack:baseAttackTrue,attackTrue:baseAttackTrue,affinity:canonical?canonical.affinity:Number(w?.affinity??0),element:0,elementType:'',defense:1,weaponCoefficient:coef};
+  let stats={attack:baseAttackTrue,attackTrue:baseAttackTrue,affinity:canonical?canonical.affinity:Number(w?.affinity??0),element:0,elementType:'',defense:1,weaponCoefficient:coef,weaponKind:kind};
   if(w){add(total,weaponSkills(w));let ei=weaponElementInfo(w);stats.element=ei.value;stats.elementType=ei.type;let rs=restoreStats(w);stats.attack+=Number(rs.attack)||0;stats.affinity+=Number(rs.affinity)||0;stats.element+=Number(rs.element)||0;}
   for(const k of ['head','chest','arms','waist','legs']){let a=build.armor[k];if(a){add(total,armorSkills(a));stats.defense+=armorMaxDefense(a)}}
   // ハンター本体の基礎防御力1を含める。防具5部位だけではゲーム内表示より1低くなる。
@@ -1206,7 +1327,7 @@ function renderSummary(){
 
 function renderArtiaSkillDetail(){if(!isArtia(selectedWeapon()))return '';let out=[];for(const [label,id,type] of [['シリーズ',build.artia.seriesSkill,'series'],['グループ',build.artia.groupSkill,'group']]){const skill=skillById(id);if(!skill)continue;const a=artiaSkillActivation(skill,type);out.push(`${label}スキル：${esc(skill.name)} ${a.active?`発動（${a.count}/${a.required}）`:`未発動（${a.count}/${a.required}）`}`)}return out.join('<br>')||'シリーズ/グループスキル：なし';}
 function renderDetail(){let w=selectedWeapon(),rows=[];if(w)rows.push(`<tr><th>武器</th><td>${esc(w.name)}<br>攻撃 ${Math.round(calcState.stats.attack)}（真攻撃力 ${Math.round(calcState.stats.attackTrue)} / ${$('useWeaponCoeff')?.checked!==false?`係数×${calcState.stats.weaponCoefficient}`:`係数なし`}） / 会心 ${Math.round(calcState.stats.affinity)}% / 最大会心 ${Math.round(calcState.stats.maxAffinity)}% / 属性 ${Math.round(calcState.stats.element)} ${esc(calcState.stats.elementType||'')} / スロット ${slotText(w.slots)}${isArtia(w)?`<br>巨戟：${esc({attack:'攻撃激化',affinity:'会心激化',element:'属性激化'}[build.artia.production])}<br>${artiaProductionBreakdown(w)}<br>${artiaRestoreBreakdown(w)}<br>${renderArtiaSkillDetail()}`:''}</td></tr>`);for(let [k,n] of [['head','頭'],['chest','胴'],['arms','腕'],['waist','腰'],['legs','脚']]){let a=build.armor[k];if(a)rows.push(`<tr><th>${n}</th><td>${esc(a.name)}<br>限界突破スロット ${slotText(maxBreakSlots(a))}</td></tr>`)}rows.push(`<tr><th>護石</th><td>${$('charmPreset')?.selectedOptions[0]?.textContent||'自由設定'}<br>スキル ${Object.entries(currentCharmSkills()).map(x=>esc(x[0])+' Lv'+x[1]).join(' / ')||'なし'}<br>スロット ${esc(charmSlotPattern(build.charmCustom))}</td></tr>`);$('buildDetail').innerHTML=`<table>${rows.join('')}</table>`}
-function monsterHZ(){let p=selectedPart(),w=selectedWeapon(),x=p?.multipliers||{};let phys=w?.kind==='heavy-bowgun'||w?.kind==='light-bowgun'||w?.kind==='bow'?x.pierce:x.slash;if(w?.kind==='hammer'||w?.kind==='hunting-horn')phys=x.blunt;return {hz:(phys||0)*100,ehz:(x[calcState.stats.elementType]||0)*100};}
+function monsterHZ(){let p=selectedPart(),w=selectedWeapon(),x=p?.multipliers||{};let phys=canonicalWeaponKind(w)==='heavy-bowgun'||canonicalWeaponKind(w)==='light-bowgun'||canonicalWeaponKind(w)==='bow'?x.pierce:x.slash;if(canonicalWeaponKind(w)==='hammer'||canonicalWeaponKind(w)==='hunting-horn')phys=x.blunt;return {hz:(phys||0)*100,ehz:(x[calcState.stats.elementType]||0)*100};}
 function syncDamage(){let s=calcState.stats;if(s.attackTrue!=null)$('dAttack').value=Math.round(s.attackTrue);$('dAff').value=Math.round(s.maxAffinity ?? s.affinity);$('dElem').value=Math.round(s.element);let h=monsterHZ();if(h.hz)$('dHZ').value=Math.round(h.hz);if(h.ehz)$('dEHZ').value=Math.round(h.ehz)}
 function damage(){let raw=+$('dAttack').value||0,aff=Math.max(-100,Math.min(100,+$('dAff').value||0))/100,elem=(+$('dElem').value||0)/10,mv=(+$('dMV').value||100)/100,hz=(+$('dHZ').value||45)/100,ehz=(+$('dEHZ').value||20)/100,sharp=+$('dSharp').value,esharp=+$('dESharp').value,cb=Math.max(0,Math.min(3,+$('dCB').value||0)),critBonus=[0,0.03,0.06,0.1][cb],crit=aff>=0?(1+aff*(0.25+critBonus)):1+aff*(-0.25),ec=+$('dECrit').value?crit:1;let p=raw*mv*sharp*hz*crit,e=elem*esharp*ehz*ec;return{p,e,total:p+e}}
 function showDamage(){let d=damage();$('damageOut').innerHTML=`<b>1ヒット期待値：${d.total.toFixed(2)}</b><br>物理 ${d.p.toFixed(2)} / 属性 ${d.e.toFixed(2)}<br><span class="muted small">現在のビルド：攻撃 ${$('dAttack').value} / 会心 ${$('dAff').value}% / 属性 ${$('dElem').value}</span>`;return d}
@@ -1234,7 +1355,7 @@ const COMBO_DATA={
     {id:'db_flurry',name:'鬼人突進連斬',mvs:[110],time:1.10}
   ],presets:[{id:'db_dance',name:'鬼人連斬 I→II→III',moves:['db_dance1','db_dance2','db_dance3']}]}
 };
-function comboKind(){return selectedWeapon()?.kind||''}
+function comboKind(){return canonicalWeaponKind(selectedWeapon())}
 function comboData(){return COMBO_DATA[comboKind()]||null}
 function comboMove(id){return (comboData()?.moves||[]).find(x=>x.id===id)}
 function renderComboKinds(){renderComboForWeapon();}
@@ -1249,7 +1370,7 @@ function renderComboForWeapon(){
     status.textContent='Step 1で武器を選択すると、その武器に対応する技が表示されます。';
     $('addCombo').disabled=true; return;
   }
-  info.innerHTML=`<b>使用武器：</b>${esc(w.name)} <span class="muted">（${esc(data?.label||w.kind||'未登録')}）</span>`;
+  info.innerHTML=`<b>使用武器：</b>${esc(w.name)} <span class="muted">（${esc(data?.label||JP_KIND[canonicalWeaponKind(w)]||canonicalWeaponKind(w)||'未登録')}）</span>`;
   if(!data){
     picker.innerHTML='<option value="">技データ未登録</option>'; picker.disabled=true;
     preset.innerHTML='<option value="">なし（自分で組む）</option>'; preset.disabled=true;
@@ -1269,10 +1390,20 @@ function addCombo(moveId=null){
   div.innerHTML=`<div class="two"><div><label>技</label><select class="cmove">${opts}</select></div><div><label>回数</label><input class="chits" type="number" value="1" min="1" step="1"></div></div><div class="two"><div class="muted small comboMeta"></div><div><button class="danger del" type="button">削除</button></div></div>`;
   let sel=div.querySelector('.cmove');sel.value=id;
   const sync=()=>{let m=data.moves.find(x=>x.id===sel.value)||data.moves[0];div.querySelector('.comboMeta').textContent=`MV ${m.mvs.reduce((a,b)=>a+b,0)} / ${m.mvs.length}ヒット / 所要 ${m.time.toFixed(2)} 秒`;};
-  sel.onchange=sync; div.querySelector('.del').onclick=()=>{div.remove();$('dpsOut').textContent='未計算';}; $('combo').appendChild(div); sync();
+  sel.onchange=sync; div.querySelector('.del').onclick=()=>{div.remove();App.combo.syncFromDOM();$('dpsOut').textContent='未計算';}; $('combo').appendChild(div); App.combo.syncFromDOM(); sync();
 }
-function applyComboPreset(){let p=($('comboPreset')?.value||'');if(!p)return;let data=comboData(),preset=data?.presets?.find(x=>x.id===p);if(!preset)return;$('combo').innerHTML='';preset.moves.forEach(id=>addCombo(id))}
-function calcDps(){let rows=[...document.querySelectorAll('.comboRow')];if(!rows.length){$('dpsOut').innerHTML='<span class="bad">技を追加してください。</span>';return}let sumD=0,sumT=0;for(let r of rows){let m=comboMove(r.querySelector('.cmove')?.value);if(!m)continue;let n=Math.max(1,+r.querySelector('.chits').value||1);let d=m.mvs.reduce((sum,mv)=>sum+damageForMV(mv),0)*n;sumD+=d;sumT+=m.time*n}let theoretical=sumT?sumD/sumT:0,up=Math.max(1,Math.min(100,+$('uptime').value||85))/100,practical=$('uptimeMode').value==='1'?theoretical*up:theoretical;$('dpsOut').innerHTML=`<b>実戦DPS：${practical.toFixed(2)}</b><br>理論DPS：${theoretical.toFixed(2)}<br>1コンボ ${sumD.toFixed(2)} ダメージ / ${sumT.toFixed(2)}秒<br>1分期待値 ${(practical*60).toFixed(0)} ダメージ`}
+function applyComboPreset(){let p=($('comboPreset')?.value||'');if(!p)return;let data=comboData(),preset=data?.presets?.find(x=>x.id===p);if(!preset)return;$('combo').innerHTML='';App.combo.reset();preset.moves.forEach(id=>addCombo(id))}
+function calcDps(){
+  App.combo.syncFromDOM();
+  const rows=App.state.combo.moves;
+  if(!rows.length){$('dpsOut').innerHTML='<span class="bad">技を追加してください。</span>';return null}
+  let sumD=0,sumT=0;
+  for(const item of rows){const m=comboMove(item.techniqueId);if(!m)continue;const n=Math.max(1,item.repeat);const d=m.mvs.reduce((sum,mv)=>sum+damageForMV(mv),0)*n;sumD+=d;sumT+=m.time*n}
+  const theoretical=sumT?sumD/sumT:0,up=Math.max(1,Math.min(100,Number(App.state.combo.uptime)||85))/100,practical=App.state.combo.uptimeMode==='1'?theoretical*up:theoretical;
+  const result={damage:sumD,time:sumT,theoreticalDps:theoretical,practicalDps:practical,oneMinute:practical*60};
+  $('dpsOut').innerHTML=`<b>実戦DPS：${practical.toFixed(2)}</b><br>理論DPS：${theoretical.toFixed(2)}<br>1コンボ ${sumD.toFixed(2)} ダメージ / ${sumT.toFixed(2)}秒<br>1分期待値 ${(practical*60).toFixed(0)} ダメージ`;
+  return result;
+}
 
 function damageForMV(mv){let old=$('dMV').value;$('dMV').value=mv;let d=damage();$('dMV').value=old;return d.total}
 
@@ -1355,7 +1486,7 @@ function skillMarginalDps(name,limit,pattern){
   const delta=Number(after)-Number(before);return {level:cur,next:cur+1,delta,pct:Number(before)?delta/Number(before)*100:0,mode:'calculated'};
 }
 function skillEvaluationRows(pattern){
-  const total=calcState.total||{},weaponKind=selectedWeapon()?.kind||'';const names=new Set([...Object.keys(SKILL_PRIORITY_DB.common),...Object.keys(SKILL_PRIORITY_DB.weapon[weaponKind]||{}),...Object.keys(total)]);
+  const total=calcState.total||{},weaponKind=canonicalWeaponKind(selectedWeapon())||'';const names=new Set([...Object.keys(SKILL_PRIORITY_DB.common),...Object.keys(SKILL_PRIORITY_DB.weapon[weaponKind]||{}),...Object.keys(total)]);
   const rows=[];
   for(const name of names){const sk=skillByIdByName(name);if(!sk||isBinaryBonusSkill(sk))continue;const cur=Number(total[name]||0),max=skillMax(sk);if(!max)continue;const p=skillPriorityBase(name,pattern,weaponKind);const m=skillMarginalDps(name,max,pattern);if(!p.weight&&!m)continue;rows.push({name,cur,max,weight:p.weight,role:p.role,marginal:m});}
   return rows.sort((a,b)=>(b.marginal?.pct||-Infinity)-(a.marginal?.pct||-Infinity)||b.weight-a.weight||jpSort(a.name,b.name));
@@ -1510,7 +1641,7 @@ function groupProposalSkillClass(name){
   };
   const comfort=['気絶耐性','回避距離UP','回避性能','精霊の加護','耳栓','防御','早食い','満足感','体力回復量UP','耐震','ひるみ軽減'];
   if(dps.some(x=>n.includes(groupProposalNormSkill(x))))return 'dps';
-  if((weapon[selectedWeapon()?.kind]||[]).some(x=>n.includes(groupProposalNormSkill(x))))return 'weapon';
+  if((weapon[canonicalWeaponKind(selectedWeapon())]||[]).some(x=>n.includes(groupProposalNormSkill(x))))return 'weapon';
   if(comfort.some(x=>n.includes(groupProposalNormSkill(x))))return 'comfort';
   return 'other';
 }
@@ -1524,7 +1655,7 @@ function groupProposalSkillValue(name,level,mode,targetEffect,weaponKind){
   return v*Math.min(lv,5);
 }
 function groupProposalArmorIntrinsic(a,mode,targetEffect){
-  let score=0;const ss=armorSkills(a);const wk=selectedWeapon()?.kind||'';
+  let score=0;const ss=armorSkills(a);const wk=canonicalWeaponKind(selectedWeapon())||'';
   for(const [n,l] of Object.entries(ss))score+=groupProposalSkillValue(n,l,mode,targetEffect,wk);
   const sl=limitBreakSlots(a);score+=sl.reduce((x,v)=>x+(v===3?4:v===2?2:0.5),0);
   score+=Math.min(10,Number(armorMaxDefense(a))||0)/50;
@@ -1538,7 +1669,7 @@ function groupProposalBuildReasonScore(map,info,nushiInfo,mode,targetEffect,base
     if(nushiInfo){const g=groupProposalBonusObject(a,'group');if(g&&bonusSkillMatches(g,nushiInfo.skill))nushi++;}
     if(String(a.id)===String(baseSnap?.armor?.[k]||''))same++;
   }
-  for(const [n,l] of Object.entries(total)){score+=groupProposalSkillValue(n,l,mode,targetEffect,selectedWeapon()?.kind||'');const ev=window._skillEvalIndex?.get(groupProposalNormSkill(n));if(ev)score+=Math.max(0,Math.min(4,(ev.marginal?.pct||0)))*0.8;}
+  for(const [n,l] of Object.entries(total)){score+=groupProposalSkillValue(n,l,mode,targetEffect,canonicalWeaponKind(selectedWeapon())||'');const ev=window._skillEvalIndex?.get(groupProposalNormSkill(n));if(ev)score+=Math.max(0,Math.min(4,(ev.marginal?.pct||0)))*0.8;}
   const sl=Object.values(map).filter(Boolean).reduce((x,a)=>x+limitBreakSlots(a).reduce((q,v)=>q+(v===3?4:v===2?2:0.5),0),0);
   score+=sl*0.7+same*5;
   // 必要部位を超えて同一シリーズを積むのは、目的達成に不要なら軽く減点する。
@@ -1684,7 +1815,7 @@ function renderGroupProposalOptions(){const el=$('groupProposalSkill');if(!el)re
 const BUILDS_KEY='mh-wilds-builds-v45';
 function savedBuildMap(){try{return JSON.parse(localStorage.getItem(BUILDS_KEY)||'{}')||{}}catch(e){return {}}}
 function buildSnapshot(){return {weaponId:$('weapon')?.value||'',armor:Object.fromEntries(Object.entries(build.armor).map(([k,a])=>[k,a?.id||''])),charmCustom:JSON.parse(JSON.stringify(build.charmCustom)),artia:JSON.parse(JSON.stringify(build.artia)),decos:JSON.parse(JSON.stringify(build.decos)),savedAt:new Date().toISOString()}}
-function applyBuildSnapshot(x){if(!x)return;const weapon=DB.weapons.find(w=>String(w.id)===String(x.weaponId));if(weapon){$('weaponKind').value=weapon.kind||'';renderWeapon();$('weapon').value=String(weapon.id);build.weapon=weapon;}for(const k of ['head','chest','arms','waist','legs']){const id=x.armor?.[k];build.armor[k]=id?DB.armor.find(a=>String(a.id)===String(id))||null:null;}build.charmCustom=x.charmCustom||build.charmCustom;build.artia=x.artia||build.artia;build.decos=x.decos||{};normalizeCharm();renderArmor();renderCharmEditor();renderArtia();renderWeapon();updateWeaponInfo();calcBuild();renderSavedBuilds()}
+function applyBuildSnapshot(x){if(!x)return;const weapon=DB.weapons.find(w=>String(w.id)===String(x.weaponId));if(weapon){$('weaponKind').value=canonicalWeaponKind(weapon)||'';renderWeapon();$('weapon').value=String(weapon.id);App.build.setWeapon(weapon);}for(const k of ['head','chest','arms','waist','legs']){const id=x.armor?.[k];build.armor[k]=id?DB.armor.find(a=>String(a.id)===String(id))||null:null;}build.charmCustom=x.charmCustom||build.charmCustom;build.artia=x.artia||build.artia;build.decos=x.decos||{};normalizeCharm();renderArmor();renderCharmEditor();renderArtia();renderWeapon();updateWeaponInfo();calcBuild();renderSavedBuilds()}
 function renderSavedBuilds(){
   const box=$('savedBuilds');if(!box)return;
   const m=savedBuildMap(),names=Object.keys(m).sort((a,b)=>a.localeCompare(b,'ja',{numeric:true}));
@@ -1717,9 +1848,10 @@ function damageForStats(st,mv,cond){
 function dpsForStats(st,cond){
   const rows=[...document.querySelectorAll('.comboRow')]; if(!rows.length)return null;
   let sumD=0,sumT=0;
-  for(const r of rows){const mv=+r.querySelector('.cmv').value||0,h=+r.querySelector('.chits').value||1,t=+r.querySelector('.ctime').value||1;sumD+=damageForStats(st,mv,cond)*h;sumT+=t;}
+  for(const r of rows){const m=comboMove(r.querySelector('.cmove')?.value);if(!m)continue;const h=Math.max(1,Number(r.querySelector('.chits')?.value)||1);sumD+=m.mvs.reduce((a,mv)=>a+damageForStats(st,mv,cond),0)*h;sumT+=m.time*h;}
   if(sumT<=0)return null; const theoretical=sumD/sumT,up=Math.max(1,Math.min(100,Number(cond.uptime)||85))/100; return cond.uptimeMode==='1'?theoretical*up:theoretical;
 }
+
 function compareSnapshot(name,snapshot,cond){
   applyBuildSnapshot(snapshot);
   const st=calcState.stats||{};
@@ -1760,17 +1892,15 @@ function aiBuildData(){
   const skills=[];
   document.querySelectorAll('#skillOutput .skillrow').forEach(r=>{const t=r.textContent.trim();if(t)skills.push(t)});
   const combo=[...document.querySelectorAll('.comboRow')].map(r=>{const id=r.querySelector('.cmove')?.value;const m=comboMove(id);return {name:m?.name||'',motionValues:m?.mvs||[],hits:Number(r.querySelector('.chits')?.value||1),time:Number(m?.time||0)}});
-  return {version:'5.21.1',weapon:weapon?{name:weapon.name||'',kind:weapon.kind||'',attack:weapon.attack||0,affinity:weapon.affinity||0,element:weapon.element||0,elementType:weapon.elementType||''}:null,armor,charm:charms,decos,stats:st,activeSkills:skills,step5:{uptime:$('uptime')?.value,uptimeMode:$('uptimeMode')?.value,combo}};
+  return {version:App.version,weapon:weapon?{name:weapon.name||'',kind:canonicalWeaponKind(weapon)||'',attack:weapon.attack||0,affinity:weapon.affinity||0,element:weapon.element||0,elementType:weapon.elementType||''}:null,armor,charm:charms,decos,stats:st,activeSkills:skills,step5:{uptime:$('uptime')?.value,uptimeMode:$('uptimeMode')?.value,combo}};
 }
 
 async function copyAIPayload(){const payload=makeAIPrompt();if(!payload)return;try{await navigator.clipboard.writeText(JSON.stringify(payload,null,2));$('aiOut').innerHTML='<span class="ok">送信用データをクリップボードへコピーしました。</span>';}catch(e){$('aiOut').innerHTML='<span class="warn">コピーできませんでした。下のデータを手動でコピーしてください。</span>';}}
 
 
-function renderDecorationPlacementAudit(){const box=$('decoPlacementAudit');if(!box)return;const rows=[];for(const s of allEquipSlots()){const id=build.decos[s.key];if(!id)continue;const d=DB.decorations.find(x=>String(x.id)===String(id));if(!d){rows.push(`${esc(s.owner)} [${s.level}] → 不明な装飾品`);continue}const ok=Number(d.slot)<=Number(s.level)&&decorationCompatibleWithSlot(d,s.kind==='weapon'?'weapon':'armor');rows.push(`${esc(s.owner)} [${s.level}] → ${esc(d.name)}（珠Lv${d.slot}） ${ok?'<span class="ok">✓ 適正</span>':'<span class="bad">⚠ 要確認</span>'}`)}box.innerHTML=rows.length?'<b>現在の装着状況</b><br>'+rows.join('<br>'):'<b>現在の装着状況</b><br>まだ装飾品は装着されていません。';}
-function initDecorationManager(){['decoSearch','decoKindFilter','decoSlotFilter','decoOwnedOnly'].forEach(id=>$(id)?.addEventListener('input',renderDecorationManager));renderDecorationManager()}
 document.addEventListener('click',e=>{const b=e.target.closest('.aiQuick');if(b&&$('aiPrompt')){$('aiPrompt').value=b.dataset.ai;makeAIPrompt();}});
 function saveNamedBuild(){const name=String($('buildName')?.value||'').trim();if(!name){alert('ビルド名を入力してください。');return}const m=savedBuildMap();m[name]=buildSnapshot();localStorage.setItem(BUILDS_KEY,JSON.stringify(m));renderSavedBuilds();stat(`ビルド「${name}」を保存しました。`,'ok')}
-$('clearDataCache')?.addEventListener('click',()=>{if(confirm('取得済みのゲームデータを削除しますか？'))clearDataCache()});$('aiPrepare')?.addEventListener('click',makeAIPrompt);$('aiCopy')?.addEventListener('click',copyAIPayload);$('useWeaponCoeff')?.addEventListener('change',updateWeaponCoeffDisplay);$('load').addEventListener('click',()=>window.__startDataLoad());$('weaponKind').onchange=()=>{renderWeapon();build.weapon=null;renderArtia();$('combo').innerHTML='';renderComboForWeapon();calcBuild()};$('weapon').onchange=()=>{build.weapon=selectedWeapon();updateWeaponInfo();renderArtia();$('combo').innerHTML='';renderComboForWeapon();calcBuild()};$('charmPreset')?.addEventListener('change',()=>{calcBuild()});$('monster').onchange=()=>{renderMonsterParts();syncDamage()};$('monsterPart').onchange=()=>{renderMonsterInfo();syncDamage()};$('calcBuild').onclick=calcBuild;$('addCombo').onclick=()=>addCombo();$('calcDps').onclick=calcDps;$('comboPreset')?.addEventListener('change',applyComboPreset);$('groupProposalRun')?.addEventListener('click',runGroupProposal);$('skillEvalRun')?.addEventListener('click',()=>{calcBuild();renderSkillEvaluation()});$('skillEvalPattern')?.addEventListener('change',()=>{calcBuild();renderSkillEvaluation()});$('saveBuild')?.addEventListener('click',saveNamedBuild);$('runCompare')?.addEventListener('click',runBuildCompare);$('selectAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=true)});$('clearAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=false)});$('clearBuildName')?.addEventListener('click',()=>{if($('buildName'))$('buildName').value=''});renderSavedBuilds();
-renderComboKinds();dataState=emptyDataState();renderDataStatus();loadDataCache();renderKinds();if(!DB.armor.length)stat('「最新データを取得」を押してください。');
+$('clearDataCache')?.addEventListener('click',()=>{if(confirm('取得済みのゲームデータを削除しますか？'))clearDataCache()});$('aiPrepare')?.addEventListener('click',makeAIPrompt);$('aiCopy')?.addEventListener('click',copyAIPayload);$('useWeaponCoeff')?.addEventListener('change',()=>calcBuild());$('load').addEventListener('click',()=>window.__startDataLoad());$('weaponKind').onchange=()=>{App.build.setWeapon(null);renderWeapon();renderArtia();$('combo').innerHTML='';renderComboForWeapon();calcBuild()};$('weapon').onchange=()=>{const w=DB.weapons.find(x=>String(x.id)===String($('weapon').value))||null;App.build.setWeapon(w);updateWeaponInfo();renderArtia();$('combo').innerHTML='';renderComboForWeapon();calcBuild()};$('charmPreset')?.addEventListener('change',()=>{calcBuild()});$('monster').onchange=()=>{renderMonsterParts();syncDamage()};$('monsterPart').onchange=()=>{renderMonsterInfo();syncDamage()};$('calcBuild').onclick=calcBuild;$('addCombo').onclick=()=>addCombo();$('calcDps').onclick=calcDps;$('comboPreset')?.addEventListener('change',applyComboPreset);$('groupProposalRun')?.addEventListener('click',runGroupProposal);$('skillEvalRun')?.addEventListener('click',()=>{calcBuild();renderSkillEvaluation()});$('skillEvalPattern')?.addEventListener('change',()=>{calcBuild();renderSkillEvaluation()});$('saveBuild')?.addEventListener('click',saveNamedBuild);$('runCompare')?.addEventListener('click',runBuildCompare);$('selectAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=true)});$('clearAllCompare')?.addEventListener('click',()=>{document.querySelectorAll('#compareBuilds input[data-compare-name]').forEach(x=>x.checked=false)});$('clearBuildName')?.addEventListener('click',()=>{if($('buildName'))$('buildName').value=''});renderSavedBuilds();
+renderComboKinds();dataState=emptyDataState();App.data.set(DB,dataState);renderDataStatus();loadDataCache();renderKinds();renderArchitectureStatus();if(!DB.armor.length)stat('「最新データを取得」を押してください。');
 
 </script></body></html>
